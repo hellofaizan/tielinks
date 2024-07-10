@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import { Inter as FontSans } from "next/font/google"
 import { type Metadata } from "next";
 import { cn } from "~/lib/utils";
+import { ThemeProvider } from "~/components/theme-provider"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -22,10 +23,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`} suppressHydrationWarning>
       <body className={cn(
-        "bg-background font-sans antialiased",
+        "bg-background font-sans antialiased min-h-[101dvh] md:min-h-[101vh]",
         fontSans.variable
       )}>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
