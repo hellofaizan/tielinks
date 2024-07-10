@@ -5,6 +5,11 @@
 await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+    // add images url
+    images: {
+        domains: ["res.cloudinary.com", "cdn.discordapp.com", "avatars.githubusercontent.com"],
+    },
+};
 
 export default config;

@@ -14,16 +14,14 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+enum USERROLE {
+    ADMIN
+    USER
+}
 
-    createdBy   User   @relation(fields: [createdById], references: [id])
-    createdById String
-
-    @@index([name])
+enum Layout {
+    IMGFULLSCREEN
+    IMGTOPNAV
 }
 
 // Necessary for Next auth
@@ -46,29 +44,17 @@ model Account {
     @@unique([provider, providerAccountId])
 }
 
-model Session {
-    id           String   @id @default(cuid())
-    sessionToken String   @unique
-    userId       String
-    expires      DateTime
-    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
 model User {
-    id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
-    posts         Post[]
-}
-
-model VerificationToken {
-    identifier String
-    token      String   @unique
-    expires    DateTime
-
-    @@unique([identifier, token])
+    id                String    @id @default(cuid())
+    name              String?
+    username          String?
+    usernameUpdatedAt DateTime?
+    embed             String?
+    layout            Layout    @default(IMGTOPNAV)
+    role              USERROLE  @default(USER)
+    email             String?   @unique
+    about             String?   @default("New to Tielinks✌️")
+    emailVerified     DateTime?
+    image             String?
+    accounts          Account[]
 }

@@ -8,24 +8,29 @@ import {
     IconBrandDiscord,
     IconBrandFacebook,
 } from "@tabler/icons-react";
+import { signIn } from "next-auth/react";
+import { DEFAULT_LOGIN_REDIRECT } from "~/server/routes"
+import { useSearchParams } from 'next/navigation';
+import { FormError } from "./components/FormError";
 
 export default function page() {
-    // get username from local storage
-    const username = localStorage.getItem('username')
+
+    const searchParams = useSearchParams();
+    const urlError = searchParams.get("error") === "OAuthAccountNotLinked" ? "The Email is already in use from different Authentication Provider" : "Opps! Something went wrong. Please try again later.";
 
     // handle click
-    const handleClick = (provider: string) => {
-        console.log(provider)
+    const handleClick = (provider: "google" | "github" | "discord" | "facebook") => {
+        signIn(provider, { callbackUrl: DEFAULT_LOGIN_REDIRECT });
     }
 
     return (
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
+        <div className="flex flex-col items-center justify-center px-4 py-8 mx-auto h-screen lg:py-0">
             <a href="#" className="flex items-center mb-6 text-3xl font-semibold text-gray-900 dark:text-white">
                 <img className="w-8 h-8 mr-2" src={LogoImg.src as string} alt="logo" />
                 Tielinks
             </a>
-            
-            <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-transparent">
+
+            <div className="max-w-md w-full mx-auto rounded-sm md:rounded-lg p-3 md:p-8 shadow-input bg-transparent">
                 <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
                     Welcome to Aceternity
                 </h2>
@@ -84,6 +89,8 @@ export default function page() {
                         </span>
                         <BottomGradient />
                     </button>
+
+                    {urlError && <FormError message={urlError} />}
                 </div>
             </div>
         </div>

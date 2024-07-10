@@ -48,9 +48,10 @@ const GetUsername = ({
         }
         router.push("/auth")
     }
-    console.log(session)
+    console.log("session " + JSON.stringify(session))
     // Completed Form ?
-    const username = session?.user?.username;
+    const username = session?.user.username
+    console.log("username " + username)
 
     return (
         <div>
