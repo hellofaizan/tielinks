@@ -1,18 +1,17 @@
 "use client"
 
-import { useSession, signOut } from 'next-auth/react'
+import { signOut } from 'next-auth/react'
 import React from 'react'
+import { useCurrentUser } from '~/hooks/use-current-user'
 
 export default function page() {
-  const session = useSession()
-
-  console.log(session.data?.user.email)
+  const user = useCurrentUser()
 
   const handleClick = () => () => signOut()
 
   return (
     <div>
-      {JSON.stringify(session, null, 2)}
+      {JSON.stringify(user)}
 
       <button onClick={handleClick()}>Sign out</button>
     </div>

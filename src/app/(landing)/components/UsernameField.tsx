@@ -14,6 +14,7 @@ import {
 } from "~/components/ui/form"
 import { useRouter } from 'next/navigation'
 import { Link2 } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar"
 
 const usernameSchema = z.object({
     username: z
@@ -64,7 +65,11 @@ const GetUsername = ({
                         onClick={() => router.push("/" + session?.user?.username)}
                     >
                         <div className="flex py-5 justify-center items-center space-x-3">
-                            <Image src={session?.user?.image} width={10} height={10} alt="User Profile" className="rounded-full w-8 h-8" />
+                            <Avatar>
+                                <AvatarImage src={session?.user?.image} width={10} height={10} alt="@shadcn" />
+                                <AvatarFallback className='text-black dark:text-white'>TIE</AvatarFallback>
+                            </Avatar>
+                            {/* <Image src=  alt="User Profile" className="rounded-full w-8 h-8" /> */}
                             <span className="flex gap-2 font-manrope text-neutral-600 items-center dark:text-neutral-400 text-lg">
                                 Go to your Profile
                                 <Link2 size={25} color='red' />
