@@ -1,4 +1,4 @@
-import { BellIcon, BriefcaseIcon, Calendar, ChevronsRightIcon, FileTextIcon, HomeIcon, LayoutGridIcon, LinkIcon, MenuIcon, UserIcon } from "lucide-react"
+import { BellIcon, BriefcaseIcon, Calendar, ChevronsRightIcon, FileTextIcon, HomeIcon, LayoutGridIcon, LinkIcon, MenuIcon, Settings, UserIcon } from "lucide-react"
 import Link from "next/link"
 import { Avatar, AvatarImage, AvatarFallback } from "~/components/ui/avatar"
 import { Button } from "~/components/ui/button"
@@ -7,6 +7,7 @@ import { auth } from '~/server/auth'
 import ProfileComponent from "./dashboard/components/profile"
 import { ModeToggle } from "~/components/ModeToogle"
 import { Toaster } from "~/components/ui/toaster"
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "~/components/ui/accordion"
 
 export default async function DashboardLayout({
   children,
@@ -40,7 +41,7 @@ function Sidebar({ session }: { session: any }) {
       <nav className="flex flex-1 flex-col overflow-y-auto">
         <div className="flex flex-col space-y-1 p-2">
           <Link
-            href="#"
+            href="/dashboard"
             className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
             prefetch={false}
           >
@@ -55,14 +56,43 @@ function Sidebar({ session }: { session: any }) {
             <LayoutGridIcon className="mr-3 h-5 w-5" />
             Dashboard
           </Link>
-          <Link
-            href="#"
-            className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
-            prefetch={false}
-          >
-            <BriefcaseIcon className="mr-3 h-5 w-5" />
-            Projects
-          </Link>
+          <Accordion type="single" collapsible>
+            <AccordionItem value="projects">
+              <AccordionTrigger className="flex items-center gap-3 rounded-md px-3 py-0 hover:bg-muted hover:text-foreground">
+                <div
+                  className="flex items-center rounded-md py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground">
+                  <Settings className="mr-3 h-5 w-5" />
+                  Settings
+                </div>
+
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="grid gap-2 pl-8">
+                  <Link
+                    href="/dashboard/username"
+                    className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted/60 hover:text-foreground"
+                    prefetch={false}
+                  >
+                    <span>Username</span>
+                  </Link>
+                  <Link
+                    href="#"
+                    className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted/40 hover:text-foreground"
+                    prefetch={false}
+                  >
+                    <span>Ongoing Projects</span>
+                  </Link>
+                  <Link
+                    href="#"
+                    className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted/40 hover:text-foreground"
+                    prefetch={false}
+                  >
+                    <span>Completed Projects</span>
+                  </Link>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
           <Link
             href="#"
             className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
