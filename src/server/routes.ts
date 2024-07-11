@@ -32,6 +32,7 @@ export const apiAuthPrefix = '/api/auth'
  */
 export const protectedRoutes = [
     '/dashboard',
+    '/profile',
 ]
 
 /**

@@ -52,13 +52,12 @@ const GetUsername = ({
     console.log("session " + JSON.stringify(session))
     // Completed Form ?
     const username = session?.user.username
-    console.log("username " + username)
 
     return (
-        <div>
+        <div className='flex items-center justify-center'>
             {username != null ? (
                 // Stylish Navigate to your Profile Button
-                <div className='flex items-center justify-center mt-10'>
+                <div className='flex items-center justify-center mt-10 flex-col gap-2 w-max'>
                     <Button
                         className='border bg-black/10 dark:bg-white/10 backdrop-blur-3xl hover:bg-black/5 dark:hover:bg-white/5'
                         size={'xxl'}
@@ -71,8 +70,20 @@ const GetUsername = ({
                             </Avatar>
                             {/* <Image src=  alt="User Profile" className="rounded-full w-8 h-8" /> */}
                             <span className="flex gap-2 font-manrope text-neutral-600 items-center dark:text-neutral-400 text-lg">
-                                Go to your Profile
+                                Your Tielinks page
                                 <Link2 size={25} color='red' />
+                            </span>
+                        </div>
+                    </Button>
+                    <Button
+                        className='border bg-black/10 dark:bg-white/10 backdrop-blur-3xl hover:bg-black/5 dark:hover:bg-white/5 w-full'
+                        size={'xxl'}
+                        onClick={() => router.push("/dashboard")}
+                    >
+                        <div className="flex py-5 justify-center items-center space-x-3">
+
+                            <span className="flex gap-2 font-manrope text-neutral-600 items-center dark:text-neutral-400 text-lg">
+                                Go to dashoard
                             </span>
                         </div>
                     </Button>

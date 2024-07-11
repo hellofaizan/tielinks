@@ -18,9 +18,11 @@ export default function page() {
     const searchParams = useSearchParams();
     const urlError = searchParams.get("error") === "OAuthAccountNotLinked" ? "The Email is already in use from different Authentication Provider" : "Opps! Something went wrong. Please try again later.";
 
+    const callbackUrl = searchParams.get("callbackUrl");
+
     // handle click
     const handleClick = (provider: "google" | "github" | "discord" | "facebook") => {
-        signIn(provider, { callbackUrl: DEFAULT_LOGIN_REDIRECT });
+        signIn(provider, { callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT });
     }
 
     return (

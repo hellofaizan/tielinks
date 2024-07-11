@@ -1,11 +1,12 @@
-import { BellIcon, BriefcaseIcon, Calendar, ChevronsRightIcon, FileTextIcon, HomeIcon, LayoutGridIcon, MenuIcon, UserIcon } from "lucide-react"
+import { BellIcon, BriefcaseIcon, Calendar, ChevronsRightIcon, FileTextIcon, HomeIcon, LayoutGridIcon, LinkIcon, MenuIcon, UserIcon } from "lucide-react"
 import Link from "next/link"
 import { Avatar, AvatarImage, AvatarFallback } from "~/components/ui/avatar"
 import { Button } from "~/components/ui/button"
 import { SessionProvider } from 'next-auth/react'
 import { auth } from '~/server/auth'
-import ProfileComponent from "./components/profile"
+import ProfileComponent from "./dashboard/components/profile"
 import { ModeToggle } from "~/components/ModeToogle"
+import { IconLink } from "@tabler/icons-react"
 
 export default async function DashboardLayout({
   children,
@@ -27,11 +28,12 @@ export default async function DashboardLayout({
 }
 
 function Sidebar({ session }: { session: any }) {
+  const username = session?.user?.username
   return (
     <div className="hidden w-64 flex-col border-r bg-background md:flex">
       <div className="flex h-16 shrink-0 items-center border-b px-6">
         <Link href="#" className="font-bold" prefetch={false}>
-          Acme Inc
+          Tielinks
         </Link>
       </div>
       <nav className="flex flex-1 flex-col overflow-y-auto">
@@ -86,19 +88,27 @@ function Sidebar({ session }: { session: any }) {
           </Link>
         </div>
       </nav>
-      <div className="flex shrink-0 items-center border-t p-4">
-        <Link href="#" className="group flex w-full items-center space-x-4" prefetch={false}>
-          <Avatar>
-            <AvatarImage src={session?.user?.image} />
-            <AvatarFallback>TIE</AvatarFallback>
-          </Avatar>
-          <div className="flex-1 space-y-1">
-            <p className="text-sm font-medium leading-none">{session?.user?.name || "NULL"}</p>
-            <p className="text-xs text-muted-foreground">{session?.user?.email || "NULL"}</p>
-          </div>
-          <ChevronsRightIcon className="h-4 w-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
-        </Link>
-      </div>
+      {username != null ? (
+        <div className="flex shrink-0 items-center border-t p-4" title="Go to your profile">
+          <Link href={`/${session?.user.username}`} className="group flex w-full items-center space-x-4" prefetch={false}>
+            <Avatar>
+              <AvatarImage src={session?.user?.image} />
+              <AvatarFallback>TIE</AvatarFallback>
+            </Avatar>
+            <div className="flex-1 space-y-1">
+              <p className="text-sm font-medium leading-none">{session?.user?.name || "NULL"}</p>
+              <p className="text-xs text-muted-foreground">{session?.user?.email || "NULL"}</p>
+            </div>
+            <ChevronsRightIcon className="h-4 w-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+          </Link>
+        </div>
+      ) : (
+        <div className="flex shrink-0 items-center border-t p-4" title="Go to your profile">
+          <Link href={`/dashboard/username`} className="group flex w-full items-center space-x-4" prefetch={false}>
+            <LinkIcon size={15} className="mr-2" /> Setup your profile
+          </Link>
+        </div>
+      )}
     </div>
   )
 }

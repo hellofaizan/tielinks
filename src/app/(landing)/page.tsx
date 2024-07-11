@@ -13,7 +13,7 @@ export default async function HomePage() {
           <div className="flex flex-col">
             <div className="p-4 md:p-2 mt-40 md:mt-0 flex flex-col md:min-h-screen justify-center">
               <h1 className="text-[45px] md:text-7xl font-bold text-center bg-clip-text text-transparent dark:bg-gradient-to-b dark:from-neutral-50 dark:to-neutral-400 bg-gradient-to-b from-neutral-950 to-neutral-600 bg-opacity-50">
-                Tielinks is new!
+                Tielinks is super cool
               </h1>
               <p className="mt-4 font-light text-base text-neutral-800 dark:text-neutral-300 max-w-lg text-center mx-auto">
                 Spotlight effect is a great way to draw attention to a specific part

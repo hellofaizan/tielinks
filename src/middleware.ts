@@ -7,6 +7,7 @@ import {
     adminRoutes,
     publicRoutes
 } from '~/server/routes'
+import { USERROLE } from "@prisma/client";
 
 const { auth } = NextAuth(authConfig);
 
@@ -30,7 +31,15 @@ export default auth((req):any => {
     }
     
     if (!isLoggedIn && !isPublicRoute) {
-        return Response.redirect(new URL('/auth', nextUrl));
+        let callbackUrl = nextUrl.pathname;
+        if (nextUrl.search) {
+            callbackUrl += nextUrl.search;
+        }
+        const encodedUrl = encodeURIComponent(callbackUrl);
+        return Response.redirect(new URL(
+            `/auth?callbackUrl=${encodedUrl}`, 
+            nextUrl
+        ));
     }
 
     return null;
