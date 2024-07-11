@@ -22,12 +22,9 @@ const usernameSchema = z.object({
         .min(1, {
             message: "Username must be at least 1 character long.",
         })
-        .max(30, {
-            message: "Username must not be longer than 30 characters.",
+        .max(20, {
+            message: "Username must not be longer than 20 characters.",
         })
-        .regex(/^[a-zA-Z0-9]+$/, {
-            message: "Spaces and special characters are not allowed.",
-        }),
 })
 
 type UsernameValues = z.infer<typeof usernameSchema>
@@ -47,7 +44,7 @@ const GetUsername = ({
         if (typeof window !== 'undefined') {
             localStorage.setItem('username', data.username)
         }
-        router.push("/auth")
+        router.push(`/auth?callbackUrl=/dashboard/username`)
     }
     console.log("session " + JSON.stringify(session))
     // Completed Form ?

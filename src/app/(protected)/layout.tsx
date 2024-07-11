@@ -6,7 +6,7 @@ import { SessionProvider } from 'next-auth/react'
 import { auth } from '~/server/auth'
 import ProfileComponent from "./dashboard/components/profile"
 import { ModeToggle } from "~/components/ModeToogle"
-import { IconLink } from "@tabler/icons-react"
+import { Toaster } from "~/components/ui/toaster"
 
 export default async function DashboardLayout({
   children,
@@ -21,6 +21,7 @@ export default async function DashboardLayout({
         <div className="flex flex-1 flex-col overflow-x-hidden">
           <LayoutHeader session={session} />
           {children}
+          <Toaster />
         </div>
       </div>
     </SessionProvider>
@@ -117,7 +118,7 @@ function LayoutHeader({ session }: { session: any }) {
   return (
     <header className="sticky top-0 z-30 flex h-16 shrink-0 items-center border-b bg-background px-4 shadow-sm md:px-6">
       <div className="flex flex-1 items-center space-x-4">
-        <Button variant="ghost" size="icon" className="md:hidden">
+        <Button variant="ghost" size="icon">
           <MenuIcon className="h-5 w-5" />
           <span className="sr-only">Toggle menu</span>
         </Button>
