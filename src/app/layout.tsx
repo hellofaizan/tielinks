@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`} suppressHydrationWarning>
       <body className={cn(
-        "bg-background font-sans antialiased min-h-[101dvh] md:min-h-[101vh]",
+        "bg-background font-sans antialiased",
         fontSans.variable
       )}>
         <ThemeProvider

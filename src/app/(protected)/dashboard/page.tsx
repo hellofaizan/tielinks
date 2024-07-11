@@ -10,8 +10,8 @@ export default function page() {
   const handleClick = () => () => signOut()
 
   return (
-    <div>
-      {JSON.stringify(user)}
+    <div className='p-4'>
+      <p>{JSON.stringify(user)}</p>
 
       <button onClick={handleClick()}>Sign out</button>
     </div>
