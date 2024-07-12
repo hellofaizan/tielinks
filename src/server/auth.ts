@@ -5,17 +5,15 @@ import { PrismaAdapter } from "@auth/prisma-adapter"
 import { getUserById } from "./user"
 import { USERROLE } from "@prisma/client"
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 declare module "next-auth" {
   /**
    * Returned by `auth`, `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
    */
-  /* eslint-disable @typescript-eslint/no-explicit-any */
   interface Session {
     user: {
       /** The user's postal address. */
-      role: USERROLE, // eslint-disable-line @typescript-eslint/no-explicit-any
-      username: string, // eslint-disable-line @typescript-eslint/no-explicit-any
+      role: USERROLE,
+      username: string,
       /**
        * By default, TypeScript merges new interface properties and overwrites existing ones.
        * In this case, the default session user properties will be overwritten,
