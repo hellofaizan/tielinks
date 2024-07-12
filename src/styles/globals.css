@@ -71,13 +71,18 @@
   /* width */
 ::-webkit-scrollbar {
   width: 5px;
+  height: 2px;
 }
 /* Track */
 ::-webkit-scrollbar-track {
   background: #111010;
 }
 /* Handle */
-::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb:horizontal {
+  background: #8888;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:vertical {
   background: #8888;
   border-radius: 5px;
 }

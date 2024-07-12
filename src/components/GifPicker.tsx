@@ -23,6 +23,7 @@ import {
 import { env } from "~/env"
 import { Separator } from "./ui/separator"
 import { cn } from "~/lib/utils"
+import { StaggeredGrid, StaggeredGridItem } from "react-staggered-grid";
 
 export function GifPicker({ setGif }: { setGif: any }) {
     const [open, setOpen] = React.useState(false)
@@ -57,7 +58,7 @@ export function GifPicker({ setGif }: { setGif: any }) {
         const q = searchTerm || categoryterm
         try {
             setLoading(true)
-            const response = await fetch(`https://tenor.googleapis.com/v2/search?key=${apiKey}&q=${q}&limit=20&client_key=my_test_app`)
+            const response = await fetch(`https://tenor.googleapis.com/v2/search?key=${apiKey}&q=${q}&limit=40&client_key=my_test_app`)
             const data = await response.json()
             setGifs(data.results)
             setLoading(false)
@@ -102,6 +103,7 @@ export function GifPicker({ setGif }: { setGif: any }) {
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
                         <DialogTitle>Select GIF</DialogTitle>
+                        <DialogDescription>Search and select a GIF to use.</DialogDescription>
                     </DialogHeader>
                     <div className="flex flex-col gap-3">
                         <input type="text" placeholder="Search Tenor" className="w-full p-3 px-4 border-gray-300 rounded-lg" value={searchTerm} onChange={handleSearchChange} />
@@ -112,7 +114,7 @@ export function GifPicker({ setGif }: { setGif: any }) {
                             { hidden: showCategories }
                         )}>
                             {categories.map((category: any) => (
-                                <div key={category?.searchterm} className="hover:border rounded-md h-20 relative text-center" onClick={() => { handleCatergoryClick(category.searchterm) }}>
+                                <div key={category?.searchterm} className="hover:border rounded-md h-20 relative text-center cursor-pointer" onClick={() => { handleCatergoryClick(category.searchterm) }}>
                                     <img src={category?.image} alt={category?.name} className="w-full h-full rounded-lg" />
                                     <div className="bg-black/60 w-full h-20 absolute top-0 items-center text-center justify-center" >
                                         <p className="flex text-white h-full text-center items-center justify-center">{category?.searchterm}</p>
@@ -127,17 +129,25 @@ export function GifPicker({ setGif }: { setGif: any }) {
                             {loading ? (
                                 <div>Loading...</div>
                             ) : (
-                                <div className="grid grid-cols-3 gap-3 overflow-y-scroll h-72">
-                                    {gifs?.map((gif: any) => (
-                                        <div key={gif?.id} className="hover:border rounded-md h-20 relative text-center" onClick={() => gifClickHandle(gif?.id, gif?.media_formats?.gif?.url)}>
-                                            <img src={gif?.media_formats?.gif?.url} alt={gif?.title} className="w-full h-full rounded-lg" />
-                                        </div>
-                                    ))}
+                                <div className="overflow-y-scroll h-72">
+                                    <StaggeredGrid
+                                        columns={3} // 0 would adjust columns
+                                        alignment={1} // 0 : start , 1 : center , 2 : end
+                                        horizontalGap={5} // horizontal gap between grid items
+                                        fitHorizontalGap={true} // fit the gap with columnWidth
+                                        verticalGap={5} // vertical gap between grid items
+                                    >
+                                        {gifs?.map((gif: any, index: any) => (
+                                            <StaggeredGridItem key={gif?.id} index={index} className="hover:border rounded-md relative text-center cursor-pointer" onClick={() => gifClickHandle(gif?.id, gif?.media_formats?.gif?.url)}>
+                                                <img src={gif?.media_formats?.gif?.url} alt={gif?.title} className="w-full h-full rounded-lg" />
+                                            </StaggeredGridItem>
+                                        ))}
+                                    </StaggeredGrid>
                                 </div>
                             )}
                         </div>
-
                     </div>
+
                 </DialogContent>
             </Dialog>
         )
@@ -151,6 +161,7 @@ export function GifPicker({ setGif }: { setGif: any }) {
             <DrawerContent>
                 <DrawerHeader className="text-left">
                     <DrawerTitle>Select Gif</DrawerTitle>
+                    <DrawerDescription>Search and select a GIF to use.</DrawerDescription>
                 </DrawerHeader>
                 <div className="flex flex-col gap-3 px-2 md:px-0">
                     <input type="text" placeholder="Search Tenor" className="w-full p-3 px-4 border-gray-300 rounded-lg" value={searchTerm} onChange={handleSearchChange} />
@@ -176,12 +187,20 @@ export function GifPicker({ setGif }: { setGif: any }) {
                         {loading ? (
                             <div>Loading...</div>
                         ) : (
-                            <div className="grid grid-cols-3 gap-3 overflow-y-scroll h-72">
-                                {gifs?.map((gif: any) => (
-                                    <div key={gif?.id} className="hover:border rounded-md h-20 relative text-center" onClick={() => gifClickHandle(gif?.id, gif?.media_formats?.gif?.url)}>
-                                        <img src={gif?.media_formats?.gif?.url} alt={gif?.title} className="w-full h-full rounded-lg" />
-                                    </div>
-                                ))}
+                            <div className="overflow-y-scroll h-72">
+                                <StaggeredGrid
+                                    columns={3} // 0 would adjust columns
+                                    alignment={1} // 0 : start , 1 : center , 2 : end
+                                    horizontalGap={5} // horizontal gap between grid items
+                                    fitHorizontalGap={true} // fit the gap with columnWidth
+                                    verticalGap={5} // vertical gap between grid items
+                                >
+                                    {gifs?.map((gif: any, index: any) => (
+                                        <StaggeredGridItem key={gif?.id} index={index} className="hover:border rounded-md relative text-center cursor-pointer" onClick={() => gifClickHandle(gif?.id, gif?.media_formats?.gif?.url)}>
+                                            <img src={gif?.media_formats?.gif?.url} alt={gif?.title} className="w-full h-full rounded-lg" />
+                                        </StaggeredGridItem>
+                                    ))}
+                                </StaggeredGrid>
                             </div>
                         )}
                     </div>
