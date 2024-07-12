@@ -31,7 +31,7 @@ export default function ProfileComponent({ session }: { session: any }) {
                 <DropdownMenuLabel>Hello {firstName + ":)"}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => {
-                    router.push('/profile')
+                    router.push('/dashboard/profile')
                 }}>Profile</DropdownMenuItem>
                 <DropdownMenuItem>Billing</DropdownMenuItem>
                 <DropdownMenuItem>Team</DropdownMenuItem>

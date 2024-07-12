@@ -57,6 +57,18 @@ export default function Sidebar({ session }: { session: any }) {
                             <AccordionContent>
                                 <div className="grid gap-2 pl-8">
                                     <Link
+                                        href="/dashboard/profile"
+                                        className={cn(
+                                            "flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted/60 hover:text-foreground",
+                                            path === "/dashboard/profile" && "bg-muted/60 text-foreground",
+                                        )}
+                                        prefetch={false}
+                                    >
+                                        <span>Profile</span>
+                                    </Link>
+                                </div>
+                                <div className="grid gap-2 pl-8">
+                                    <Link
                                         href="/dashboard/username"
                                         className={cn(
                                             "flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted/60 hover:text-foreground",

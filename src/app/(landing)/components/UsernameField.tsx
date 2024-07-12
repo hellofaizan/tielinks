@@ -68,7 +68,6 @@ const GetUsername = ({
                             {/* <Image src=  alt="User Profile" className="rounded-full w-8 h-8" /> */}
                             <span className="flex gap-2 font-manrope text-neutral-600 items-center dark:text-neutral-400 text-lg">
                                 Your Tielinks page
-                                <Link2 size={25} color='red' />
                             </span>
                         </div>
                     </Button>
