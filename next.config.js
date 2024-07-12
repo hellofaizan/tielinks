@@ -8,7 +8,7 @@ await import("./src/env.js");
 const config = {
     // add images url
     images: {
-        domains: ["res.cloudinary.com", "cdn.discordapp.com", "avatars.githubusercontent.com"],
+        domains: ["res.cloudinary.com", "cdn.discordapp.com", "avatars.githubusercontent.com", "media1.tenor.com"],
     },
 };
 

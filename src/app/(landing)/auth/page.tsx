@@ -7,6 +7,7 @@ import {
     IconBrandGoogle,
     IconBrandDiscord,
     IconBrandFacebook,
+    IconCircleSquare,
 } from "@tabler/icons-react";
 import { signIn } from "next-auth/react";
 import { DEFAULT_LOGIN_REDIRECT } from "~/server/routes"
@@ -16,13 +17,27 @@ import { FormError } from "./components/FormError";
 export default function page() {
 
     const searchParams = useSearchParams();
+    const [disabled, setDisabled] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     const urlError = searchParams.get("error") === "OAuthAccountNotLinked" ? "The Email is already in use from different Authentication Provider" : "Opps! Something went wrong. Please try again later.";
 
     const callbackUrl = searchParams.get("callbackUrl");
 
     // handle click
     const handleClick = (provider: "google" | "github" | "discord" | "facebook") => {
-        signIn(provider, { callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT });
+        setDisabled(true);
+        setIsLoading(true)
+        try {
+            signIn(provider, { callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT });
+        } catch (error) {
+            console.error(error);
+            setDisabled(false);
+            setIsLoading(false);
+        }
+        finally {
+            setIsLoading(false);
+            setDisabled(false);
+        }
     }
 
     return (
@@ -45,10 +60,9 @@ export default function page() {
 
                 <div className="flex flex-col space-y-4">
                     {/* Google */}
-                    <button onClick={() => handleClick("google")}
+                    <button onClick={() => handleClick("google")} disabled={disabled}
                         className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                         type="submit">
-
                         <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
                         <span className="text-neutral-700 dark:text-neutral-300 text-sm">
                             Google
@@ -57,7 +71,7 @@ export default function page() {
                     </button>
 
                     {/* Discord */}
-                    <button onClick={() => handleClick("discord")}
+                    <button onClick={() => handleClick("discord")} disabled={disabled}
                         className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                         type="submit">
 
@@ -69,7 +83,7 @@ export default function page() {
                     </button>
 
                     {/* Facebook */}
-                    <button onClick={() => handleClick("facebook")}
+                    <button onClick={() => handleClick("facebook")} disabled={disabled}
                         className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                         type="submit">
 
@@ -81,7 +95,7 @@ export default function page() {
                     </button>
 
                     {/* Github */}
-                    <button onClick={() => handleClick("github")}
+                    <button onClick={() => handleClick("github")} disabled={disabled}
                         className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                         type="submit">
 

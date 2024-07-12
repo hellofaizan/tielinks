@@ -34,10 +34,10 @@ export default function Sidebar({ session }: { session: any }) {
                         Home
                     </Link>
                     <Link
-                        href="#"
+                        href="/dashboard/analytics"
                         className={cn(
                             "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
-                            path === "/analytics" && "bg-muted text-foreground",
+                            path === "/dashboard/analytics" && "bg-muted text-foreground",
                         )}
                         prefetch={false}
                     >
@@ -58,24 +58,13 @@ export default function Sidebar({ session }: { session: any }) {
                                 <div className="grid gap-2 pl-8">
                                     <Link
                                         href="/dashboard/username"
-                                        className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted/60 hover:text-foreground"
+                                        className={cn(
+                                            "flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted/60 hover:text-foreground",
+                                            path === "/dashboard/username" && "bg-muted/60 text-foreground",
+                                        )}
                                         prefetch={false}
                                     >
                                         <span>Username</span>
-                                    </Link>
-                                    <Link
-                                        href="#"
-                                        className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted/40 hover:text-foreground"
-                                        prefetch={false}
-                                    >
-                                        <span>Ongoing Projects</span>
-                                    </Link>
-                                    <Link
-                                        href="#"
-                                        className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted/40 hover:text-foreground"
-                                        prefetch={false}
-                                    >
-                                        <span>Completed Projects</span>
                                     </Link>
                                 </div>
                             </AccordionContent>

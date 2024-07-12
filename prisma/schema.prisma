@@ -49,6 +49,7 @@ model User {
     name              String?
     username          String?
     usernameUpdatedAt DateTime?
+    banner            String?
     embed             String?
     layout            Layout    @default(IMGTOPNAV)
     role              USERROLE  @default(USER)
