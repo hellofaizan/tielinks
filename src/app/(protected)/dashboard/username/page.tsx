@@ -14,7 +14,7 @@ import {
 import { Button } from '~/components/ui/button'
 import { useCurrentUser } from '~/hooks/use-current-user'
 import { useToast } from "~/components/ui/use-toast"
-import GetUsername from '~/actions/getusername'
+import SetUsername from '~/actions/setusername'
 import { Info } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 
@@ -51,7 +51,7 @@ export default function page() {
     setDisabled(true)
 
     // check if username is available
-    GetUsername(data)
+    SetUsername(data)
       .then((res) => {
         if (res.error) {
           setDisabled(false)
@@ -64,6 +64,7 @@ export default function page() {
         setDisabled(false)
         toast({
           title: "Username updated successfully! 🎉",
+          description: "It might take a few minutes for the changes to reflect.",
         })
       })
       .catch((err) => {

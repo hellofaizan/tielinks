@@ -7,7 +7,6 @@ import { Button } from '~/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 import { MoveHorizontalIcon } from 'lucide-react'
-import { GifPicker } from '~/components/GifPicker'
 
 export default function page() {
   const user = useCurrentUser()
@@ -66,7 +65,6 @@ export default function page() {
           </div>
         </CardContent>
       </Card>
-      <GifPicker setGif={setGif} />
     </div>
   )
 }

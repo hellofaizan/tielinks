@@ -4,7 +4,7 @@
 import { currentUser } from "~/server/user"
 import { db } from "~/server/db"
 
-export default async function GetUsername(data: any) {
+export default async function SetUsername(data: any) {
     const userid = await currentUser()
     const id = userid?.id
     const username = data?.username
@@ -58,8 +58,7 @@ export default async function GetUsername(data: any) {
         }
     })
 
-    console.log("Username updated.")
-    return { username: newusername.username }
+    return { success: "Username updated." }
 
 
 }

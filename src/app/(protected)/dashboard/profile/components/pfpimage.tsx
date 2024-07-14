@@ -1,0 +1,56 @@
+"use client";
+
+import React from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
+import { Button } from "~/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "~/components/ui/dialog";
+
+export default function PFPImage(user: any) {
+  const userData = user?.user;
+
+  const deleteImage = () => {
+    console.log("Delete Image");
+  };
+  return (
+    <div className="flex w-full">
+      <Avatar className="h-24 w-24 md:h-28 md:w-28">
+        <AvatarImage src={userData?.image} />
+        <AvatarFallback>CN</AvatarFallback>
+      </Avatar>
+      <div className="mx-4 flex w-full flex-row">
+        <div className="flex w-full flex-col">
+          <h1 className="font-sans text-xl font-semibold md:text-2xl">
+            {userData?.name}
+          </h1>
+          <p className="font-mono text-base font-normal">{userData?.email}</p>
+          <div className="my-2 flex gap-2">
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  className="flex-1"
+                  variant={"outlinedestructive"}
+                >
+                  Delete Image
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Are you absolutely sure?</DialogTitle>
+                  <DialogDescription>
+                    This action cannot be undone. Are you sure you want to
+                    delete this image from our servers?
+                  </DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                  <Button type="button" variant={"outlinedestructive"} onClick={() => {deleteImage()}}>Confirm</Button>
+                  <Button type="button">Discard</Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+            <Button className="flex-1">Change Image</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

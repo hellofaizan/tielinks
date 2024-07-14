@@ -56,6 +56,7 @@ model User {
     email             String?   @unique
     about             String?   @default("New to Tielinks✌️")
     emailVerified     DateTime?
+    tielinkJoinedAt   DateTime? @default(now())
     image             String?
     accounts          Account[]
 }
