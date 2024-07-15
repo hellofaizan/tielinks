@@ -17,13 +17,13 @@ export default async function ProfilePage() {
 
   return (
     <div className="flex w-full flex-col items-center justify-center">
-      <Card className="m-2 w-full rounded-md md:w-2/5">
+      <Card className="m-2 w-full rounded-md lg:w-2/5">
         <CardContent className="p-4">
           <PFPImage user={user} />
         </CardContent>
       </Card>
 
-      <Card className="m-2 w-full rounded-md md:w-2/5">
+      <Card className="m-2 w-full rounded-md lg:w-2/5">
         <CardHeader>
           <CardTitle>Update Profile</CardTitle>
           <CardDescription>
@@ -35,14 +35,28 @@ export default async function ProfilePage() {
         </CardContent>
       </Card>
 
-      <Card className="m-2 w-full rounded-md md:w-2/5">
+      <Card className="m-2 w-full rounded-md lg:w-2/5">
         <CardHeader>
           <CardTitle>Links</CardTitle>
         </CardHeader>
         <CardContent></CardContent>
       </Card>
 
-      <Card className="m-2 w-full rounded-md md:w-2/5">
+      <Card className="m-2 w-full rounded-md lg:w-2/5">
+        <CardHeader>
+          <CardTitle>Links</CardTitle>
+        </CardHeader>
+        <CardContent></CardContent>
+      </Card>
+      
+      <Card className="m-2 w-full rounded-md lg:w-2/5">
+        <CardHeader>
+          <CardTitle>Links</CardTitle>
+        </CardHeader>
+        <CardContent></CardContent>
+      </Card>
+      
+      <Card className="m-2 w-full rounded-md lg:w-2/5">
         <CardHeader>
           <CardTitle>Links</CardTitle>
         </CardHeader>

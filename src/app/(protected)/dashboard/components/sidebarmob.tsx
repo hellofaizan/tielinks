@@ -14,11 +14,11 @@ import { IconReportAnalytics } from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
 import { cn } from "~/lib/utils";
 
-export default function Sidebar({ session }: { session: any }) {
+export default function SidebarMobile({ session }: { session: any }) {
   const username = session?.user?.username;
   const path = usePathname();
   return (
-    <div className="hidden w-64 flex-col border-r bg-background md:flex h-full">
+    <div className="flex-col border-r bg-background md:hidden h-full">
       <div className="flex h-16 shrink-0 items-center border-b px-6">
         <Link href="#" className="font-bold" prefetch={false}>
           Tielinks
