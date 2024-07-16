@@ -8,7 +8,52 @@ await import("./src/env.js");
 const config = {
     // add images url
     images: {
-        domains: ["res.cloudinary.com", "cdn.discordapp.com", "avatars.githubusercontent.com", "media1.tenor.com"],
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "avatars.githubusercontent.com"
+            },
+            {
+                protocol: "https",
+                hostname: "cdn.discordapp.com"
+            },
+            {
+                protocol: "https",
+                hostname: "res.cloudinary.com"
+            },
+            {
+                protocol: "https",
+                hostname: "lh3.googleusercontent.com"
+            },
+            {
+                protocol: "https",
+                hostname: "pbs.twimg.com"
+            },
+            {
+                protocol: "https",
+                hostname: "i.imgur.com"
+            },
+            {
+                protocol: "https",
+                hostname: "i.ytimg.com"
+            },
+            {
+                protocol: "https",
+                hostname: "media.discordapp.net"
+            },
+            {
+                protocol: "https",
+                hostname: "cdn.discordapp.com"
+            },
+            {
+                protocol: "https",
+                hostname: "media.tenor.com"
+            },
+            {
+                protocol: "https",
+                hostname: "media1.tenor.com"
+            }
+        ],
     },
 };
 

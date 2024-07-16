@@ -76,6 +76,7 @@ export default async function DashboardLayout({
           </header>
           <main className="flex-1 items-start px-2 sm:py-0 md:gap-4">
             {children}
+            <Toaster />
           </main>
         </div>
         {/* <Analytics /> */}

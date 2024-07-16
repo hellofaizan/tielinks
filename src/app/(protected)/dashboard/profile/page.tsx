@@ -10,13 +10,20 @@ import UserPage from "./components/userdata";
 import { userData } from "~/server/userdata";
 import { currentUser } from "~/server/user";
 import PFPImage from "./components/pfpimage";
+import Banner from "./components/banner";
 
 export default async function ProfilePage() {
   const session = await currentUser();
   const user = await userData(session?.id as string);
 
   return (
-    <div className="flex w-full flex-col items-center justify-center">
+    <div className="flex w-full flex-col items-center justify-center my-2">
+      <Card className="m-2 w-full rounded-md lg:w-2/5">
+        <CardContent className="p-0">
+          <Banner user={user}/>
+        </CardContent>
+      </Card>
+
       <Card className="m-2 w-full rounded-md lg:w-2/5">
         <CardContent className="p-4">
           <PFPImage user={user} />
@@ -33,34 +40,6 @@ export default async function ProfilePage() {
         <CardContent>
           <UserPage user={user} />
         </CardContent>
-      </Card>
-
-      <Card className="m-2 w-full rounded-md lg:w-2/5">
-        <CardHeader>
-          <CardTitle>Links</CardTitle>
-        </CardHeader>
-        <CardContent></CardContent>
-      </Card>
-
-      <Card className="m-2 w-full rounded-md lg:w-2/5">
-        <CardHeader>
-          <CardTitle>Links</CardTitle>
-        </CardHeader>
-        <CardContent></CardContent>
-      </Card>
-      
-      <Card className="m-2 w-full rounded-md lg:w-2/5">
-        <CardHeader>
-          <CardTitle>Links</CardTitle>
-        </CardHeader>
-        <CardContent></CardContent>
-      </Card>
-      
-      <Card className="m-2 w-full rounded-md lg:w-2/5">
-        <CardHeader>
-          <CardTitle>Links</CardTitle>
-        </CardHeader>
-        <CardContent></CardContent>
       </Card>
     </div>
   );
