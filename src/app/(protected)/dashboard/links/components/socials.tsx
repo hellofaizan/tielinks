@@ -102,7 +102,7 @@ export default function SocialsComponent() {
 
   return (
     <div className="flex max-h-96 w-full overflow-y-hidden">
-      <div className="flex w-full flex-col gap-2 overflow-scroll p-2">
+      <div className="flex w-full flex-col gap-3 overflow-scroll p-2">
         <div className="flex w-full flex-wrap gap-2">
           {availableSocials.map((social, index) => {
             return (
@@ -122,6 +122,7 @@ export default function SocialsComponent() {
           list={activeSocials}
           setList={setActiveSocials}
           className={cn(
+            "flex w-full flex-col",
             activeSocials.length > 0 && "border-t",
             availableSocials.length === 0 && "border-none",
           )}
@@ -130,7 +131,7 @@ export default function SocialsComponent() {
             return (
               <div
                 key={index}
-                className="my-2 mt-3 flex cursor-grab items-center justify-between gap-2"
+                className="mt-3 flex cursor-grab items-center justify-between gap-2"
               >
                 <GripHorizontal size={20} />
                 <div className="flex w-full items-center gap-2 overflow-hidden rounded-[6px] border pl-1">
@@ -140,14 +141,11 @@ export default function SocialsComponent() {
                     placeholder={social.placeholder}
                   />
                 </div>
-                <Button className="rounded-md text-white" variant={"outline"}>
-                  Save
-                </Button>
                 <Button
                   onClick={() => {
                     removeSocial(social);
                   }}
-                  className="rounded-md border border-red-500/40 p-1 text-white hover:bg-[#171717]"
+                  className="rounded-md border border-red-500/40 p-1 dark:hover:bg-[#171717]"
                   variant={"outline"}
                   size={"icon"}
                 >
@@ -157,6 +155,7 @@ export default function SocialsComponent() {
             );
           })}
         </ReactSortable>
+        <Button className="mt-1 w-full">Save</Button>
       </div>
     </div>
   );
