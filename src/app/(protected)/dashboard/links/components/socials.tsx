@@ -11,6 +11,7 @@ import {
   IconBrandFacebook,
 } from "@tabler/icons-react";
 import { Separator } from "~/components/ui/separator";
+import { cn } from "~/lib/utils";
 
 interface ItemType {
   id: number;
@@ -52,6 +53,7 @@ export default function SocialsComponent() {
   ]);
 
   const [socials, setSocials] = useState<ItemType[]>(allSocials);
+  const [activeSocials, setActiveSocials] = useState<ItemType[]>([]);
 
   const socialIconsSmall = (icon: string) => {
     switch (icon) {
@@ -82,14 +84,31 @@ export default function SocialsComponent() {
     }
   };
 
+  function addSocial(social: ItemType) {
+    setActiveSocials((prevSocials) => {
+      return [...prevSocials, social];
+    });
+  }
+
+  function removeSocial(social: ItemType) {
+    setActiveSocials((prevSocials) => {
+      return prevSocials.filter((item) => item.id !== social.id);
+    });
+  }
+
+  const availableSocials = socials.filter(
+    (socials) => !activeSocials.includes(socials),
+  );
+
   return (
-    <div className="flex h-96 w-full overflow-y-hidden">
+    <div className="flex max-h-96 w-full overflow-y-hidden">
       <div className="flex w-full flex-col gap-2 overflow-scroll p-2">
         <div className="flex w-full flex-wrap gap-2">
-          {allSocials.map((social, index) => {
+          {availableSocials.map((social, index) => {
             return (
               <Button
                 key={index}
+                onClick={() => addSocial(social)}
                 className="h-fit w-fit rounded-md border bg-[#171717] p-1 text-white hover:bg-[#242424]"
               >
                 {socialIconsSmall(social.icon)}
@@ -99,13 +118,19 @@ export default function SocialsComponent() {
             );
           })}
         </div>
-        <Separator className="mt-2"/>
-        <ReactSortable list={socials} setList={setSocials}>
-          {socials.map((social, index) => {
+        <ReactSortable
+          list={activeSocials}
+          setList={setActiveSocials}
+          className={cn(
+            activeSocials.length > 0 && "border-t",
+            availableSocials.length === 0 && "border-none",
+          )}
+        >
+          {activeSocials.map((social, index) => {
             return (
               <div
                 key={index}
-                className="my-2 flex cursor-grab items-center justify-between gap-2"
+                className="my-2 mt-3 flex cursor-grab items-center justify-between gap-2"
               >
                 <GripHorizontal size={20} />
                 <div className="flex w-full items-center gap-2 overflow-hidden rounded-[6px] border pl-1">
@@ -119,6 +144,9 @@ export default function SocialsComponent() {
                   Save
                 </Button>
                 <Button
+                  onClick={() => {
+                    removeSocial(social);
+                  }}
                   className="rounded-md border border-red-500/40 p-1 text-white hover:bg-[#171717]"
                   variant={"outline"}
                   size={"icon"}
