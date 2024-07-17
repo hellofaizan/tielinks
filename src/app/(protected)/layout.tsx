@@ -1,48 +1,13 @@
-import Link from "next/link";
-import { Avatar, AvatarImage, AvatarFallback } from "~/components/ui/avatar";
 import { Button } from "~/components/ui/button";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "~/server/auth";
 import ProfileComponent from "./dashboard/components/profile";
 import { ModeToggle } from "~/components/ModeToogle";
 import { Toaster } from "~/components/ui/toaster";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "~/components/ui/accordion";
-import { IconFileAnalytics } from "@tabler/icons-react";
 import Sidebar from "./dashboard/components/sidebar";
 import {
-  Home,
-  LineChart,
-  Package,
-  Package2,
   PanelLeft,
-  Settings,
-  ShoppingCart,
-  Users2,
-  BellIcon,
-  BriefcaseIcon,
-  Calendar,
-  ChevronsRightIcon,
-  FileTextIcon,
-  HomeIcon,
-  LayoutGridIcon,
-  LinkIcon,
-  MenuIcon,
-  UserIcon,
 } from "lucide-react";
-
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "~/components/ui/breadcrumb";
 import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet";
 import SidebarMobile from "./dashboard/components/sidebarmob";
 

@@ -25,27 +25,20 @@ export default async function ProfilePage() {
             Link your social media accounts to your profile.
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <Button className="w-full">Add Socials</Button>
-
-          <Separator className="my-4" />
-
+        <CardContent className="p-2">
           <SocialsComponent />
         </CardContent>
       </Card>
-      
+
       <Card className="m-2 w-full rounded-md lg:w-2/5">
         <CardHeader>
           <CardTitle>Links</CardTitle>
-          <CardDescription>
-            Add links to your profile.
-          </CardDescription>
+          <CardDescription>Add links to your profile.</CardDescription>
         </CardHeader>
         <CardContent>
           <Button className="w-full">Add Socials</Button>
 
           <Separator className="my-4" />
-
         </CardContent>
       </Card>
     </div>

@@ -45,18 +45,28 @@ model Account {
 }
 
 model User {
-    id                String    @id @default(cuid())
+    id                String       @id @default(cuid())
     name              String?
     username          String?
     usernameUpdatedAt DateTime?
     banner            String?
     embed             String?
-    layout            Layout    @default(IMGTOPNAV)
-    role              USERROLE  @default(USER)
-    email             String?   @unique
-    about             String?   @default("New to Tielinks✌️")
+    layout            Layout       @default(IMGTOPNAV)
+    role              USERROLE     @default(USER)
+    email             String?      @unique
+    about             String?      @default("New to Tielinks✌️")
     emailVerified     DateTime?
-    tielinkJoinedAt   DateTime? @default(now())
+    tielinkJoinedAt   DateTime?    @default(now())
     image             String?
     accounts          Account[]
+    pageVisits        PageVisits[]
+}
+
+model PageVisits {
+    id        Int      @id @default(autoincrement())
+    ip        String?
+    country   String?
+    timestamp DateTime @default(now())
+    userId    String
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
