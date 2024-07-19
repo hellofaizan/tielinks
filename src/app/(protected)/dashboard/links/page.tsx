@@ -24,6 +24,13 @@ export default async function ProfilePage() {
           <CardDescription>
             Link your social media accounts to your profile.
           </CardDescription>
+          <div
+            className="mb-4 rounded-lg bg-blue-50 p-4 text-sm text-blue-800 dark:bg-gray-800 dark:text-blue-400"
+            role="alert"
+          >
+            <span className="font-medium">Information!</span> Don't use '@' in
+            your username.
+          </div>
         </CardHeader>
         <CardContent className="p-2">
           <SocialsComponent />

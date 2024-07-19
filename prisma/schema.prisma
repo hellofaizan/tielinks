@@ -60,6 +60,15 @@ model User {
     image             String?
     accounts          Account[]
     pageVisits        PageVisits[]
+    Socials           Socials[]
+}
+
+model Socials {
+    id     Int    @id @default(autoincrement())
+    type   String
+    handle String
+    userId String
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model PageVisits {
