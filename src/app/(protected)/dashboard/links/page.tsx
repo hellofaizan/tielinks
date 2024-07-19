@@ -15,6 +15,7 @@ import SocialsComponent from "./components/socials";
 export default async function ProfilePage() {
   const session = await currentUser();
   const user = await userData(session?.id as string);
+  const socials = user?.Socials;
 
   return (
     <div className="flex w-full flex-col items-center justify-center">
@@ -24,16 +25,9 @@ export default async function ProfilePage() {
           <CardDescription>
             Link your social media accounts to your profile.
           </CardDescription>
-          <div
-            className="mb-4 rounded-lg bg-blue-50 p-4 text-sm text-blue-800 dark:bg-gray-800 dark:text-blue-400"
-            role="alert"
-          >
-            <span className="font-medium">Information!</span> Don't use '@' in
-            your username.
-          </div>
         </CardHeader>
         <CardContent className="p-2">
-          <SocialsComponent />
+          <SocialsComponent data={socials} />
         </CardContent>
       </Card>
 

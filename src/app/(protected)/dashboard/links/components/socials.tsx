@@ -18,6 +18,7 @@ import socialFormSchema from "~/actions/schema";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import SetSocials from "~/actions/setSocials";
 import { useToast } from "~/components/ui/use-toast";
+import RemoveSocial from "~/actions/removeSocial";
 
 type formValues = z.infer<typeof socialFormSchema>;
 
@@ -28,7 +29,7 @@ interface ItemType {
   type: string;
 }
 
-export default function SocialsComponent() {
+export default function SocialsComponent({ data }: { data: any }) {
   const [disabled, setDisabled] = useState(false);
   const { toast } = useToast();
 
@@ -36,7 +37,14 @@ export default function SocialsComponent() {
     resolver: zodResolver(socialFormSchema),
     mode: "onChange",
     defaultValues: {
-      socials: [],
+      socials: [
+        ...data.map((item: any) => {
+          return {
+            handle: item.handle,
+            type: item.type,
+          };
+        }),
+      ],
     },
   });
 
@@ -68,17 +76,30 @@ export default function SocialsComponent() {
       id: 4,
       type: "github",
       label: "Github",
-      placeholder: "@github",
+      placeholder: "github",
     },
     {
       id: 5,
       type: "telegram",
       label: "Telgram",
-      placeholder: "@telegram",
+      placeholder: "telegram",
     },
   ]);
-  const [socials, setSocials] = useState<ItemType[]>(allSocials);
-  const [activeSocials, setActiveSocials] = useState<ItemType[]>([]);
+  const [socials, setSocials] = useState<ItemType[]>([
+    ...allSocials.filter((item) => {
+      return !data.some((social: any) => social.type === item.type);
+    }),
+  ]);
+  const [activeSocials, setActiveSocials] = useState<ItemType[]>([
+    ...data.map((item: any, index: number) => {
+      return {
+        id: index,
+        type: item.type,
+        label: item.type.charAt(0).toUpperCase() + item.type.slice(1),
+        placeholder: item.type.charAt(0).toUpperCase() + item.type.slice(1),
+      };
+    }),
+  ]);
 
   const socialIconsSmall = (type: string) => {
     switch (type) {
@@ -120,10 +141,35 @@ export default function SocialsComponent() {
     });
   }
   function removeSocial(social: ItemType) {
-    remove(social.id);
+    const index = activeSocials.findIndex((item) => item.type === social.type);
+    remove(index);
     setActiveSocials((prevSocials) => {
-      return prevSocials.filter((item) => item.id !== social.id);
+      return prevSocials.filter((item) => item.type !== social.type);
     });
+    setSocials((prevSocials) => {
+      return [...prevSocials, social];
+    });
+    RemoveSocial({ social })
+      .then((res) => {
+        if (res.error) {
+          toast({
+            variant: "destructive",
+            title: res.error,
+          });
+          return;
+        }
+        toast({
+          title: "Social removed successfully! 🎉",
+          description:
+            "It might take a few minutes for the changes to reflect.",
+        });
+      })
+      .catch((err) => {
+        toast({
+          variant: "destructive",
+          title: "An error occurred",
+        });
+      });
   }
 
   const availableSocials = socials.filter(
@@ -170,7 +216,14 @@ export default function SocialsComponent() {
   };
 
   return (
-    <div className="flex max-h-96 w-full overflow-y-hidden">
+    <div className="flex max-h-96 w-full flex-col overflow-y-hidden md:max-h-[35rem]">
+      <div
+        className="mb-2 rounded-lg bg-blue-50 p-2 text-sm text-blue-800 dark:bg-gray-800 dark:text-blue-400"
+        role="alert"
+      >
+        <span className="font-medium">Information!</span> Don't use '@' in your
+        username.
+      </div>
       <div className="flex w-full flex-col gap-3 overflow-scroll p-2">
         <div className="flex w-full flex-wrap gap-2">
           {availableSocials.map((social, index) => {
@@ -222,6 +275,7 @@ export default function SocialsComponent() {
                       />
                     </div>
                     <Button
+                      type="button"
                       onClick={() => {
                         removeSocial(social);
                       }}
