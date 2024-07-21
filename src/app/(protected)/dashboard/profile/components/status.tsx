@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import EmojiPicker from "~/components/EmojiPicker";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "~/components/ui/button";
 import SetStatus from "~/actions/setStatus";

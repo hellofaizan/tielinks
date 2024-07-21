@@ -285,7 +285,7 @@ export default function SocialsComponent({ data }: { data: any }) {
   };
 
   return (
-    <div className="flex max-h-96 w-full flex-col overflow-y-hidden md:max-h-[35rem]">
+    <div className="flex max-h-[28rem] w-full flex-col overflow-y-hidden md:max-h-[35rem]">
       <div
         className="mb-2 rounded-lg bg-blue-50 p-2 text-sm text-blue-800 dark:bg-gray-800 dark:text-blue-400"
         role="alert"

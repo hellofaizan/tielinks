@@ -1,6 +1,7 @@
 import { Link, PlusIcon, TrashIcon } from "lucide-react";
 import React from "react";
 import { Button } from "~/components/ui/button";
+import AddLinkCOmponent from "./addlinks";
 
 interface LinksComponentProps {
   data: any;
@@ -9,9 +10,7 @@ interface LinksComponentProps {
 export default function LinksComponent({ data }: LinksComponentProps) {
   return (
     <div className="flex flex-col gap-4 p-2">
-      <Button className="w-full">
-        <PlusIcon size={18} /> Add Link
-      </Button>
+      <AddLinkCOmponent />
 
       <div className="mb-2 flex flex-col gap-3">
         <div className="flex flex-row items-center justify-between border-t pt-2">
