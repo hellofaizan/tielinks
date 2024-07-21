@@ -69,7 +69,7 @@ export default function EditLinkCOmponent({
 
   const onSubmit = (data: formValues) => {
     setDisabled(true);
-    EditLink({data, id}).then((res) => {
+    EditLink({ data, id }).then((res) => {
       if (res.error) {
         toast({
           title: "Error",
@@ -103,9 +103,9 @@ export default function EditLinkCOmponent({
         {/* // input field for gif search */}
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Add a new Link</DialogTitle>
+            <DialogTitle>Edit {title} link</DialogTitle>
             <DialogDescription>
-              Set up a new link to share with your audience.
+              Edit the link to share with your audience.
             </DialogDescription>
           </DialogHeader>
           <Separator />
