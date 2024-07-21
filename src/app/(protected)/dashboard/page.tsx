@@ -1,21 +1,24 @@
-"use client"
+import React from "react";
+import { Button } from "~/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "~/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
+import { CopyIcon, MoveHorizontalIcon } from "lucide-react";
+import { currentUser } from "~/server/user";
+import PageLink from "./components/pagelink";
 
-import { signOut } from 'next-auth/react'
-import React from 'react'
-import { useCurrentUser } from '~/hooks/use-current-user'
-import { Button } from '~/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card'
-import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
-import { MoveHorizontalIcon } from 'lucide-react'
-
-export default function page() {
-  const user = useCurrentUser()
-  const [gif, setGif] = React.useState(null)
-
-  console.log(gif)
+export default async function page() {
+  const session = await currentUser();
+  console.log(session);
 
   return (
-    <div className='p-2 md:p-4 grid gap-4'>
+    <div className="grid gap-4 p-2 md:p-4">
+      <PageLink />
       <Card>
         <CardHeader>
           <CardTitle>Team Members</CardTitle>
@@ -24,20 +27,22 @@ export default function page() {
         <CardContent>
           <div className="grid gap-4">
             <div className="flex items-center gap-4">
-              <Avatar className="w-10 h-10 border">
+              <Avatar className="h-10 w-10 border">
                 <AvatarImage src="/placeholder-user.jpg" />
                 <AvatarFallback>JD</AvatarFallback>
               </Avatar>
               <div>
                 <div className="font-medium">John Doe</div>
-                <div className="text-sm text-muted-foreground">Product Manager</div>
+                <div className="text-sm text-muted-foreground">
+                  Product Manager
+                </div>
               </div>
               <Button variant="ghost" size="icon" className="ml-auto">
                 <MoveHorizontalIcon className="h-4 w-4" />
               </Button>
             </div>
             <div className="flex items-center gap-4">
-              <Avatar className="w-10 h-10 border">
+              <Avatar className="h-10 w-10 border">
                 <AvatarImage src="/placeholder-user.jpg" />
                 <AvatarFallback>JD</AvatarFallback>
               </Avatar>
@@ -50,7 +55,7 @@ export default function page() {
               </Button>
             </div>
             <div className="flex items-center gap-4">
-              <Avatar className="w-10 h-10 border">
+              <Avatar className="h-10 w-10 border">
                 <AvatarImage src="/placeholder-user.jpg" />
                 <AvatarFallback>JD</AvatarFallback>
               </Avatar>
@@ -66,5 +71,5 @@ export default function page() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

@@ -8,14 +8,14 @@ import {
 } from "~/components/ui/card";
 import { userData } from "~/server/userdata";
 import { currentUser } from "~/server/user";
-import { Button } from "~/components/ui/button";
-import { Separator } from "~/components/ui/separator";
 import SocialsComponent from "./components/socials";
+import LinksComponent from "./components/links";
 
 export default async function ProfilePage() {
   const session = await currentUser();
   const user = await userData(session?.id as string);
   const socials = user?.Socials;
+  const links = user?.Links;
 
   return (
     <div className="flex w-full flex-col items-center justify-center">
@@ -36,10 +36,8 @@ export default async function ProfilePage() {
           <CardTitle>Links</CardTitle>
           <CardDescription>Add links to your profile.</CardDescription>
         </CardHeader>
-        <CardContent>
-          <Button className="w-full">Add Socials</Button>
-
-          <Separator className="my-4" />
+        <CardContent className="p-2">
+          <LinksComponent data={links} />
         </CardContent>
       </Card>
     </div>

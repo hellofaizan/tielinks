@@ -62,6 +62,7 @@ model User {
     accounts          Account[]
     pageVisits        PageVisits[]
     Socials           Socials[]
+    Links             Links[]
 }
 
 model Status {
@@ -79,6 +80,15 @@ model Socials {
     handle String
     userId String
     user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Links {
+    id     Int     @id @default(autoincrement())
+    title  String
+    url    String
+    logo   String?
+    userId String
+    user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model PageVisits {

@@ -10,6 +10,7 @@ export const getUserById = async (id: string) => {
       include: {
         Socials: true,
         Status: true,
+        Links: true,
       },
     });
     return user;
