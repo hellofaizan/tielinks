@@ -4,11 +4,17 @@
 import { db } from "~/server/db";
 import { currentUser } from "~/server/user";
 
-export default async function SaveLinks(data: any) {
-  const userid = await currentUser();
-  const id = userid?.id;
+export default async function EditLink({
+  data,
+  id,
+}: {
+  data: any;
+  id: number;
+}) {
+  const session = await currentUser();
+  const userid = session?.id;
 
-  if (!id) {
+  if (!userid) {
     return { error: "You must be logged in to save the link" };
   }
 
@@ -16,16 +22,15 @@ export default async function SaveLinks(data: any) {
     return { error: "Enter a valid link and title" };
   }
 
-  if (data) {
-    await db.links.create({
+  // edit the link
+  if (data && id) {
+    await db.links.update({
+      where: {
+        id: id,
+      },
       data: {
         title: data.title,
         url: data.url,
-        user: {
-          connect: {
-            id: id,
-          },
-        },
       },
     });
   }

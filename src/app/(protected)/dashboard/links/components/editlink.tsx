@@ -22,12 +22,12 @@ import {
   DrawerTrigger,
 } from "~/components/ui/drawer";
 import { Separator } from "~/components/ui/separator";
-import { Info, LinkIcon, PlusIcon, TypeIcon } from "lucide-react";
+import { Info, LinkIcon, Pencil, TypeIcon } from "lucide-react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useToast } from "~/components/ui/use-toast";
-import SaveLinks from "~/actions/savelink";
+import EditLink from "~/actions/editLink";
 import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
@@ -41,7 +41,17 @@ const formSchema = z.object({
 
 type formValues = z.infer<typeof formSchema>;
 
-export default function AddLinkCOmponent() {
+interface EditLinkCOmponentProps {
+  title: string;
+  url: string;
+  id: number;
+}
+
+export default function EditLinkCOmponent({
+  title,
+  url,
+  id,
+}: EditLinkCOmponentProps) {
   const { toast } = useToast();
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -51,11 +61,15 @@ export default function AddLinkCOmponent() {
   const { handleSubmit, register, reset } = useForm<formValues>({
     resolver: zodResolver(formSchema),
     mode: "onChange",
+    defaultValues: {
+      title,
+      url,
+    },
   });
 
   const onSubmit = (data: formValues) => {
     setDisabled(true);
-    SaveLinks(data).then((res) => {
+    EditLink({data, id}).then((res) => {
       if (res.error) {
         toast({
           title: "Error",
@@ -78,8 +92,12 @@ export default function AddLinkCOmponent() {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button className="w-full">
-            <PlusIcon size={18} /> Add Link
+          <Button
+            className="dark:hover:bg-[#171717]"
+            variant={"ghost"}
+            size={"icon"}
+          >
+            <Pencil size={17} />
           </Button>
         </DialogTrigger>
         {/* // input field for gif search */}
@@ -131,8 +149,12 @@ export default function AddLinkCOmponent() {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button className="w-full">
-          <PlusIcon size={18} /> Add Link
+        <Button
+          className="dark:hover:bg-[#171717]"
+          variant={"ghost"}
+          size={"icon"}
+        >
+          <Pencil size={17} />
         </Button>
       </DrawerTrigger>
       <DrawerContent className="p-4">
