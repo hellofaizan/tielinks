@@ -99,6 +99,7 @@ export default function StatusComponent({ user }: { user: any }) {
           <input
             {...register("status")}
             name="status"
+            maxLength={50}
             className="w-full p-2 focus-visible:outline-none"
             placeholder={`What's on your mind, ${user?.name}?`}
           />

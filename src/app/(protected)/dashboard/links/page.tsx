@@ -32,7 +32,7 @@ export default async function ProfilePage() {
       </Card>
 
       <Card className="m-2 w-full rounded-md lg:w-2/5">
-        <CardHeader>
+        <CardHeader className="px-4 pb-0 pt-6">
           <CardTitle>Links</CardTitle>
           <CardDescription>Add links to your profile.</CardDescription>
         </CardHeader>

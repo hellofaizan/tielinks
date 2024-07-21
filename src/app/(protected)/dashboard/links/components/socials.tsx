@@ -15,7 +15,7 @@ import {
   IconBrandDiscord,
   IconBrandTwitch,
   IconBrandReddit,
-  IconBrandSpotify
+  IconBrandSpotify,
 } from "@tabler/icons-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { cn } from "~/lib/utils";
@@ -185,13 +185,13 @@ export default function SocialsComponent({ data }: { data: any }) {
         return <IconBrandGithub size={28} className="ml-1" />;
       case "telegram":
         return <IconBrandTelegram size={28} className="ml-1" />;
-        case "tiktok":
+      case "tiktok":
         return <IconBrandTiktok size={28} className="ml-1" />;
       case "youtube":
         return <IconBrandYoutube size={28} className="ml-1" />;
       case "discord":
         return <IconBrandDiscord size={28} className="ml-1" />;
-        case "reddit":
+      case "reddit":
         return <IconBrandReddit size={28} className="ml-1" />;
       case "spotify":
         return <IconBrandSpotify size={28} className="ml-1" />;
@@ -348,11 +348,11 @@ export default function SocialsComponent({ data }: { data: any }) {
                       onClick={() => {
                         removeSocial(social);
                       }}
-                      className="rounded-md border border-red-500/40 p-1 dark:hover:bg-[#171717]"
-                      variant={"outline"}
+                      className="rounded-md p-1 dark:hover:bg-[#171717]"
+                      variant={"outlinedestructive"}
                       size={"icon"}
                     >
-                      <TrashIcon size={17} className="" />
+                      <TrashIcon size={17} />
                     </Button>
                   </div>
                 );

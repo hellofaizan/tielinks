@@ -15,9 +15,11 @@ import {
   DialogTrigger,
 } from "~/components/ui/dialog";
 import { useToast } from "~/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 export default function PFPImage(user: any) {
   const { toast } = useToast();
+  const router = useRouter();
   const userData = user?.user;
 
   const deleteImage = () => {
@@ -35,6 +37,7 @@ export default function PFPImage(user: any) {
             description:
               "It might take a few minutes for the changes to reflect.",
           });
+          router.refresh();
         }
       })
       .catch((err) => {
