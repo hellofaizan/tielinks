@@ -6,8 +6,6 @@ import { currentUser, getUserById } from "~/server/user";
 export default async function SetStatus({ data }: { data: any }) {
   const usersession = await currentUser();
   const userid = usersession?.id;
-  const user = getUserById(userid as string);
-  console.log(data);
 
   if (!userid) {
     return { error: "You must be logged in to update your profile" };

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { ChevronRight, HomeIcon, LinkIcon, Settings } from "lucide-react";
+import { ChevronRight, HomeIcon, LinkIcon, MessageSquare, Settings } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -38,15 +38,15 @@ export default function SidebarMobile({ session }: { session: any }) {
             Home
           </Link>
           <Link
-            href="/dashboard/analytics"
+            href="/dashboard/whisper"
             className={cn(
               "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
               path === "/dashboard/analytics" && "bg-muted text-foreground",
             )}
             prefetch={false}
           >
-            <IconReportAnalytics className="mr-3 h-5 w-5" />
-            Analytics
+            <MessageSquare className="mr-3 h-5 w-5" />
+            Whisper
           </Link>
           <Accordion type="single" collapsible>
             <AccordionItem value="projects">

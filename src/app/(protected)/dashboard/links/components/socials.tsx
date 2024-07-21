@@ -66,13 +66,13 @@ export default function SocialsComponent({ data }: { data: any }) {
       id: 1,
       type: "twitter",
       label: "Twitter",
-      placeholder: "@twitter",
+      placeholder: "twitter",
     },
     {
       id: 2,
       type: "instagram",
       label: "Instagram",
-      placeholder: "@instagram",
+      placeholder: "instagram",
     },
     {
       id: 3,
