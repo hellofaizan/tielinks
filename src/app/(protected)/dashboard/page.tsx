@@ -7,7 +7,7 @@ export default async function page() {
   const session = await currentUser();
 
   return (
-    <div className="flex flex-col gap-2 p-2 md:p-4">
+    <div className="flex flex-col gap-3 p-2 md:p-4">
       <PageLink />
       <DashboardComponent />
     </div>
