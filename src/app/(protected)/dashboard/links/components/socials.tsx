@@ -10,6 +10,12 @@ import {
   IconBrandGithub,
   IconBrandFacebook,
   IconBrandTelegram,
+  IconBrandTiktok,
+  IconBrandYoutube,
+  IconBrandDiscord,
+  IconBrandTwitch,
+  IconBrandReddit,
+  IconBrandSpotify
 } from "@tabler/icons-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { cn } from "~/lib/utils";
@@ -19,6 +25,7 @@ import { useForm, useFieldArray, Controller } from "react-hook-form";
 import SetSocials from "~/actions/setSocials";
 import { useToast } from "~/components/ui/use-toast";
 import RemoveSocial from "~/actions/removeSocial";
+import { useRouter } from "next/navigation";
 
 type formValues = z.infer<typeof socialFormSchema>;
 
@@ -32,6 +39,7 @@ interface ItemType {
 export default function SocialsComponent({ data }: { data: any }) {
   const [disabled, setDisabled] = useState(false);
   const { toast } = useToast();
+  const router = useRouter();
 
   const { control, handleSubmit, register } = useForm<formValues>({
     resolver: zodResolver(socialFormSchema),
@@ -84,6 +92,42 @@ export default function SocialsComponent({ data }: { data: any }) {
       label: "Telgram",
       placeholder: "telegram",
     },
+    {
+      id: 6,
+      type: "tiktok",
+      label: "TikTok",
+      placeholder: "tiktok",
+    },
+    {
+      id: 7,
+      type: "youtube",
+      label: "YouTube",
+      placeholder: "youtube",
+    },
+    {
+      id: 8,
+      type: "discord",
+      label: "Discord",
+      placeholder: "discord",
+    },
+    {
+      id: 9,
+      type: "reddit",
+      label: "Reddit",
+      placeholder: "reddit",
+    },
+    {
+      id: 10,
+      type: "spotify",
+      label: "Spotify",
+      placeholder: "spotify",
+    },
+    {
+      id: 11,
+      type: "twitch",
+      label: "Twitch",
+      placeholder: "twitch",
+    },
   ]);
   const [socials, setSocials] = useState<ItemType[]>([
     ...allSocials.filter((item) => {
@@ -113,6 +157,18 @@ export default function SocialsComponent({ data }: { data: any }) {
         return <IconBrandGithub size={15} className="ml-1" />;
       case "telegram":
         return <IconBrandTelegram size={15} className="ml-1" />;
+      case "tiktok":
+        return <IconBrandTiktok size={15} className="ml-1" />;
+      case "youtube":
+        return <IconBrandYoutube size={15} className="ml-1" />;
+      case "discord":
+        return <IconBrandDiscord size={15} className="ml-1" />;
+      case "reddit":
+        return <IconBrandReddit size={15} className="ml-1" />;
+      case "spotify":
+        return <IconBrandSpotify size={15} className="ml-1" />;
+      case "twitch":
+        return <IconBrandTwitch size={15} className="ml-1" />;
       default:
         return <Link size={15} className="ml-1" />;
     }
@@ -129,6 +185,18 @@ export default function SocialsComponent({ data }: { data: any }) {
         return <IconBrandGithub size={28} className="ml-1" />;
       case "telegram":
         return <IconBrandTelegram size={28} className="ml-1" />;
+        case "tiktok":
+        return <IconBrandTiktok size={28} className="ml-1" />;
+      case "youtube":
+        return <IconBrandYoutube size={28} className="ml-1" />;
+      case "discord":
+        return <IconBrandDiscord size={28} className="ml-1" />;
+        case "reddit":
+        return <IconBrandReddit size={28} className="ml-1" />;
+      case "spotify":
+        return <IconBrandSpotify size={28} className="ml-1" />;
+      case "twitch":
+        return <IconBrandTwitch size={28} className="ml-1" />;
       default:
         return <Link size={28} className="ml-1" />;
     }
@@ -156,6 +224,7 @@ export default function SocialsComponent({ data }: { data: any }) {
             variant: "destructive",
             title: res.error,
           });
+          router.refresh();
           return;
         }
         toast({

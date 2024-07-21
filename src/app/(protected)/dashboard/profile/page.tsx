@@ -11,16 +11,17 @@ import { userData } from "~/server/userdata";
 import { currentUser } from "~/server/user";
 import PFPImage from "./components/pfpimage";
 import Banner from "./components/banner";
+import StatusComponent from "./components/status";
 
 export default async function ProfilePage() {
   const session = await currentUser();
   const user = await userData(session?.id as string);
 
   return (
-    <div className="flex w-full flex-col items-center justify-center my-2">
+    <div className="my-2 flex w-full flex-col items-center justify-center">
       <Card className="m-2 w-full rounded-md lg:w-2/5">
         <CardContent className="p-0">
-          <Banner user={user}/>
+          <Banner user={user} />
         </CardContent>
       </Card>
 
@@ -39,6 +40,15 @@ export default async function ProfilePage() {
         </CardHeader>
         <CardContent>
           <UserPage user={user} />
+        </CardContent>
+      </Card>
+
+      <Card className="m-2 w-full rounded-md lg:w-2/5">
+        <CardHeader>
+          <CardTitle>Edit Status</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <StatusComponent user={user} />
         </CardContent>
       </Card>
     </div>

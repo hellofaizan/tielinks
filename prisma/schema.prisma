@@ -58,9 +58,19 @@ model User {
     emailVerified     DateTime?
     tielinkJoinedAt   DateTime?    @default(now())
     image             String?
+    Status            Status?
     accounts          Account[]
     pageVisits        PageVisits[]
     Socials           Socials[]
+}
+
+model Status {
+    id        Int      @id @default(autoincrement())
+    emoji     String?
+    status    String?
+    timestamp DateTime @default(now())
+    userId    String   @unique
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Socials {

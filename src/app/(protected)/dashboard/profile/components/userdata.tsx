@@ -2,7 +2,6 @@
 
 import React, { useEffect } from "react";
 import { Button } from "~/components/ui/button";
-import { GifPicker } from "~/components/GifPicker";
 import { useCurrentUser } from "~/hooks/use-current-user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -10,7 +9,6 @@ import { z } from "zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -28,7 +26,6 @@ export default function UserPage(user: any) {
 
   const name: string = userData?.name || session?.name || "";
   const about: string = userData?.about || session?.about || "";
-  const [gif, setGif] = React.useState(null);
   const [btnDIsabled, setBtnDisabled] = React.useState(true);
 
   const formSchema = z.object({
