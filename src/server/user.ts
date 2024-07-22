@@ -41,6 +41,7 @@ export const getUserByUsername = async (username: string) => {
       include: {
         Socials: true,
         Status: true,
+        Links: true,
       },
     });
     return user;
