@@ -5,7 +5,8 @@ import {
     apiAuthPrefix,
     authRoutes,
     adminRoutes,
-    publicRoutes
+    publicRoutes,
+    protectedRoutes,
 } from '~/server/routes'
 import { USERROLE } from "@prisma/client";
 
@@ -17,6 +18,7 @@ export default auth((req):any => {
 
     const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+    const isProtectedRoute = protectedRoutes.includes(nextUrl.pathname);
     const isAutRoute = authRoutes.includes(nextUrl.pathname);
 
     if (isApiAuthRoute) {
@@ -30,7 +32,7 @@ export default auth((req):any => {
         return null
     }
     
-    if (!isLoggedIn && !isPublicRoute) {
+    if (!isLoggedIn && isProtectedRoute) {
         let callbackUrl = nextUrl.pathname;
         if (nextUrl.search) {
             callbackUrl += nextUrl.search;

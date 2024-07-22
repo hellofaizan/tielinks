@@ -3,11 +3,12 @@
  * These routes don't require authentication
  * @type {string[]}
  */
-export const publicRoutes = [
+export const publicRoutes: string[] = [
     '/',
     '/about',
     '/contact',
     '/explore',
+    '/:path*',
 ]
 
 /**
@@ -15,7 +16,7 @@ export const publicRoutes = [
  * These routes are used for login and will redirect logged in user to /dashboard
  * @type {string[]}
  */
-export const authRoutes = [
+export const authRoutes: string[] = [
     '/auth',
     '/auth/error',
 ]
@@ -24,22 +25,25 @@ export const authRoutes = [
 * Rout prefix for the api auth routes
 * @type {string}
 */
-export const apiAuthPrefix = '/api/auth'
+export const apiAuthPrefix: string = '/api/auth'
 
 /**
  * An array of routes that are protected and require authentication
  * @type {string[]}
  */
-export const protectedRoutes = [
+export const protectedRoutes: string[] = [
     '/dashboard',
-    '/profile',
+    '/dashboard/links',
+    '/dashboard/whisper',
+    '/dashboard/profile',
+    '/dashboard/username',
 ]
 
 /**
  * An array of routes that are protected and require authentication
  * @type {string[]}
  */
-export const adminRoutes = [
+export const adminRoutes: string[] = [
     '/admin',
 ]
 

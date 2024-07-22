@@ -13,11 +13,14 @@ import {
   IconBrandTwitch,
   IconBrandReddit,
   IconBrandSpotify,
-  IconBrandWhatsapp
+  IconBrandWhatsapp,
+  IconShare,
 } from "@tabler/icons-react";
-import { LinkIcon, Pencil } from "lucide-react";
+import { LinkIcon, Pencil, BarChart } from "lucide-react";
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
+import { ModeToggle } from "~/components/ModeToogle";
+import { auth } from "~/server/auth";
 
 export default async function page({
   params,
@@ -26,6 +29,8 @@ export default async function page({
 }) {
   const username = params.username;
   const user = await getUserByUsername(username);
+  const session = await auth();
+  const currentUser = session?.user;
 
   const socialIcons = (type: string) => {
     switch (type) {
@@ -153,10 +158,10 @@ export default async function page({
   }
 
   return (
-    <div className="flex min-h-dvh justify-center md:min-h-screen">
-      {user?.username === username ? (
-        <div className="absolute bottom-0 right-0 z-10 mb-4 mr-4">
-          <Link href="/dashboard">
+    <div className="flex min-h-dvh justify-center md:min-h-screen mb-8">
+      {user?.username === currentUser?.username ? (
+        <div className="fixed bottom-0 right-0 z-10 mb-4 mr-4">
+          <Link href="/dashboard" target="_blank">
             <Button variant={"outline"}>
               <Pencil size={15} className="mr-1" /> Edit Profile
             </Button>
@@ -168,12 +173,26 @@ export default async function page({
 
       <div className="flex w-full flex-col md:w-1/3">
         {user?.banner ? (
-          <img
-            src={user?.banner || ""}
-            className="w-full bg-cover bg-center gradient-mask-b-60"
-          />
+          <div className="relative">
+            <img
+              src={user?.banner || ""}
+              className="w-full bg-cover bg-center gradient-mask-b-60"
+            />
+            <div className="fixed right-0 top-0 z-10 mr-3 mt-3 flex border rounded-full bg-gray-500/15 backdrop-blur-3xl">
+              <Button variant={"ghost"} size={"icon"} className="hover:bg-transparent dark:hover:text-black hover:text-gray-700"><IconShare size={20}/> </Button>
+              <ModeToggle btnClass={"dark:hover:text-black hover:text-gray-700"}/>
+            </div>
+            <div className="absolute left-0 top-0 z-10 ml-3 mt-3 flex border rounded-full bg-gray-500/15 backdrop-blur-3xl">
+            <p className="flex p-1 px-2 text-sm"><BarChart size={18}/> 6969</p>
+            </div>
+          </div>
         ) : (
-          <div className="h-40 bg-gradient-to-r from-[#FF0080] to-[#7928CA] gradient-mask-b-10"></div>
+          <div className="h-40 bg-gradient-to-r from-[#FF0080] to-[#7928CA] gradient-mask-b-10">
+            <div className="absolute right-0 top-0 z-10 mr-3 mt-3 flex border rounded-full bg-gray-500/15 backdrop-blur-3xl">
+              <Button variant={"ghost"} size={"icon"} className="hover:bg-transparent dark:hover:text-black hover:text-gray-700"><IconShare size={20}/> </Button>
+              <ModeToggle btnClass={"dark:hover:text-black hover:text-gray-700"}/>
+            </div>
+          </div>
         )}
         <div className="flex w-full flex-col justify-center px-2 md:px-4">
           <div className="-mt-6 flex h-full w-full flex-row items-center justify-center">
