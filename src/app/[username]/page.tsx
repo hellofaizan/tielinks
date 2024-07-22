@@ -13,6 +13,7 @@ import {
   IconBrandTwitch,
   IconBrandReddit,
   IconBrandSpotify,
+  IconBrandWhatsapp
 } from "@tabler/icons-react";
 import { LinkIcon, Pencil } from "lucide-react";
 import Link from "next/link";
@@ -100,6 +101,13 @@ export default async function page({
             className="ml-1 text-[#6441a5] hover:scale-105"
           />
         );
+      case "whatsapp":
+        return (
+          <IconBrandWhatsapp
+            size={35}
+            className="ml-1 text-[#25D366] hover:scale-105"
+          />
+        );
       default:
         return <LinkIcon size={30} className="ml-1" />;
     }
@@ -122,13 +130,15 @@ export default async function page({
       case "youtube":
         return "https://youtube.com/" + social?.handle;
       case "discord":
-        return "https://discord.com/" + social?.handle;
+        return "https://discordapp.com/users/" + social?.handle;
       case "reddit":
         return "https://reddit.com/" + social?.handle;
       case "spotify":
         return "https://spotify.com/" + social?.handle;
       case "twitch":
         return "https://twitch.com/" + social?.handle;
+      case "whatsapp":
+        return "https://wa.me/" + social?.handle;
       default:
         return "";
     }
@@ -155,7 +165,7 @@ export default async function page({
       ) : null}
 
       {/* Share Button and theme toggle */}
-      
+
       <div className="flex w-full flex-col md:w-1/3">
         {user?.banner ? (
           <img

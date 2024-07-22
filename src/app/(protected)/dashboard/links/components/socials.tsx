@@ -16,6 +16,7 @@ import {
   IconBrandTwitch,
   IconBrandReddit,
   IconBrandSpotify,
+  IconBrandWhatsapp
 } from "@tabler/icons-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { cn } from "~/lib/utils";
@@ -128,6 +129,12 @@ export default function SocialsComponent({ data }: { data: any }) {
       label: "Twitch",
       placeholder: "twitch",
     },
+    {
+      id: 12,
+      type: "whatsapp",
+      label: "Whatsapp",
+      placeholder: "+91 9876543210",
+    },
   ]);
   const [socials, setSocials] = useState<ItemType[]>([
     ...allSocials.filter((item) => {
@@ -169,6 +176,8 @@ export default function SocialsComponent({ data }: { data: any }) {
         return <IconBrandSpotify size={15} className="ml-1" />;
       case "twitch":
         return <IconBrandTwitch size={15} className="ml-1" />;
+      case "whatsapp":
+        return <IconBrandWhatsapp size={15} className="ml-1" />;
       default:
         return <Link size={15} className="ml-1" />;
     }
@@ -197,6 +206,8 @@ export default function SocialsComponent({ data }: { data: any }) {
         return <IconBrandSpotify size={28} className="ml-1" />;
       case "twitch":
         return <IconBrandTwitch size={28} className="ml-1" />;
+        case "whatsapp":
+          return <IconBrandWhatsapp size={28} className="ml-1" />;
       default:
         return <Link size={28} className="ml-1" />;
     }
