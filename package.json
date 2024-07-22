@@ -50,6 +50,7 @@
     "react-sortablejs": "^6.1.4",
     "react-staggered-grid": "^1.0.18",
     "sortablejs": "^1.15.2",
+    "tailwind-gradient-mask-image": "^1.2.0",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.1",

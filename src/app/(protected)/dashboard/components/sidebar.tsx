@@ -2,7 +2,13 @@
 
 import React from "react";
 import Link from "next/link";
-import { ChevronRight, HomeIcon, LinkIcon, Settings, MessageSquare } from "lucide-react";
+import {
+  ChevronRight,
+  HomeIcon,
+  LinkIcon,
+  Settings,
+  MessageSquare,
+} from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -18,7 +24,7 @@ export default function Sidebar({ session }: { session: any }) {
   const username = session?.user?.username;
   const path = usePathname();
   return (
-    <div className="hidden w-64 flex-col border-r bg-background md:flex h-full">
+    <div className="hidden h-full w-64 flex-col border-r bg-background md:flex">
       <div className="flex h-16 shrink-0 items-center border-b px-6">
         <Link href="#" className="font-bold" prefetch={false}>
           Tielinks
@@ -81,7 +87,7 @@ export default function Sidebar({ session }: { session: any }) {
                   >
                     <span>Profile</span>
                   </Link>
-                  
+
                   <Link
                     href="/dashboard/username"
                     className={cn(
@@ -108,6 +114,7 @@ export default function Sidebar({ session }: { session: any }) {
         >
           <Link
             href={`/${session?.user.username}`}
+            target="_blank"
             className="group flex w-full items-center space-x-4"
             prefetch={false}
           >

@@ -90,6 +90,7 @@ const config = {
   },
   plugins: [
     require("tailwindcss-animate"),
+    require("tailwind-gradient-mask-image"),
     addVariablesForColors,
     function ({ matchUtilities, theme }: any) {
       matchUtilities(

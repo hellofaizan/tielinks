@@ -2,7 +2,13 @@
 
 import React from "react";
 import Link from "next/link";
-import { ChevronRight, HomeIcon, LinkIcon, MessageSquare, Settings } from "lucide-react";
+import {
+  ChevronRight,
+  HomeIcon,
+  LinkIcon,
+  MessageSquare,
+  Settings,
+} from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -18,7 +24,7 @@ export default function SidebarMobile({ session }: { session: any }) {
   const username = session?.user?.username;
   const path = usePathname();
   return (
-    <div className="flex-col border-r bg-background md:hidden h-full">
+    <div className="h-full flex-col border-r bg-background md:hidden">
       <div className="flex h-16 shrink-0 items-center border-b px-6">
         <Link href="#" className="font-bold" prefetch={false}>
           Tielinks
@@ -28,6 +34,7 @@ export default function SidebarMobile({ session }: { session: any }) {
         <div className="flex flex-col space-y-1 p-2">
           <Link
             href="/dashboard"
+            target="_blank"
             className={cn(
               "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
               path === "/dashboard" && "bg-muted text-foreground",
@@ -81,7 +88,7 @@ export default function SidebarMobile({ session }: { session: any }) {
                   >
                     <span>Profile</span>
                   </Link>
-                  
+
                   <Link
                     href="/dashboard/username"
                     className={cn(
