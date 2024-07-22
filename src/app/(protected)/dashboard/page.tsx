@@ -5,6 +5,7 @@ import DashboardComponent from "./components/dashoard";
 
 export default async function page() {
   const session = await currentUser();
+  console.log(session);
 
   return (
     <div className="flex flex-col gap-3 p-2 md:p-4">

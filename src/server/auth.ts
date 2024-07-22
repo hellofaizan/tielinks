@@ -15,6 +15,7 @@ declare module "next-auth" {
       role: USERROLE;
       username: string;
       about: string;
+      tielinkJoinedAt: string;
       /**
        * By default, TypeScript merges new interface properties and overwrites existing ones.
        * In this case, the default session user properties will be overwritten,
@@ -54,6 +55,9 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
       if (token.about && session.user) {
         session.user.about = token.about as string;
       }
+      if (token.tielinkJoinedAt && session.user) {
+        session.user.tielinkJoinedAt = token.tielinkJoinedAt as string;
+      }
       return session;
     },
     async jwt({ token }) {
@@ -66,6 +70,7 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
       token.role = existingUser.role;
       token.username = existingUser.username;
       token.about = existingUser.about;
+      token.tielinkJoinedAt = existingUser.tielinkJoinedAt;
 
       return token;
     },

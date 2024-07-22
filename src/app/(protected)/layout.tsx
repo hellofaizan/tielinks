@@ -17,6 +17,7 @@ export default async function DashboardLayout({
   children: React.ReactNode;
 }) {
   const session = await auth();
+  const firstName = session?.user?.name?.split(" ")[0];
   return (
     <SessionProvider session={session}>
       {/* <div className="flex min-h-screen w-full">
@@ -33,7 +34,7 @@ export default async function DashboardLayout({
           <header className="sticky top-0 z-30 flex h-16 w-full items-center gap-4 border-b bg-background px-4 sm:static sm:h-16 sm:border-0 sm:px-6">
             <MobileNav />
             {/* <LayoutHeader session={session} /> */}
-            <h2 className="text-lg font-semibold">Dashboard</h2>
+            <h2 className="text-lg font-semibold w-full">Welcome! {firstName}</h2>
             <div className="flex items-center justify-end space-x-4 right-0 w-full">
               <ModeToggle />
               <ProfileComponent session={session} />
