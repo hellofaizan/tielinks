@@ -10,6 +10,8 @@ import type { Metadata, ResolvingMetadata } from "next";
 import LinksComponent from "./components/links";
 import SocialsComponent from "./components/socials";
 import ShareProfile from "./components/shareprofile";
+import { headers } from "next/headers";
+import VisitCouter from "~/actions/visitCounter";
 
 type Props = {
   params: { username: string };
@@ -74,13 +76,18 @@ export default async function page({ params }: Props) {
   const user = await getUserByUsername(username);
   const session = await auth();
   const currentUser = session?.user;
+  const request_headers = headers();
+
+  await VisitCouter({ userId: user?.id || "", request_headers }).catch(
+    (err) => {
+      console.log;
+    },
+  );
 
   if (!user) {
     return (
       <>
-        <div
-          className="flex min-h-dvh items-center justify-center"
-        >
+        <div className="flex min-h-dvh items-center justify-center">
           <h1 className="font-sans text-2xl font-semibold">User Not Found</h1>
         </div>
       </>
@@ -165,7 +172,7 @@ export default async function page({ params }: Props) {
           {/* icons */}
           <SocialsComponent socials={user?.Socials || []} />
           {/* Links */}
-          <LinksComponent links={user?.Links || []} username={username || ""} />
+          <LinksComponent links={user?.Links || []} username={username || ""} userId={user?.id} />
         </div>
       </div>
     </div>

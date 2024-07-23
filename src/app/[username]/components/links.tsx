@@ -4,7 +4,15 @@ import React from "react";
 import Link from "next/link";
 import ShareLink from "./sharelink";
 
-export default function LinksComponent({ links, username }: { links: any, username: string }) {
+export default function LinksComponent({
+  links,
+  username,
+  userId,
+}: {
+  links: any;
+  username: string;
+  userId: string;
+}) {
   return (
     <>
       {links?.map((link: any) => (
@@ -14,14 +22,19 @@ export default function LinksComponent({ links, username }: { links: any, userna
         >
           <div className="relative flex h-[52px] w-full items-center justify-center rounded-lg border bg-[#171717] hover:scale-[1.02]">
             <Link
+              ping={`/api/visitCounter?id=${userId}&link=${link?.id}`}
               href={link?.url}
               target="_blank"
               className="flex h-full w-full items-center justify-center text-center"
             >
               {link?.title}
             </Link>
-            
-            <ShareLink link={link?.url} title={link?.title} username={username} />
+
+            <ShareLink
+              link={link?.url}
+              title={link?.title}
+              username={username}
+            />
           </div>
         </div>
       ))}

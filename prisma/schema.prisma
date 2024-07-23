@@ -24,6 +24,11 @@ enum Layout {
     IMGTOPNAV
 }
 
+enum IconsPosition {
+    TOP
+    BOTTOM
+}
+
 // Necessary for Next auth
 model Account {
     id                       String  @id @default(cuid())
@@ -63,6 +68,7 @@ model User {
     pageVisits        PageVisits[]
     Socials           Socials[]
     Links             Links[]
+    LinkClicks        LinkClicks[]
 }
 
 model Status {
@@ -75,27 +81,51 @@ model Status {
 }
 
 model Socials {
-    id     Int    @id @default(autoincrement())
-    type   String
-    handle String
-    userId String
-    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+    id       Int           @id @default(autoincrement())
+    type     String
+    handle   String
+    userId   String
+    position IconsPosition @default(TOP)
+    user     User          @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Links {
-    id     Int     @id @default(autoincrement())
-    title  String
-    url    String
-    logo   String?
-    userId String
-    user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+    id         Int          @id @default(autoincrement())
+    title      String
+    url        String
+    logo       String?
+    linkClicks LinkClicks[]
+    userId     String
+    user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model PageVisits {
+    id             Int      @id @default(autoincrement())
+    ip             String?
+    country        String?
+    city           String?
+    userAgent      String?
+    browser        String?
+    browserVersion String?
+    os             String?
+    osVersion      String?
+    referrer       String?
+    referrerType   String?
+    referringURL   String?
+    device         String?
+    language       String?
+    latitude       Float?
+    longitude      Float?
+    timestamp      DateTime @default(now())
+    userId         String
+    user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model LinkClicks {
     id        Int      @id @default(autoincrement())
-    ip        String?
-    country   String?
     timestamp DateTime @default(now())
     userId    String
     user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    linkId    Int
+    link      Links    @relation(fields: [linkId], references: [id], onDelete: Cascade)
 }

@@ -19,11 +19,13 @@ import {
     Users,
   } from "lucide-react";
   import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
+  import { PageVisitGraph } from "./pageVisitGraph";
 
 export default function DashboardComponent() {
   return (
-    <div>
-      <div className="grid gap-4 md:grid-cols-2 md:gap-3 lg:grid-cols-4">
+    <div className="flex gap-2 w-full">
+
+      <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-2 flex-1">
         <Card x-chunk="dashboard-01-chunk-0">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total visitors</CardTitle>
@@ -73,6 +75,8 @@ export default function DashboardComponent() {
           </CardContent>
         </Card>
       </div>
+
+      <PageVisitGraph className={"flex-1"}/>
     </div>
   );
 }
