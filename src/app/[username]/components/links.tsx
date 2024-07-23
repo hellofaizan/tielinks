@@ -21,7 +21,7 @@ export default function LinksComponent({ links, username }: { links: any, userna
               {link?.title}
             </Link>
             
-            <ShareLink link={link?.url} username={username} />
+            <ShareLink link={link?.url} title={link?.title} username={username} />
           </div>
         </div>
       ))}

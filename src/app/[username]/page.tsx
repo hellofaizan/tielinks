@@ -2,7 +2,7 @@ import React from "react";
 import { getUserByUsername } from "~/server/user";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { IconShare } from "@tabler/icons-react";
-import { Pencil, Eye, } from "lucide-react";
+import { Pencil, Eye } from "lucide-react";
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
 import { ModeToggle } from "~/components/ModeToogle";
@@ -10,6 +10,7 @@ import { auth } from "~/server/auth";
 import type { Metadata, ResolvingMetadata } from "next";
 import LinksComponent from "./components/links";
 import SocialsComponent from "./components/socials";
+import ShareProfile from "./components/shareprofile";
 
 type Props = {
   params: { username: string };
@@ -105,13 +106,7 @@ export default async function page({ params }: Props) {
               className="w-full bg-cover bg-center gradient-mask-b-60"
             />
             <div className="fixed right-0 top-0 z-10 mr-3 mt-3 flex rounded-full border bg-gray-500/15 backdrop-blur-3xl">
-              <Button
-                variant={"ghost"}
-                size={"icon"}
-                className="hover:bg-transparent hover:text-gray-700 dark:hover:text-gray-300"
-              >
-                <IconShare size={20} />{" "}
-              </Button>
+              <ShareProfile username={username} />
               <ModeToggle
                 btnClass={"dark:hover:text-gray-300 hover:text-gray-700"}
               />
@@ -125,13 +120,7 @@ export default async function page({ params }: Props) {
         ) : (
           <div className="relative h-32 bg-gradient-to-r from-[#FF0080] to-[#7928CA] gradient-mask-b-10">
             <div className="absolute right-0 top-0 z-10 mr-3 mt-3 flex rounded-full border bg-gray-500/15 backdrop-blur-3xl">
-              <Button
-                variant={"ghost"}
-                size={"icon"}
-                className="hover:bg-transparent hover:text-gray-700 dark:hover:text-gray-300"
-              >
-                <IconShare size={20} />{" "}
-              </Button>
+              <ShareProfile username={username} />
               <ModeToggle
                 btnClass={"dark:hover:text-gray-300 hover:text-gray-700"}
               />

@@ -27,33 +27,28 @@ import {
   IconBrandWhatsapp,
   IconBrandLinkedin,
   IconBrandGmail,
+  IconShare
 } from "@tabler/icons-react";
 import { Separator } from "~/components/ui/separator";
-import { EllipsisVertical } from "lucide-react";
 import { Copy, Check, LinkIcon, Flag, ArrowUpRight } from "lucide-react";
 import { Input } from "~/components/ui/input";
 import Link from "next/link";
 
 interface ShareLinkProps {
-  link: string;
   username: string;
-  title: string;
 }
 
-export default function ShareLink({
-  link,
-  username,
-  title
-}: ShareLinkProps): JSX.Element {
+export default function ShareProfile({ username }: ShareLinkProps): JSX.Element {
   const [open, setOpen] = useState(false);
   const [copy, setCopy] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
+  const link = `https://tielinks.in/${username}`;
 
-  const shareSocialMedia = (link: string) => {
+  const shareSocialMedia = (profileLink: string) => {
     return (
       <div className="mb-2 max-h-64 overflow-y-scroll text-lg">
         <Link
-          href={`https://twitter.com/intent/tweet?text=${title} - ${link}`}
+          href={`https://twitter.com/intent/tweet?text=${profileLink}`}
           target="_blank"
           className="flex w-full gap-2 rounded-lg p-2 hover:bg-muted"
         >
@@ -61,7 +56,7 @@ export default function ShareLink({
           Share on Twitter
         </Link>
         <Link
-          href={`https://www.facebook.com/sharer/sharer.php?u=${title} - ${link}`}
+          href={`https://www.facebook.com/sharer/sharer.php?u=${profileLink}`}
           target="_blank"
           className="flex w-full gap-2 rounded-lg p-2 hover:bg-muted"
         >
@@ -69,7 +64,7 @@ export default function ShareLink({
           Share on Facebook
         </Link>
         <Link
-          href={`https://www.linkedin.com/shareArticle?mini=true&url=${title} - ${link}`}
+          href={`https://www.linkedin.com/shareArticle?mini=true&url=${profileLink}`}
           target="_blank"
           className="flex w-full gap-2 rounded-lg p-2 hover:bg-muted"
         >
@@ -77,7 +72,7 @@ export default function ShareLink({
           Share on LinkedIn
         </Link>
         <Link
-          href={`https://api.whatsapp.com/send?text=${title} - ${link}`}
+          href={`https://api.whatsapp.com/send?text=${profileLink}`}
           target="_blank"
           className="flex w-full gap-2 rounded-lg p-2 hover:bg-muted"
         >
@@ -85,7 +80,7 @@ export default function ShareLink({
           Share on WhatsApp
         </Link>
         <Link
-          href={`https://t.me/share/url?url=${title} - ${link}`}
+          href={`https://t.me/share/url?url=${profileLink}`}
           target="_blank"
           className="flex w-full gap-2 rounded-lg p-2 hover:bg-muted"
         >
@@ -93,7 +88,7 @@ export default function ShareLink({
           Share on Telegram
         </Link>
         <Link
-          href={`https://www.reddit.com/submit?url=${title} - ${link}`}
+          href={`https://www.reddit.com/submit?url=${profileLink}`}
           target="_blank"
           className="flex w-full gap-2 rounded-lg p-2 hover:bg-muted"
         >
@@ -101,7 +96,7 @@ export default function ShareLink({
           Share on Reddit
         </Link>
         <Link
-          href={`mailto:?body=${title} - ${link}`}
+          href={`mailto:?body=${profileLink}`}
           target="_blank"
           className="flex w-full gap-2 rounded-lg p-2 hover:bg-muted"
         >
@@ -113,9 +108,8 @@ export default function ShareLink({
             // open share menu of device
             if (navigator.share) {
               navigator.share({
-                title: title,
-                text: "Check out this link!",
-                url: link,
+                title: "Check out this person!",
+                url: profileLink,
               });
             }
           }}
@@ -135,17 +129,17 @@ export default function ShareLink({
           <Button
             variant={"ghost"}
             size={"icon"}
-            className="absolute right-2 z-10 cursor-pointer rounded-md p-[6px] hover:bg-muted"
+            className="hover:bg-transparent hover:text-gray-700 dark:hover:text-gray-300"
           >
-            <EllipsisVertical size={20} className="" />
+            <IconShare size={20} />{" "}
           </Button>
         </DialogTrigger>
         {/* // input field for gif search */}
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Edit link</DialogTitle>
+            <DialogTitle>Share Profile</DialogTitle>
             <DialogDescription>
-              Edit the link to share with your audience.
+              Share this profile with your friends and family.
             </DialogDescription>
           </DialogHeader>
 
@@ -179,7 +173,7 @@ export default function ShareLink({
 
           {/* Report Link */}
           <Link
-            href={`/report?u=${username}&l=${link}`}
+            href={`/report?u=${username}`}
             target="_blank"
             className="flex items-center justify-between rounded-lg p-2 hover:bg-muted"
           >
@@ -200,9 +194,9 @@ export default function ShareLink({
         <Button
           variant={"ghost"}
           size={"icon"}
-          className="absolute right-2 z-10 cursor-pointer rounded-md p-[6px]"
+          className="hover:bg-transparent hover:text-gray-700 dark:hover:text-gray-300"
         >
-          <EllipsisVertical size={20} className="" />
+          <IconShare size={20} />{" "}
         </Button>
       </DrawerTrigger>
       <DrawerContent className="p-4">
