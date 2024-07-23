@@ -21,12 +21,65 @@ import Link from "next/link";
 import { Button } from "~/components/ui/button";
 import { ModeToggle } from "~/components/ModeToogle";
 import { auth } from "~/server/auth";
+import type { Metadata, ResolvingMetadata } from "next";
 
-export default async function page({
-  params,
-}: {
+type Props = {
   params: { username: string };
-}) {
+};
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  // read route params
+  const id = params.username;
+
+  // fetch data
+  const user = await getUserByUsername(id);
+
+  return {
+    title: user?.name + "'s Profile | Tielinks",
+    description:
+      user?.about +
+      " | " + user?.name + " is on Tielinks | A fancy and cool link in bio | Share all links in one place",
+    icons: [
+      {
+        url: user?.image || "",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        url: user?.image || "",
+        sizes: "512x512",
+        type: "image/png",
+      },
+      {
+        url: user?.image || "",
+        sizes: "1024x1024",
+        type: "image/png",
+      },
+    ],
+    applicationName: "Tielinks",
+    creator: "HelloFaizan",
+    twitter: {
+      site: "@tielinksgg",
+      creator: "@hellofaizaan",
+      card: "summary_large_image",
+      title: user?.name + "'s Profile | Tielinks",
+      description:
+        user?.about +
+        " | Tielinks | A fancy and cool link in bio | Share all links in one place",
+    },
+    openGraph: {
+      title: user?.name + "'s Profile | Tielinks",
+      description:
+        user?.about +
+        " | Tielinks | A fancy and cool link in bio | Share all links in one place",
+    },
+  };
+}
+
+export default async function page({ params }: Props) {
   const username = params.username;
   const user = await getUserByUsername(username);
   const session = await auth();
@@ -158,7 +211,7 @@ export default async function page({
   }
 
   return (
-    <div className="flex min-h-dvh justify-center md:min-h-screen mb-8">
+    <div className="mb-8 flex min-h-dvh justify-center md:min-h-screen">
       {user?.username === currentUser?.username ? (
         <div className="fixed bottom-0 right-0 z-10 mb-4 mr-4">
           <Link href="/dashboard" target="_blank">
@@ -178,19 +231,42 @@ export default async function page({
               src={user?.banner || ""}
               className="w-full bg-cover bg-center gradient-mask-b-60"
             />
-            <div className="fixed right-0 top-0 z-10 mr-3 mt-3 flex border rounded-full bg-gray-500/15 backdrop-blur-3xl">
-              <Button variant={"ghost"} size={"icon"} className="hover:bg-transparent dark:hover:text-black hover:text-gray-700"><IconShare size={20}/> </Button>
-              <ModeToggle btnClass={"dark:hover:text-black hover:text-gray-700"}/>
+            <div className="fixed right-0 top-0 z-10 mr-3 mt-3 flex rounded-full border bg-gray-500/15 backdrop-blur-3xl">
+              <Button
+                variant={"ghost"}
+                size={"icon"}
+                className="hover:bg-transparent hover:text-gray-700 dark:hover:text-black"
+              >
+                <IconShare size={20} />{" "}
+              </Button>
+              <ModeToggle
+                btnClass={"dark:hover:text-black hover:text-gray-700"}
+              />
             </div>
-            <div className="absolute left-0 top-0 z-10 ml-3 mt-3 flex border rounded-full bg-gray-500/15 backdrop-blur-3xl">
-            <p className="flex p-1 px-2 text-sm"><BarChart size={18}/> 6969</p>
+            <div className="absolute left-0 top-0 z-10 ml-3 mt-3 flex rounded-full border bg-gray-500/15 backdrop-blur-3xl">
+              <p className="flex p-1 px-2 text-xs">
+                <BarChart size={15} /> 6969
+              </p>
             </div>
           </div>
         ) : (
-          <div className="h-40 bg-gradient-to-r from-[#FF0080] to-[#7928CA] gradient-mask-b-10">
-            <div className="absolute right-0 top-0 z-10 mr-3 mt-3 flex border rounded-full bg-gray-500/15 backdrop-blur-3xl">
-              <Button variant={"ghost"} size={"icon"} className="hover:bg-transparent dark:hover:text-black hover:text-gray-700"><IconShare size={20}/> </Button>
-              <ModeToggle btnClass={"dark:hover:text-black hover:text-gray-700"}/>
+          <div className="relative h-32 bg-gradient-to-r from-[#FF0080] to-[#7928CA] gradient-mask-b-10">
+            <div className="absolute right-0 top-0 z-10 mr-3 mt-3 flex rounded-full border bg-gray-500/15 backdrop-blur-3xl">
+              <Button
+                variant={"ghost"}
+                size={"icon"}
+                className="hover:bg-transparent hover:text-gray-700 dark:hover:text-black"
+              >
+                <IconShare size={20} />{" "}
+              </Button>
+              <ModeToggle
+                btnClass={"dark:hover:text-black hover:text-gray-700"}
+              />
+            </div>
+            <div className="absolute left-0 top-0 z-10 ml-3 mt-3 flex rounded-full border bg-gray-500/15 backdrop-blur-3xl">
+              <p className="flex p-1 px-2 text-xs">
+                <BarChart size={15} /> 6969
+              </p>
             </div>
           </div>
         )}
@@ -240,7 +316,7 @@ export default async function page({
                   target="_blank"
                   rel="noreferrer"
                   key={link.id}
-                  className="flex h-12 w-full items-center justify-center rounded-full border text-center hover:scale-[1.02]"
+                  className="flex h-12 w-full items-center justify-center rounded-lg border text-center hover:scale-[1.02] bg-[#171717]"
                 >
                   <span className="rounded-md px-2 py-1">
                     {link.title || ""}
