@@ -2,7 +2,7 @@ import React from "react";
 import { currentUser, fullUserData } from "~/server/user";
 import PageLink from "./components/pagelink";
 import DashboardComponent from "./components/dashoard";
-import { PageVisitGraph } from "./components/pageVisitGraph";
+import Graphs from "./components/Graphs";
 
 export default async function page() {
   const session = await currentUser();
@@ -12,6 +12,7 @@ export default async function page() {
     <div className="flex flex-col gap-3 p-2 md:p-4 w-full">
       <PageLink />
       <DashboardComponent />
+      <Graphs />
     </div>
   );
 }
