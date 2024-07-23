@@ -170,7 +170,7 @@ export default async function page({ params }: Props) {
           {/* icons */}
           <SocialsComponent socials={user?.Socials || []} />
           {/* Links */}
-          <LinksComponent links={user?.Links || []} />
+          <LinksComponent links={user?.Links || []} username={username || ""} />
         </div>
       </div>
     </div>

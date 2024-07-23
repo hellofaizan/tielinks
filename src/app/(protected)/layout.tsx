@@ -20,14 +20,6 @@ export default async function DashboardLayout({
   const firstName = session?.user?.name?.split(" ")[0];
   return (
     <SessionProvider session={session}>
-      {/* <div className="flex min-h-screen w-full">
-        <Sidebar session={session} />
-        <div className="flex flex-1 flex-col overflow-x-hidden">
-          <LayoutHeader session={session} />
-          {children}
-          <Toaster />
-        </div>
-      </div> */}
       <main className="flex min-h-screen w-full flex-col bg-muted/40">
         <SidebarLayout />
         <div className="flex flex-col md:pl-64">
