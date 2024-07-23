@@ -231,7 +231,7 @@ export default function ShareProfile({ username }: ShareLinkProps): JSX.Element 
         <Separator />
         {/* Report Link */}
         <Link
-          href={`/report?u=${username}&l=${link}`}
+          href={`/report?u=${username}`}
           target="_blank"
           className="mt-4 flex items-center justify-between rounded-lg p-2 hover:bg-muted"
         >

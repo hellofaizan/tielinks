@@ -1,7 +1,6 @@
 import React from "react";
 import { getUserByUsername } from "~/server/user";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
-import { IconShare } from "@tabler/icons-react";
 import { Pencil, Eye } from "lucide-react";
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
@@ -78,14 +77,21 @@ export default async function page({ params }: Props) {
 
   if (!user) {
     return (
-      <div className="flex min-h-dvh items-center justify-center md:min-h-screen">
-        <h1 className="text-2xl font-semibold">User not found</h1>
-      </div>
+      <>
+        <div
+          className="flex min-h-dvh items-center justify-center"
+        >
+          <h1 className="font-sans text-2xl font-semibold">User Not Found</h1>
+        </div>
+      </>
     );
   }
 
   return (
-    <div className="mb-8 flex min-h-dvh justify-center md:min-h-screen">
+    <div
+      className="flex min-h-dvh justify-center md:min-h-screen"
+      suppressHydrationWarning
+    >
       {user?.username === currentUser?.username ? (
         <div className="fixed bottom-0 right-0 z-10 mb-4 mr-4">
           <Link href="/dashboard" target="_blank">
