@@ -11,7 +11,6 @@ import {
 } from "~/components/ui/table";
 
 export default function LinkStats({ data }: { data: any }) {
-    console.log(data);
   const [tableData, setTableData] = useState(data);
   return (
     <div>

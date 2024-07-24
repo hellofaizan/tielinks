@@ -46,7 +46,6 @@ const GetUsername = ({
         }
         router.push(`/auth?callbackUrl=/dashboard/username`)
     }
-    console.log("session " + JSON.stringify(session))
     // Completed Form ?
     const username = session?.user.username
 

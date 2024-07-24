@@ -1,7 +1,6 @@
 "use client";
 
 import { USERROLE } from "@prisma/client";
-import { Console } from "console";
 import { ChevronLeft, Skull } from "lucide-react";
 import Link from "next/link";
 import { useCurrentRole } from "~/hooks/use-current-role";
