@@ -98,6 +98,23 @@ export async function LinkClicksPercentageChange({
   return percentageChange.toFixed(0) + "%";
 }
 
+export async function TotalLinkClicks({ userId }: { userId: string }) {
+  const linksOfUser = await db.links.findMany({
+    where: {
+      userId,
+    },
+    select: {
+      id: true,
+      url: true,
+      _count: {
+        select: { linkClicks: true },
+      }
+    },
+  });
+
+  return linksOfUser;
+}
+
 export async function ViewsThisMonth({ userId }: { userId: string }) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);

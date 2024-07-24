@@ -8,6 +8,7 @@ import {
   LinkIcon,
   MessageSquare,
   Settings,
+  ChartLine,
 } from "lucide-react";
 import {
   Accordion,
@@ -16,7 +17,7 @@ import {
   AccordionTrigger,
 } from "~/components/ui/accordion";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
-import { IconReportAnalytics } from "@tabler/icons-react";
+import { Badge } from "~/components/ui/badge";
 import { usePathname } from "next/navigation";
 import { cn } from "~/lib/utils";
 
@@ -44,16 +45,32 @@ export default function SidebarMobile({ session }: { session: any }) {
             Home
           </Link>
           <Link
-            href="/dashboard/whisper"
+            href="/dashboard/analytics"
             className={cn(
               "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
               path === "/dashboard/analytics" && "bg-muted text-foreground",
             )}
             prefetch={false}
           >
-            <MessageSquare className="mr-3 h-5 w-5" />
-            Whisper
+            <ChartLine className="mr-3 h-5 w-5" />
+            <div className="flex items-center justify-between w-full">
+              Analytics <Badge variant="outline">Premium</Badge>
+            </div>
           </Link>
+          <Link
+            href="/dashboard/whisper"
+            className={cn(
+              "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
+              path === "/dashboard/whisper" && "bg-muted text-foreground",
+            )}
+            prefetch={false}
+          >
+            <MessageSquare className="mr-3 h-5 w-5" />
+            <div className="flex items-center justify-between w-full">
+              Whisper <Badge variant="outline">Comming Soon</Badge>
+            </div>
+          </Link>
+
           <Accordion type="single" collapsible>
             <AccordionItem value="projects">
               <AccordionTrigger className="flex items-center gap-3 rounded-md px-3 py-0 hover:bg-muted hover:text-foreground">

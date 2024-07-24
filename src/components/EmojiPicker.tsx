@@ -33,11 +33,7 @@ export default function EmojiPicker({
         </span>
       </DialogTrigger>
       {/* // input field for gif search */}
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Select GIF</DialogTitle>
-          <DialogDescription>Search and select a GIF to use.</DialogDescription>
-        </DialogHeader>
+      <DialogContent className="w-max">
         <Picker
           className="w-full"
           data={data}

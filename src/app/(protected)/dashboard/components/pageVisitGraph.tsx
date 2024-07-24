@@ -19,7 +19,6 @@ const chartConfig = {
 
 export default function PageVisitGraph({ className, data }: { className?: string, data: any }) {
   const [ chartData, setChartData ] = useState(data);
-  console.log(JSON.stringify(chartData));
 
   return (
     <div className={className}>
