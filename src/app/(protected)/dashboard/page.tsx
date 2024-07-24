@@ -11,7 +11,7 @@ export default async function page() {
   return (
     <div className="flex flex-col gap-3 p-2 md:p-4 w-full">
       <PageLink />
-      <DashboardComponent />
+      <DashboardComponent userId={user?.id || ""} />
       <Graphs />
     </div>
   );

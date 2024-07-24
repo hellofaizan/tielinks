@@ -12,6 +12,7 @@ import SocialsComponent from "./components/socials";
 import ShareProfile from "./components/shareprofile";
 import { headers } from "next/headers";
 import VisitCouter from "~/actions/visitCounter";
+import { TotalViews } from "~/actions/getAnalytics";
 
 type Props = {
   params: { username: string };
@@ -77,6 +78,7 @@ export default async function page({ params }: Props) {
   const session = await auth();
   const currentUser = session?.user;
   const request_headers = headers();
+  const totalViews = TotalViews({ userId: user?.id || "" });
 
   await VisitCouter({ userId: user?.id || "", request_headers }).catch(
     (err) => {
@@ -126,7 +128,7 @@ export default async function page({ params }: Props) {
             </div>
             <div className="absolute left-0 top-0 z-10 ml-3 mt-3 flex rounded-full border border-gray-500/20 bg-gray-500/15 backdrop-blur-3xl">
               <p className="flex p-1 px-2 text-xs">
-                <Eye size={15} className="mr-1" /> 6969
+                <Eye size={15} className="mr-1" /> {totalViews || ""}
               </p>
             </div>
           </div>
@@ -172,7 +174,11 @@ export default async function page({ params }: Props) {
           {/* icons */}
           <SocialsComponent socials={user?.Socials || []} />
           {/* Links */}
-          <LinksComponent links={user?.Links || []} username={username || ""} userId={user?.id} />
+          <LinksComponent
+            links={user?.Links || []}
+            username={username || ""}
+            userId={user?.id}
+          />
         </div>
       </div>
     </div>

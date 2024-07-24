@@ -1,88 +1,77 @@
 "use client";
 
-import { TrendingUp } from "lucide-react";
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
-
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "~/components/ui/card";
+import { Line, LabelList, LineChart, CartesianGrid, XAxis, XAxisProps } from "recharts";
+import React, { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "~/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "~/components/ui/chart";
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-];
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
+  views: {
+    label: "overall",
     color: "hsl(var(--chart-1))",
-  },
-  mobile: {
-    label: "Mobile",
-    color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig;
 
-export default function PageVisitGraph({ className }: { className?: string }) {
+export default function PageVisitGraph({ className, data }: { className?: string, data: any }) {
+  const [ chartData, setChartData ] = useState(data);
+  console.log(JSON.stringify(chartData));
+
   return (
     <div className={className}>
       <Card>
         <CardHeader>
           <CardTitle>Visitor Analytics</CardTitle>
+          <CardDescription>Analytics of last 10 days</CardDescription>
         </CardHeader>
         <CardContent>
           <ChartContainer config={chartConfig} className="max-h-[202px] w-full">
-            <AreaChart
+            <LineChart
               accessibilityLayer
               data={chartData}
               margin={{
+                top: 20,
                 left: 12,
                 right: 12,
               }}
             >
               <CartesianGrid vertical={false} />
               <XAxis
-                dataKey="month"
+                dataKey="date"
                 tickLine={false}
                 axisLine={false}
                 tickMargin={8}
-                tickFormatter={(value: any) => value.slice(0, 3)}
+                padding={{ left: 1 }}
+                {...({} as XAxisProps)}
               />
               <ChartTooltip
                 cursor={false}
-                content={<ChartTooltipContent indicator="dot" />}
+                content={<ChartTooltipContent indicator="line" />}
               />
-              <Area
-                dataKey="mobile"
+              <Line
+                dataKey="views"
                 type="natural"
-                fill="var(--color-mobile)"
-                fillOpacity={0.4}
-                stroke="var(--color-mobile)"
-                stackId="a"
-              />
-              <Area
-                dataKey="desktop"
-                type="natural"
-                fill="var(--color-desktop)"
-                fillOpacity={0.4}
-                stroke="var(--color-desktop)"
-                stackId="a"
-              />
-            </AreaChart>
+                stroke="var(--color-views)"
+                strokeWidth={2}
+                dot={{
+                  fill: "var(--color-views)",
+                }}
+                activeDot={{
+                  r: 6,
+                }}
+              >
+                <LabelList
+                  position="top"
+                  offset={12}
+                  className="fill-foreground"
+                  fontSize={12}
+                />
+              </Line>
+            </LineChart>
           </ChartContainer>
         </CardContent>
       </Card>

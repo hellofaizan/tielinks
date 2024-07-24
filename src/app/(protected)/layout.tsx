@@ -5,9 +5,7 @@ import ProfileComponent from "./dashboard/components/profile";
 import { ModeToggle } from "~/components/ModeToogle";
 import { Toaster } from "~/components/ui/toaster";
 import Sidebar from "./dashboard/components/sidebar";
-import {
-  PanelLeft,
-} from "lucide-react";
+import { PanelLeft } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet";
 import SidebarMobile from "./dashboard/components/sidebarmob";
 
@@ -26,8 +24,10 @@ export default async function DashboardLayout({
           <header className="sticky top-0 z-30 flex h-16 w-full items-center gap-4 border-b bg-background px-4 sm:static sm:h-16 sm:border-0 sm:px-6">
             <MobileNav />
             {/* <LayoutHeader session={session} /> */}
-            <h2 className="text-lg font-semibold w-full">Welcome! {firstName}</h2>
-            <div className="flex items-center justify-end space-x-4 right-0 w-full">
+            <h2 className="w-full text-lg font-semibold">
+              Welcome! {firstName}
+            </h2>
+            <div className="right-0 flex w-full items-center justify-end space-x-4">
               <ModeToggle />
               <ProfileComponent session={session} />
             </div>
@@ -46,7 +46,7 @@ export default async function DashboardLayout({
 async function SidebarLayout() {
   const session = await auth();
   return (
-    <aside className="fixed inset-y-0 left-0 z-10 h-screen w-64 flex-col border-r bg-background hidden md:flex">
+    <aside className="fixed inset-y-0 left-0 z-10 hidden h-screen w-64 flex-col border-r bg-background md:flex">
       <nav className="h-full flex-col items-center gap-4 px-2">
         <Sidebar session={session} />
       </nav>
@@ -64,8 +64,10 @@ async function MobileNav() {
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="sm:max-w-xs p-0 py-2 pl-2 h-full">
-        <SidebarMobile session={session} />
+      <SheetContent side="left" className="h-full p-0 py-2 sm:max-w-xs">
+        <nav className="h-full flex-col items-center gap-4 px-2">
+          <SidebarMobile session={session} />
+        </nav>
       </SheetContent>
     </Sheet>
   );
