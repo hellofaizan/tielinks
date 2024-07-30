@@ -1,14 +1,13 @@
-"use client";
+import React, { Suspense } from "react";
 
-import React from "react";
-import { useSearchParams } from "next/navigation";
+const ReportPage = React.lazy(() => import("./components/ReportPage"));
 
-export default async function page() {
-  const searchParams = useSearchParams();
-
-  // Example of accessing a specific query parameter
-  const username = searchParams.get("u") || "";
-  const link = searchParams.get("l") || "";
-  
-  return <div>page {username + link}</div>;
+function App() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ReportPage />
+    </Suspense>
+  );
 }
+
+export default App;
