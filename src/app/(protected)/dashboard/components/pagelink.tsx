@@ -10,6 +10,7 @@ import { useToast } from "~/components/ui/use-toast";
 export default function PageLink() {
   const session = useCurrentUser();
   const { toast } = useToast();
+  const siteUrl = process.env.NEXT_PUBLIC_Website_URL || "https://tielinks.in";
   return (
     <div>
       {session?.username ? (
@@ -19,13 +20,9 @@ export default function PageLink() {
         >
           <div>
             🔥🔥 Your Tielinks page is live:{" "}
-            <Link
-              href={`https://tielinks.gg/${session.username}`}
-              target="_blank"
-            >
+            <Link href={`${siteUrl}/${session?.username}`} target="_blank">
               <span className="underline">
-                {" "}
-                https://tielinks.gg/{session.username}
+                {siteUrl}/{session.username}
               </span>
             </Link>
           </div>

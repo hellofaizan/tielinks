@@ -45,6 +45,14 @@ export async function PercentageChange({ userId }: { userId: string }) {
   const percentageChange =
     ((viewsToday - viewsYesterday) / viewsYesterday) * 100;
 
+  if (isNaN(percentageChange)) {
+    return "0%";
+  }
+
+  if (percentageChange === Infinity) {
+    return "100%";
+  }
+
   return percentageChange.toFixed(0) + "%";
 }
 
@@ -82,7 +90,7 @@ export async function LinkClicksYesterday({ userId }: { userId: string }) {
   });
 
   return linkClicksYesterday;
-} 
+}
 
 export async function LinkClicksPercentageChange({
   userId,
@@ -94,6 +102,14 @@ export async function LinkClicksPercentageChange({
 
   const percentageChange =
     ((linkClicksToday - linkClicksYesterday) / linkClicksYesterday) * 100;
+
+    if (isNaN(percentageChange)) {
+      return "0%";
+    }
+  
+    if (percentageChange === Infinity) {
+      return "100%";
+    }
 
   return percentageChange.toFixed(0) + "%";
 }
@@ -108,7 +124,7 @@ export async function TotalLinkClicks({ userId }: { userId: string }) {
       url: true,
       _count: {
         select: { linkClicks: true },
-      }
+      },
     },
   });
 
@@ -210,17 +226,20 @@ export async function ViewsByDayThisWeak({ userId }: { userId: string }) {
   };
 
   // Process and aggregate the data
-  const aggregatedData: AggregatedData = viewsByDayThisWeak.reduce((acc, curr) => {
-    const date = new Date(curr.timestamp);
-    const key = `${date.getDate()}/${date.getMonth() + 1}`;
+  const aggregatedData: AggregatedData = viewsByDayThisWeak.reduce(
+    (acc, curr) => {
+      const date = new Date(curr.timestamp);
+      const key = `${date.getDate()}/${date.getMonth() + 1}`;
 
-    if (!acc[key]) {
-      acc[key] = 0;
-    }
-    acc[key] += 1;
+      if (!acc[key]) {
+        acc[key] = 0;
+      }
+      acc[key] += 1;
 
-    return acc;
-  }, {} as AggregatedData);
+      return acc;
+    },
+    {} as AggregatedData,
+  );
 
   // formate
   const formattedData = Object.keys(aggregatedData).map((key) => {

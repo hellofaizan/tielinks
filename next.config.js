@@ -52,7 +52,7 @@ const config = {
       },
       {
         protocol: "https",
-        hostname: "media1.tenor.com",
+        hostname: "**.tenor.com",
       },
     ],
   },
