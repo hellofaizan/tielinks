@@ -4,11 +4,8 @@ import {
     DEFAULT_LOGIN_REDIRECT,
     apiAuthPrefix,
     authRoutes,
-    adminRoutes,
-    publicRoutes,
     protectedRoutes,
 } from '~/server/routes'
-import { USERROLE } from "@prisma/client";
 
 const { auth } = NextAuth(authConfig);
 
@@ -17,7 +14,6 @@ export default auth((req):any => {
     const isLoggedIn = !!req.auth;
 
     const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-    const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
     const isProtectedRoute = protectedRoutes.includes(nextUrl.pathname);
     const isAutRoute = authRoutes.includes(nextUrl.pathname);
 
