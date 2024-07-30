@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import { Activity, CreditCard, User, Users } from "lucide-react";
+import { Activity, User, Users, MousePointer2 } from "lucide-react";
 import {
   ViewsToday,
   TotalViews,
@@ -62,7 +62,7 @@ export default async function DashboardComponent({
             <CardTitle className="text-sm font-medium">
               Link Clicks Today
             </CardTitle>
-            <CreditCard className="h-4 w-4 text-muted-foreground" />
+            <MousePointer2 className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{linkClicksToday}</div>

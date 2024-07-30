@@ -14,6 +14,7 @@ import {
   IconBrandWhatsapp,
 } from "@tabler/icons-react";
 import { LinkIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function SocialsComponent({ socials }: { socials: any }) {
   const socialIcons = (type: string) => {
@@ -136,14 +137,14 @@ export default function SocialsComponent({ socials }: { socials: any }) {
   return (
     <div className="mt-4 flex w-full flex-row justify-center">
       {socials?.map((social: any) => (
-        <a
+        <Link
           href={socialLinks({ social })}
           target="_blank"
           rel="noreferrer"
           key={social.type}
         >
           {socialIcons(social.type)}
-        </a>
+        </Link>
       ))}
     </div>
   );

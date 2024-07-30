@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Pencil, Eye } from "lucide-react";
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
+import Image from "next/image";
 import { ModeToggle } from "~/components/ModeToogle";
 import { auth } from "~/server/auth";
 import type { Metadata, ResolvingMetadata } from "next";
@@ -98,8 +99,7 @@ export default async function page({ params }: Props) {
 
   return (
     <div
-      className="flex min-h-dvh justify-center md:min-h-screen"
-      suppressHydrationWarning
+      className="flex min-h-dvh justify-center md:min-h-screen mb-6"
     >
       {user?.username === currentUser?.username ? (
         <div className="fixed bottom-0 right-0 z-10 mb-4 mr-4">
@@ -116,9 +116,13 @@ export default async function page({ params }: Props) {
       <div className="flex w-full flex-col md:w-1/3">
         {user?.banner ? (
           <div className="relative">
-            <img
+            <Image
               src={user?.banner || ""}
               className="w-full bg-cover bg-center gradient-mask-b-60"
+              alt="Banner"
+              width={500}
+              height={200}
+              priority
             />
             <div className="fixed right-0 top-0 z-10 mr-3 mt-3 flex rounded-full border bg-gray-500/15 backdrop-blur-3xl">
               <ShareProfile username={username} />
