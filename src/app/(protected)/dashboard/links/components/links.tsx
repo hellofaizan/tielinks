@@ -36,21 +36,28 @@ export default function LinksComponent({ data }: LinksComponentProps) {
     <div className="flex flex-col gap-4 p-2">
       <AddLinkCOmponent />
 
-      <div className="mb-2 flex flex-col gap-3">
+      <div className="mb-2 flex flex-col gap-3 text-ellipsis">
         {data?.map((link: any) => (
           <div
             className="flex flex-row items-center justify-between border-t pt-2"
             key={link.id}
           >
-            <div className="flex flex-row items-center">
+            <div className="flex flex-row items-center flex-1">
               <Link className="m-2" />
               <div>
                 <p className="text-base font-semibold">{link.title}</p>
-                <p className="line-clamp-1 text-sm text-gray-500">{link.url}</p>
+                <p className="line-clamp-1 max-w-52 lg:max-w-80 text-ellipsis text-sm text-gray-500">
+                  {link.url}
+                </p>
               </div>
             </div>
-            <div className="flex items-center gap-1">
-              <EditLinkComponent title={link.title} url={link.url} id={link.id} />
+            <div className="flex-none flex items-center gap-1">
+              <EditLinkComponent
+                title={link.title}
+                url={link.url}
+                id={link.id}
+                embed={link.embed}
+              />
               <Button
                 className="dark:hover:bg-[#171717]"
                 variant={"outlinedestructive"}

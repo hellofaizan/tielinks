@@ -58,7 +58,7 @@ export default async function page({ params }: Props) {
 
       {/* Share Button and theme toggle */}
 
-      <div className="flex w-full flex-col md:w-1/3">
+      <div className="flex w-full flex-col md:w-1/2 lg:w-1/3">
         {user?.banner ? (
           <div className="relative">
             <Image

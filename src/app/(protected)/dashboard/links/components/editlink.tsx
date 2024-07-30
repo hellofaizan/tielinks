@@ -37,6 +37,7 @@ const formSchema = z.object({
   url: z.string().url({
     message: "Please enter a valid URL",
   }),
+  embed: z.boolean().default(false),
 });
 
 type formValues = z.infer<typeof formSchema>;
@@ -45,12 +46,14 @@ interface EditLinkCOmponentProps {
   title: string;
   url: string;
   id: number;
+  embed: boolean;
 }
 
 export default function EditLinkCOmponent({
   title,
   url,
   id,
+  embed,
 }: EditLinkCOmponentProps) {
   const { toast } = useToast();
   const router = useRouter();
@@ -64,6 +67,7 @@ export default function EditLinkCOmponent({
     defaultValues: {
       title,
       url,
+      embed,
     },
   });
 
@@ -136,6 +140,19 @@ export default function EditLinkCOmponent({
                 <Info size={10} className="text-blue-500" /> must be a valid URL
                 link!
               </p>
+
+              {/* if url input is a youtube video, show checkbox to embed video */}
+              {url.includes("youtu.be/") || url.includes("open.spotify.com") ? (
+                <div className="mt-3 flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    placeholder="embed"
+                    {...register("embed")}
+                  />
+                  <span className="text-sm">Allow Embed</span>
+                </div>
+              ) : null}
+
               <Button type="submit" disabled={disabled} className="mt-3">
                 Save Link
               </Button>
@@ -190,6 +207,18 @@ export default function EditLinkCOmponent({
               <Info size={10} className="text-blue-500" /> must be a valid URL
               link!
             </p>
+            {/* if url input is a youtube video, show checkbox to embed video */}
+            {url.includes("youtu.be/") || url.includes("open.spotify.com") ? (
+              <div className="mt-3 flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  placeholder="embed"
+                  {...register("embed")}
+                />
+                <span className="text-sm">Allow Embed</span>
+              </div>
+            ) : null}
+
             <Button type="submit" disabled={disabled} className="mt-3">
               Save Link
             </Button>

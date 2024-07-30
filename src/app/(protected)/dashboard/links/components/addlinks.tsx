@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useMediaQuery } from "~/hooks/use-media-query";
 import { Button } from "~/components/ui/button";
 import {
@@ -37,6 +37,7 @@ const formSchema = z.object({
   url: z.string().url({
     message: "Please enter a valid URL",
   }),
+  embed: z.boolean().default(false),
 });
 
 type formValues = z.infer<typeof formSchema>;
@@ -47,6 +48,7 @@ export default function AddLinkCOmponent() {
   const [open, setOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
+  const [url, setUrl] = useState("");
 
   const { handleSubmit, register, reset } = useForm<formValues>({
     resolver: zodResolver(formSchema),
@@ -118,6 +120,17 @@ export default function AddLinkCOmponent() {
                 <Info size={10} className="text-blue-500" /> must be a valid URL
                 link!
               </p>
+              {/* if url input is a youtube video, show checkbox to embed video */}
+              {url.includes("youtu.be/") || url.includes("open.spotify.com") ? (
+                <div className="mt-3 flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    placeholder="embed"
+                    {...register("embed")}
+                  />
+                  <span className="text-sm">Allow Embed</span>
+                </div>
+              ) : null}
               <Button type="submit" disabled={disabled} className="mt-3">
                 Save Link
               </Button>
@@ -161,13 +174,28 @@ export default function AddLinkCOmponent() {
                 id="url"
                 placeholder="URL"
                 className="w-full p-2 focus-visible:outline-none"
-                {...register("url")}
+                {...register("url", {
+                  onChange: (e) => setUrl(e.target.value),
+                })}
               />
             </div>
             <p className="flex items-center gap-1 text-xs text-gray-400">
               <Info size={10} className="text-blue-500" /> must be a valid URL
               link!
             </p>
+
+            {/* if url input is a youtube video, show checkbox to embed video */}
+            {url.includes("youtu.be/") || url.includes("open.spotify.com") ? (
+              <div className="mt-3 flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  placeholder="embed"
+                  {...register("embed")}
+                />
+                <span className="text-sm">Allow Embed</span>
+              </div>
+            ) : null}
+
             <Button type="submit" disabled={disabled} className="mt-3">
               Save Link
             </Button>

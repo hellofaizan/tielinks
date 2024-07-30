@@ -18,7 +18,7 @@ export default async function ProfilePage() {
   const links = user?.Links;
 
   return (
-    <div className="flex w-full flex-col items-center justify-center mb-3">
+    <div className="flex w-full flex-col items-center justify-center mb-3 p-1">
       <Card className="mx-2 mt-3 w-full rounded-md lg:w-2/5">
         <CardHeader className="px-4 pb-0 pt-6">
           <CardTitle>Socials</CardTitle>

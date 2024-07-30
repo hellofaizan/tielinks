@@ -21,6 +21,7 @@ export default async function SaveLinks(data: any) {
       data: {
         title: data.title,
         url: data.url,
+        embed: data.embed,
         user: {
           connect: {
             id: id,

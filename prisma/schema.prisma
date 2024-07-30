@@ -94,6 +94,7 @@ model Links {
     title      String
     url        String
     logo       String?
+    embed      Boolean?     @default(false)
     linkClicks LinkClicks[]
     userId     String
     user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)

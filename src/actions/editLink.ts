@@ -11,6 +11,7 @@ export default async function EditLink({
   data: any;
   id: number;
 }) {
+  console.log(data);
   const session = await currentUser();
   const userid = session?.id;
 
@@ -31,6 +32,7 @@ export default async function EditLink({
       data: {
         title: data.title,
         url: data.url,
+        embed: data.embed,
       },
     });
   }
