@@ -20,6 +20,7 @@ const chartConfig = {
 export default function PageVisitGraph({ className, data }: { className?: string, data: any }) {
   const [ chartData, setChartData ] = useState(data);
 
+  // TODO: This data is not ordered by date
   return (
     <div className={className}>
       <Card>
