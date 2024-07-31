@@ -59,8 +59,6 @@
   }
 }
 
-
-
 @layer base {
   * {
     @apply border-border;
@@ -88,8 +86,7 @@
 }
 
 ::-webkit-scrollbar-thumb:vertical {
-  background: #8888;
-  border-radius: 5px;
+  display: none;
 }
 
 .titleUrl {
@@ -103,4 +100,12 @@
   border: 1px dashed var(--border);
   border-radius: var(--radius);
   opacity: 0.3;
+}
+
+.longtext::-webkit-scrollbar {
+  display: none;
+}
+
+.longtext {
+  scrollbar-width: none;
 }

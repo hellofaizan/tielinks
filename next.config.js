@@ -54,6 +54,10 @@ const config = {
         protocol: "https",
         hostname: "**.tenor.com",
       },
+      {
+        protocol: "https",
+        hostname: "img.youtube.com",
+      },
     ],
   },
   eslint: {

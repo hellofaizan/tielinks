@@ -33,17 +33,20 @@ import { EllipsisVertical } from "lucide-react";
 import { Copy, Check, LinkIcon, Flag, ArrowUpRight } from "lucide-react";
 import { Input } from "~/components/ui/input";
 import Link from "next/link";
+import { cn } from "~/lib/utils";
 
 interface ShareLinkProps {
   link: string;
   username: string;
   title: string;
+  className?: string;
 }
 
 export default function ShareLink({
   link,
   username,
-  title
+  title,
+  className,
 }: ShareLinkProps): JSX.Element {
   const [open, setOpen] = useState(false);
   const [copy, setCopy] = useState(false);
@@ -51,7 +54,7 @@ export default function ShareLink({
 
   const shareSocialMedia = (link: string) => {
     return (
-      <div className="mb-2 max-h-64 overflow-y-scroll text-lg">
+      <div className={"mb-2 max-h-64 overflow-y-scroll text-lg"}>
         <Link
           href={`https://twitter.com/intent/tweet?text=${title} - ${link}`}
           target="_blank"
@@ -135,7 +138,10 @@ export default function ShareLink({
           <Button
             variant={"ghost"}
             size={"icon"}
-            className="absolute right-2 z-10 cursor-pointer rounded-md p-[6px] hover:bg-muted"
+            className={
+              className +
+              "absolute right-2 top-2 z-10 cursor-pointer rounded-md p-[6px] hover:bg-muted"
+            }
           >
             <EllipsisVertical size={20} className="" />
           </Button>
@@ -200,7 +206,7 @@ export default function ShareLink({
         <Button
           variant={"ghost"}
           size={"icon"}
-          className="absolute right-2 z-10 cursor-pointer rounded-md p-[6px]"
+          className={className + "absolute right-2 top-2 z-10 cursor-pointer rounded-md p-[6px]"}
         >
           <EllipsisVertical size={20} className="" />
         </Button>
