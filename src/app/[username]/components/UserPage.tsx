@@ -35,17 +35,18 @@ export default async function page({ params }: Props) {
   if (!user) {
     return (
       <>
-        <div className="flex min-h-dvh items-center justify-center">
+        <div className="flex min-h-dvh items-center justify-center flex-col gap-2">
           <h1 className="font-sans text-2xl font-semibold">User Not Found</h1>
+          <Button variant={"outline"} className="ml-2">
+            <Link href="/">Claim this username ✨</Link>
+          </Button>
         </div>
       </>
     );
   }
 
   return (
-    <div
-      className="flex min-h-dvh justify-center md:min-h-screen mb-6"
-    >
+    <div className="mb-6 flex min-h-dvh justify-center md:min-h-screen">
       {user?.username === currentUser?.username ? (
         <div className="fixed bottom-0 right-0 z-10 mb-4 mr-4">
           <Link href="/dashboard" target="_blank">
