@@ -140,7 +140,7 @@ export default function ShareLink({
             size={"icon"}
             className={
               className +
-              "absolute right-2 top-2 z-10 cursor-pointer rounded-md p-[6px] hover:bg-muted"
+              " absolute right-2 z-10 cursor-pointer rounded-md p-[6px] hover:bg-muted"
             }
           >
             <EllipsisVertical size={20} className="" />
@@ -206,7 +206,7 @@ export default function ShareLink({
         <Button
           variant={"ghost"}
           size={"icon"}
-          className={className + "absolute right-2 top-2 z-10 cursor-pointer rounded-md p-[6px]"}
+          className={className + " absolute right-2 z-10 cursor-pointer rounded-md p-[6px]"}
         >
           <EllipsisVertical size={20} className="" />
         </Button>

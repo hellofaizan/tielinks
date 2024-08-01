@@ -37,28 +37,28 @@ export default function LinksComponent({
                   link={link?.url}
                   title={link?.title}
                   username={username}
-                  className="absolute z-10"
+                  className="top-2"
                 />
                 <Link
                   ping={`/api/visitCounter?id=${userId}&link=${link?.id}`}
                   href={link?.url}
                   target="_blank"
-                  className="relative h-full w-full items-center justify-center text-center"
+                  className="relative flex h-full w-full items-center justify-center text-center"
                 >
-                  <Image
-                    src={`https://img.youtube.com/vi/${link?.url.split("/").pop().split("?").shift()}/maxresdefault.jpg`}
-                    width={1920}
-                    height={1080}
-                    alt="Youtube Video"
-                  />
+                  <div className="flex items-center justify-center">
+                    <Image
+                      src={`https://img.youtube.com/vi/${link?.url.split("/").pop().split("?").shift()}/maxresdefault.jpg`}
+                      width={1920}
+                      height={1080}
+                      alt="Youtube Video"
+                      className="inset-0"
+                    />
+                    <IconPlayerPlayFilled size={37} className="absolute items-center justify-start -mt-4 z-10 shadow-2xl rounded-full border border-white p-1" />
+                  </div>
                   <div className="absolute bottom-0 h-[75%] w-full bg-gradient-to-b from-black/0 to-black"></div>
-                  <span className="longtext absolute bottom-0 left-0 mb-5 max-w-[90%] overflow-y-auto pl-5 font-mono text-2xl">
+                  <span className="longtext absolute bottom-0 left-0 mb-5 max-w-[90%] overflow-y-auto pl-5 font-mono md:text-xl">
                     {link?.title}
                   </span>
-                  <IconPlayerPlayFilled
-                    size={35}
-                    className="absolute left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] shadow-lg"
-                  />
                 </Link>
               </div>
             ) : (

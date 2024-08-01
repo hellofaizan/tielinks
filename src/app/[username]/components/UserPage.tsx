@@ -13,6 +13,7 @@ import ShareProfile from "./shareprofile";
 import { headers } from "next/headers";
 import VisitCouter from "~/actions/visitCounter";
 import { TotalViews } from "~/actions/getAnalytics";
+import { IconBrandDiscord } from "@tabler/icons-react";
 
 type Props = {
   params: { username: string };
@@ -70,14 +71,19 @@ export default async function page({ params }: Props) {
               height={200}
               priority
             />
-            <div className="fixed right-0 top-0 z-10 mr-3 mt-3 flex rounded-full border bg-gray-500/15 backdrop-blur-3xl">
+            <div className="fixed right-0 top-0 z-10 mr-3 mt-3 flex rounded-full border border-gray-500/20 bg-gray-500/25 backdrop-blur-3xl shadow-2xl overflow-hidden">
               <ShareProfile username={username} />
               <ModeToggle
                 btnClass={"dark:hover:text-gray-300 hover:text-gray-700"}
               />
+              <Link href="/dashboard">
+                <Button variant={"ghost"} size={"icon"}>
+                  <IconBrandDiscord size={15} className="mr-1" />
+                </Button>
+              </Link>
             </div>
-            <div className="absolute left-0 top-0 z-10 ml-3 mt-3 flex rounded-full border border-gray-500/20 bg-gray-500/15 backdrop-blur-3xl">
-              <p className="flex p-1 px-2 text-xs">
+            <div className="absolute left-0 top-0 z-10 ml-3 mt-3 flex rounded-full border border-gray-500/20 bg-gray-500/25 backdrop-blur-3xl shadow-2xl">
+              <p className="flex p-1 px-2 text-xs shadow-2xl">
                 <Eye size={15} className="mr-1" /> {totalViews || ""}
               </p>
             </div>
