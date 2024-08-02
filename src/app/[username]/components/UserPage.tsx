@@ -76,9 +76,9 @@ export default async function page({ params }: Props) {
               <ModeToggle
                 btnClass={"dark:hover:text-gray-300 hover:text-gray-700"}
               />
-              <Link href="/dashboard">
+              <Link href="https://discord.com/invite/QuNdFzdKMx" target="_blank">
                 <Button variant={"ghost"} size={"icon"}>
-                  <IconBrandDiscord size={15} className="mr-1" />
+                  <IconBrandDiscord size={23} className="mr-1 dark:hover:text-gray-300 hover:text-gray-700" />
                 </Button>
               </Link>
             </div>
