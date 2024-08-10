@@ -149,9 +149,9 @@ export default function ShareLink({
         {/* // input field for gif search */}
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Edit link</DialogTitle>
+            <DialogTitle>Share link</DialogTitle>
             <DialogDescription>
-              Edit the link to share with your audience.
+              Share this link with your friends and family.
             </DialogDescription>
           </DialogHeader>
 
@@ -206,7 +206,10 @@ export default function ShareLink({
         <Button
           variant={"ghost"}
           size={"icon"}
-          className={className + " absolute right-2 z-10 cursor-pointer rounded-md p-[6px]"}
+          className={
+            className +
+            " absolute right-2 z-10 cursor-pointer rounded-md p-[6px]"
+          }
         >
           <EllipsisVertical size={20} className="" />
         </Button>
