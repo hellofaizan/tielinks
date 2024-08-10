@@ -41,7 +41,7 @@ export default function SocialsComponent({ socials }: { socials: any }) {
           />
         );
       case "github":
-        return <IconBrandGithub size={30} className="ml-1" />;
+        return <IconBrandGithub size={35} className="ml-1 hover:scale-105" />;
       case "telegram":
         return (
           <IconBrandTelegram
@@ -99,7 +99,7 @@ export default function SocialsComponent({ socials }: { socials: any }) {
           />
         );
       default:
-        return <LinkIcon size={30} className="ml-1" />;
+        return <LinkIcon size={35} className="ml-1" />;
     }
   };
 
@@ -114,7 +114,7 @@ export default function SocialsComponent({ socials }: { socials: any }) {
       case "github":
         return "https://github.com/" + social?.handle;
       case "telegram":
-        return "https://telegram.com/" + social?.handle;
+        return "https://t.me/" + social?.handle;
       case "tiktok":
         return "https://tiktok.com/" + social?.handle;
       case "youtube":
