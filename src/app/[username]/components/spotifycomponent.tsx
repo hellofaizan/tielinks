@@ -34,7 +34,7 @@ export default function spotifycomponent({ data }: { data: any }) {
             <Music size={18} className="mr-2 flex-none" />{" "}
             <span className="longtext flex-1 truncate whitespace-nowrap overflow-x-scroll max-w-max">{allData?.title}</span>
           </span>
-          <span className="pl-3 text-base">{allData?.artist}</span>
+          <span className="pl-3 text-sm">{allData?.artist}</span>
         </div>
       </div>
     </Suspense>
