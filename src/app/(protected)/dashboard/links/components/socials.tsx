@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Button } from "~/components/ui/button";
 import { ReactSortable } from "react-sortablejs";
-import { GripHorizontal, Link, PlusIcon, TrashIcon } from "lucide-react";
+import { GripHorizontal, Link, PlusIcon, TrashIcon, XIcon } from "lucide-react";
 import {
   IconBrandTwitter,
   IconBrandInstagram,
@@ -16,7 +16,8 @@ import {
   IconBrandTwitch,
   IconBrandReddit,
   IconBrandSpotify,
-  IconBrandWhatsapp
+  IconBrandWhatsapp,
+  IconBrandProducthunt,
 } from "@tabler/icons-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { cn } from "~/lib/utils";
@@ -39,6 +40,7 @@ interface ItemType {
 
 export default function SocialsComponent({ data }: { data: any }) {
   const [disabled, setDisabled] = useState(false);
+  const [hideAlert, setHideAlert] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
 
@@ -67,37 +69,37 @@ export default function SocialsComponent({ data }: { data: any }) {
       id: 1,
       type: "twitter",
       label: "Twitter",
-      placeholder: "twitter username",
+      placeholder: "twitter ",
     },
     {
       id: 2,
       type: "instagram",
       label: "Instagram",
-      placeholder: "instagram username",
+      placeholder: "instagram",
     },
     {
       id: 3,
       type: "facebook",
       label: "Facebook",
-      placeholder: "facebook username",
+      placeholder: "facebook",
     },
     {
       id: 4,
       type: "github",
       label: "Github",
-      placeholder: "github username",
+      placeholder: "github",
     },
     {
       id: 5,
       type: "telegram",
       label: "Telgram",
-      placeholder: "telegram username",
+      placeholder: "telegram",
     },
     {
       id: 6,
       type: "tiktok",
       label: "TikTok",
-      placeholder: "tiktok username",
+      placeholder: "tiktok",
     },
     {
       id: 7,
@@ -115,7 +117,7 @@ export default function SocialsComponent({ data }: { data: any }) {
       id: 9,
       type: "reddit",
       label: "Reddit",
-      placeholder: "reddit username",
+      placeholder: "reddit",
     },
     {
       id: 10,
@@ -127,13 +129,25 @@ export default function SocialsComponent({ data }: { data: any }) {
       id: 11,
       type: "twitch",
       label: "Twitch",
-      placeholder: "twitch username",
+      placeholder: "twitch",
     },
     {
       id: 12,
       type: "whatsapp",
       label: "Whatsapp",
       placeholder: "+91 9876543210",
+    },
+    {
+      id: 13,
+      type: "peerlist",
+      label: "Peerlist",
+      placeholder: "peerlist",
+    },
+    {
+      id: 14,
+      type: "producthunt",
+      label: "ProductHunt",
+      placeholder: "producthunt",
     },
   ]);
   const [socials, setSocials] = useState<ItemType[]>([
@@ -155,29 +169,47 @@ export default function SocialsComponent({ data }: { data: any }) {
   const socialIconsSmall = (type: string) => {
     switch (type) {
       case "twitter":
-        return <IconBrandTwitter size={15} className="ml-1" />;
+        return <IconBrandTwitter size={15} className="ml-1 text-[#1DA1F2]" />;
       case "instagram":
-        return <IconBrandInstagram size={15} className="ml-1" />;
+        return (
+          <IconBrandInstagram
+            size={15}
+            className="relative ml-1 text-[#ee2a7b]"
+          />
+        );
+
       case "facebook":
-        return <IconBrandFacebook size={15} className="ml-1" />;
+        return <IconBrandFacebook size={15} className="ml-1 text-[#4267B2]" />;
       case "github":
         return <IconBrandGithub size={15} className="ml-1" />;
       case "telegram":
-        return <IconBrandTelegram size={15} className="ml-1" />;
+        return <IconBrandTelegram size={15} className="ml-1 text-[#24A1DE]" />;
       case "tiktok":
-        return <IconBrandTiktok size={15} className="ml-1" />;
+        return <IconBrandTiktok size={15} className="ml-1 text-[#ff0050]" />;
       case "youtube":
-        return <IconBrandYoutube size={15} className="ml-1" />;
+        return <IconBrandYoutube size={15} className="ml-1 text-[#FF0000]" />;
       case "discord":
-        return <IconBrandDiscord size={15} className="ml-1" />;
+        return <IconBrandDiscord size={15} className="ml-1 text-[#5865F2]" />;
       case "reddit":
-        return <IconBrandReddit size={15} className="ml-1" />;
+        return <IconBrandReddit size={15} className="ml-1 text-[#FF5700]" />;
       case "spotify":
-        return <IconBrandSpotify size={15} className="ml-1" />;
+        return <IconBrandSpotify size={15} className="ml-1 text-[#1DB954]" />;
       case "twitch":
-        return <IconBrandTwitch size={15} className="ml-1" />;
+        return <IconBrandTwitch size={15} className="ml-1 text-[#6441a5]" />;
       case "whatsapp":
-        return <IconBrandWhatsapp size={15} className="ml-1" />;
+        return <IconBrandWhatsapp size={15} className="ml-1 text-[#25D366]" />;
+      case "producthunt":
+        return (
+          <IconBrandProducthunt size={15} className="ml-1 text-[#da552f]" />
+        );
+      case "peerlist":
+        return (
+          <img
+            className="ml-1 h-[15px] w-[15px]"
+            src="/assets/peerlistlogo.svg"
+            alt="peerlist"
+          />
+        );
       default:
         return <Link size={15} className="ml-1" />;
     }
@@ -185,29 +217,41 @@ export default function SocialsComponent({ data }: { data: any }) {
   const socialIconsBig = (type: string) => {
     switch (type) {
       case "twitter":
-        return <IconBrandTwitter size={28} className="ml-1" />;
+        return <IconBrandTwitter size={28} className="ml-1 text-[#1DA1F2]" />;
       case "instagram":
-        return <IconBrandInstagram size={28} className="ml-1" />;
+        return <IconBrandInstagram size={28} className="ml-1 text-[#ee2a7b]" />;
       case "facebook":
-        return <IconBrandFacebook size={28} className="ml-1" />;
+        return <IconBrandFacebook size={28} className="ml-1 text-[#4267B2]" />;
       case "github":
         return <IconBrandGithub size={28} className="ml-1" />;
       case "telegram":
-        return <IconBrandTelegram size={28} className="ml-1" />;
+        return <IconBrandTelegram size={28} className="ml-1 text-[#24A1DE]" />;
       case "tiktok":
-        return <IconBrandTiktok size={28} className="ml-1" />;
+        return <IconBrandTiktok size={28} className="ml-1 text-[#ff0050]" />;
       case "youtube":
-        return <IconBrandYoutube size={28} className="ml-1" />;
+        return <IconBrandYoutube size={28} className="ml-1 text-[#FF0000]" />;
       case "discord":
-        return <IconBrandDiscord size={28} className="ml-1" />;
+        return <IconBrandDiscord size={28} className="ml-1 text-[#5865F2]" />;
       case "reddit":
-        return <IconBrandReddit size={28} className="ml-1" />;
+        return <IconBrandReddit size={28} className="ml-1 text-[#FF5700]" />;
       case "spotify":
-        return <IconBrandSpotify size={28} className="ml-1" />;
+        return <IconBrandSpotify size={28} className="ml-1 text-[#1DB954]" />;
       case "twitch":
-        return <IconBrandTwitch size={28} className="ml-1" />;
-        case "whatsapp":
-          return <IconBrandWhatsapp size={28} className="ml-1" />;
+        return <IconBrandTwitch size={28} className="ml-1 text-[#6441a5]" />;
+      case "whatsapp":
+        return <IconBrandWhatsapp size={28} className="ml-1 text-[#25D366]" />;
+      case "producthunt":
+        return (
+          <IconBrandProducthunt size={28} className="ml-1 text-[#da552f]" />
+        );
+      case "peerlist":
+        return (
+          <img
+            className="ml-1 h-[28px] w-[28px]"
+            src="/assets/peerlistlogo.svg"
+            alt="peerlist"
+          />
+        );
       default:
         return <Link size={28} className="ml-1" />;
     }
@@ -298,13 +342,21 @@ export default function SocialsComponent({ data }: { data: any }) {
   return (
     <div className="flex max-h-[28rem] w-full flex-col overflow-y-hidden md:max-h-[35rem]">
       <div
-        className="mb-2 rounded-lg bg-blue-50 p-2 text-sm text-blue-800 dark:bg-gray-800 dark:text-blue-400"
+        className={cn(
+          "mb-2 flex items-center justify-between rounded-lg bg-blue-50 p-2 px-2 text-sm text-blue-800 dark:bg-gray-800 dark:text-blue-400",
+          hideAlert && "hidden",
+        )}
         role="alert"
       >
-        <span className="font-medium">Information!</span> Don't use '@' in your
-        username.
+        <div className="flex items-center justify-between">
+          <div className="flex gap-1 text-start">
+            <span className="font-medium hidden md:block">Information!</span> Don't use '@' or `https://` in
+            your username.
+          </div>
+        </div>
+        <XIcon size={20} onClick={() => setHideAlert(true)} className="cursor-pointer hover:bg-gray-700/45 rounded-md" />
       </div>
-      <div className="flex w-full flex-col gap-3 overflow-scroll p-2">
+      <div className="flex w-full flex-col gap-3 overflow-y-scroll p-2">
         <div className="flex w-full flex-wrap gap-2">
           {availableSocials.map((social, index) => {
             return (

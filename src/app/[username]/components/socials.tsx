@@ -12,6 +12,7 @@ import {
   IconBrandReddit,
   IconBrandSpotify,
   IconBrandWhatsapp,
+  IconBrandProducthunt,
 } from "@tabler/icons-react";
 import { LinkIcon } from "lucide-react";
 import Link from "next/link";
@@ -30,7 +31,7 @@ export default function SocialsComponent({ socials }: { socials: any }) {
         return (
           <IconBrandInstagram
             size={35}
-            className="ml-1 text-[#E1306C] hover:scale-105"
+            className="ml-1 text-[#ee2a7b] hover:scale-105"
           />
         );
       case "facebook":
@@ -98,6 +99,21 @@ export default function SocialsComponent({ socials }: { socials: any }) {
             className="ml-1 text-[#25D366] hover:scale-105"
           />
         );
+      case "producthunt":
+        return (
+          <IconBrandProducthunt
+            size={35}
+            className="ml-1 text-[#da552f] hover:scale-105"
+          />
+        );
+      case "peerlist":
+        return (
+          <img
+            className="ml-1 h-[32px] w-[32px] hover:scale-105"
+            src="/assets/peerlistlogo.svg"
+            alt="peerlist"
+          />
+        );
       default:
         return <LinkIcon size={35} className="ml-1" />;
     }
@@ -127,8 +143,12 @@ export default function SocialsComponent({ socials }: { socials: any }) {
         return "https://spotify.com/" + social?.handle;
       case "twitch":
         return "https://twitch.com/" + social?.handle;
+      case "producthunt":
+        return "https://producthunt.com/@" + social?.handle;
       case "whatsapp":
         return "https://wa.me/" + social?.handle;
+      case "peerlist":
+        return "https://peerlist.io/" + social?.handle;
       default:
         return "";
     }

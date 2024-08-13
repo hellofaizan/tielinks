@@ -33,25 +33,27 @@ export default function LinksComponent({ data }: LinksComponentProps) {
   };
 
   return (
-    <div className="flex flex-col gap-4 p-2">
+    <div className="flex flex-col gap-4 overflow-hidden p-2">
       <AddLinkCOmponent />
 
-      <div className="mb-2 flex flex-col gap-3 text-ellipsis">
+      <div className="mb-2 flex flex-col gap-3 overflow-hidden">
         {data?.map((link: any) => (
           <div
             className="flex flex-row items-center justify-between border-t pt-2"
             key={link.id}
           >
-            <div className="flex flex-row items-center flex-1">
-              <Link className="m-2" />
-              <div>
-                <p className="text-base font-semibold">{link.title}</p>
-                <p className="line-clamp-1 max-w-52 lg:max-w-80 text-ellipsis text-sm text-gray-500">
+            <div className="flex flex-1 flex-row items-center overflow-hidden">
+              <Link className="m-2 flex-none" />
+              <div className="w-full overflow-hidden">
+                <p className="longtext w-full flex-1 overflow-x-scroll truncate whitespace-nowrap text-base font-semibold">
+                  {link.title}
+                </p>
+                <p className="longtext text-sm text-gray-500 lg:max-w-80  overflow-x-scroll truncate whitespace-nowrap">
                   {link.url}
                 </p>
               </div>
             </div>
-            <div className="flex-none flex items-center gap-1">
+            <div className="flex flex-none items-center gap-1">
               <EditLinkComponent
                 title={link.title}
                 url={link.url}
