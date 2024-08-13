@@ -36,7 +36,7 @@ export default async function page({ params }: Props) {
   if (!user) {
     return (
       <>
-        <div className="flex min-h-dvh items-center justify-center flex-col gap-2">
+        <div className="flex min-h-dvh flex-col items-center justify-center gap-2">
           <h1 className="font-sans text-2xl font-semibold">User Not Found</h1>
           <Button variant={"outline"} className="ml-2">
             <Link href="/">Claim this username ✨</Link>
@@ -71,18 +71,24 @@ export default async function page({ params }: Props) {
               height={200}
               priority
             />
-            <div className="fixed right-0 top-0 z-10 mr-3 mt-3 flex rounded-full border border-gray-500/20 bg-gray-500/25 backdrop-blur-3xl shadow-2xl overflow-hidden">
+            <div className="fixed right-0 top-0 z-10 mr-3 mt-3 flex overflow-hidden rounded-full border border-gray-500/20 bg-gray-500/25 shadow-2xl backdrop-blur-3xl">
               <ShareProfile username={username} />
               <ModeToggle
                 btnClass={"dark:hover:text-gray-300 hover:text-gray-700"}
               />
-              <Link href="https://discord.com/invite/QuNdFzdKMx" target="_blank">
+              <Link
+                href="https://discord.com/invite/QuNdFzdKMx"
+                target="_blank"
+              >
                 <Button variant={"ghost"} size={"icon"}>
-                  <IconBrandDiscord size={23} className="mr-1 dark:hover:text-gray-300 hover:text-gray-700" />
+                  <IconBrandDiscord
+                    size={23}
+                    className="mr-1 hover:text-gray-700 dark:hover:text-gray-300"
+                  />
                 </Button>
               </Link>
             </div>
-            <div className="absolute left-0 top-0 z-10 ml-3 mt-3 flex rounded-full border border-gray-500/20 bg-gray-500/25 backdrop-blur-3xl shadow-2xl">
+            <div className="absolute left-0 top-0 z-10 ml-3 mt-3 flex rounded-full border border-gray-500/20 bg-gray-500/25 shadow-2xl backdrop-blur-3xl">
               <p className="flex p-1 px-2 text-xs shadow-2xl">
                 <Eye size={15} className="mr-1" /> {totalViews || ""}
               </p>
