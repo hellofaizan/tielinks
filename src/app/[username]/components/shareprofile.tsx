@@ -42,7 +42,7 @@ export default function ShareProfile({ username }: ShareLinkProps): JSX.Element 
   const [open, setOpen] = useState(false);
   const [copy, setCopy] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
-  const link = `https://tielinks.in/${username}`;
+  const link = `${process.env.NEXT_PUBLIC_Website_URL}/${username}`;
 
   const shareSocialMedia = (profileLink: string) => {
     return (
