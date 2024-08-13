@@ -3,7 +3,6 @@ import { Loader } from "lucide-react";
 import SpotifyComponent from "~/app/[username]/components/spotifycomponent";
 import Link from "next/link";
 import PlaySong from "./Play";
-import getSpotifyMetadata from "~/actions/getSpotify";
 import axios from "axios";
 
 export default async function SpotifyPreview({

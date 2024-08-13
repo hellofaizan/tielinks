@@ -9,7 +9,7 @@ export default function PlaySong({ url }: { url: string }) {
 
   return (
     <button
-      className="absolute bottom-0 right-0 z-20 mb-[8px] mr-4 flex cursor-pointer items-center gap-1 rounded-full border border-green-500/40 bg-green-500/15 p-[1px] px-3 text-sm"
+      className="absolute bottom-0 right-0 z-20 mb-[14px] mr-4 flex cursor-pointer items-center gap-1 rounded-full border border-green-500/40 bg-green-500/15 p-[1px] px-3 text-sm"
       onClick={() => {
         // play aayah audio from data.audio.primary
         const audio = new Audio(url);

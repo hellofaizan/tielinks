@@ -71,8 +71,8 @@ export default function LinksComponent({
                       className="absolute z-10 -mt-4 items-center justify-start rounded-full border border-white p-1 text-white shadow-2xl"
                     />
                   </div>
-                  <div className="absolute bottom-0 h-[35%] w-full bg-gradient-to-b from-black/0 to-black"></div>
-                  <span className="longtext absolute bottom-0 left-0 mb-5 max-w-[90%] overflow-y-auto pl-5 font-mono text-white md:text-xl">
+                  <div className="absolute bottom-0 h-[60%] w-full bg-gradient-to-b from-black/0 to-black"></div>
+                  <span className="longtext truncate whitespace-nowrap overflow-x-scroll absolute bottom-0 left-0 mb-5 max-w-[90%] overflow-y-auto pl-5 font-mono text-white md:text-xl">
                     {link?.title}
                   </span>
                 </Link>
