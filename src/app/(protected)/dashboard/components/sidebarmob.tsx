@@ -20,6 +20,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Badge } from "~/components/ui/badge";
 import { usePathname } from "next/navigation";
 import { cn } from "~/lib/utils";
+import { IconBrandInstagram } from "@tabler/icons-react";
 
 export default function SidebarMobile({ session }: { session: any }) {
   const username = session?.user?.username;
@@ -44,6 +45,31 @@ export default function SidebarMobile({ session }: { session: any }) {
             <HomeIcon className="mr-3 h-5 w-5" />
             Home
           </Link>
+
+          <Link
+            href="/dashboard/links"
+            className={cn(
+              "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
+              path === "/dashboard/links" && "bg-muted text-foreground",
+            )}
+            prefetch={false}
+          >
+            <LinkIcon className="mr-3 h-5 w-5" />
+            Links
+          </Link>
+
+          <Link
+            href="/dashboard/socials"
+            className={cn(
+              "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
+              path === "/dashboard/socials" && "bg-muted text-foreground",
+            )}
+            prefetch={false}
+          >
+            <IconBrandInstagram className="mr-3 h-5 w-5" />
+            Socials
+          </Link>
+
           <Link
             href="/dashboard/analytics"
             className={cn(
@@ -53,7 +79,7 @@ export default function SidebarMobile({ session }: { session: any }) {
             prefetch={false}
           >
             <ChartLine className="mr-3 h-5 w-5" />
-            <div className="flex items-center justify-between w-full">
+            <div className="flex w-full items-center justify-between">
               Analytics <Badge variant="outline">Premium</Badge>
             </div>
           </Link>
@@ -66,7 +92,7 @@ export default function SidebarMobile({ session }: { session: any }) {
             prefetch={false}
           >
             <MessageSquare className="mr-3 h-5 w-5" />
-            <div className="flex items-center justify-between w-full">
+            <div className="flex w-full items-center justify-between">
               Whisper <Badge variant="outline">Comming Soon</Badge>
             </div>
           </Link>
@@ -81,18 +107,6 @@ export default function SidebarMobile({ session }: { session: any }) {
               </AccordionTrigger>
               <AccordionContent>
                 <div className="grid gap-2 pl-8">
-                  <Link
-                    href="/dashboard/links"
-                    className={cn(
-                      "flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted/60 hover:text-foreground",
-                      path === "/dashboard/links" &&
-                        "bg-muted/60 text-foreground",
-                    )}
-                    prefetch={false}
-                  >
-                    <span>Links</span>
-                  </Link>
-
                   <Link
                     href="/dashboard/profile"
                     className={cn(

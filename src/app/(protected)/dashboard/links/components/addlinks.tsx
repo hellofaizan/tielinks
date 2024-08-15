@@ -81,7 +81,7 @@ export default function AddLinkCOmponent() {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button className="w-full">
-            <PlusIcon size={18} /> Add Link
+            <PlusIcon size={18} /> ADD LINK
           </Button>
         </DialogTrigger>
         {/* // input field for gif search */}

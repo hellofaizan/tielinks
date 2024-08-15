@@ -340,7 +340,7 @@ export default function SocialsComponent({ data }: { data: any }) {
   };
 
   return (
-    <div className="flex max-h-[28rem] w-full flex-col overflow-y-hidden md:max-h-[35rem]">
+    <div className="flex w-full flex-col overflow-y-hidden">
       <div
         className={cn(
           "mb-2 flex items-center justify-between rounded-lg bg-blue-50 p-2 px-2 text-sm text-blue-800 dark:bg-gray-800 dark:text-blue-400",

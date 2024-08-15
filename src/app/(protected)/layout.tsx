@@ -27,7 +27,7 @@ export default async function DashboardLayout({
             <MobileNav />
             {/* <LayoutHeader session={session} /> */}
             <h2 className="w-full text-lg font-semibold">
-              Welcome! {firstName}
+              👋 {firstName}!
             </h2>
             <div className="right-0 flex w-full items-center justify-end space-x-2">
               <ModeToggle btnClass={"hover:bg-muted"}/>
