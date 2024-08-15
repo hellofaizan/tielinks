@@ -94,6 +94,7 @@ model Links {
     title      String
     url        String
     logo       String?
+    hidden     Boolean?     @default(false)
     embed      Boolean?     @default(false)
     linkClicks LinkClicks[]
     userId     String

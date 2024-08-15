@@ -350,11 +350,15 @@ export default function SocialsComponent({ data }: { data: any }) {
       >
         <div className="flex items-center justify-between">
           <div className="flex gap-1 text-start">
-            <span className="font-medium hidden md:block">Information!</span> Don't use '@' or `https://` in
-            your username.
+            <span className="hidden font-medium md:block">Information!</span>{" "}
+            Don't use '@' or `https://` in your username.
           </div>
         </div>
-        <XIcon size={20} onClick={() => setHideAlert(true)} className="cursor-pointer hover:bg-gray-700/45 rounded-md" />
+        <XIcon
+          size={20}
+          onClick={() => setHideAlert(true)}
+          className="cursor-pointer rounded-md hover:bg-gray-700/45"
+        />
       </div>
       <div className="flex w-full flex-col gap-3 overflow-y-scroll p-2">
         <div className="flex w-full flex-wrap gap-2">
@@ -421,9 +425,11 @@ export default function SocialsComponent({ data }: { data: any }) {
                 );
               })}
             </ReactSortable>
-            <Button className="mt-1 w-full" type="submit" disabled={disabled}>
-              Save
-            </Button>
+            {activeSocials.length > 0 && (
+              <Button className="mt-1 w-full" type="submit" disabled={disabled}>
+                {disabled ? "Saving..." : "Save"}
+              </Button>
+            )}
           </form>
         </div>
       </div>

@@ -10,7 +10,11 @@ export const getUserById = async (id: string) => {
       include: {
         Socials: true,
         Status: true,
-        Links: true,
+        Links: {
+          include: {
+            linkClicks: true,
+          },
+        },
       },
     });
     return user;
@@ -28,6 +32,9 @@ export const fullUserData = async (id: string) => {
       include: {
         Socials: true,
         Links: {
+          where: {
+            hidden: false,
+          },
           include: {
             linkClicks: true,
           },
@@ -63,7 +70,11 @@ export const getUserByUsername = async (username: string) => {
       include: {
         Socials: true,
         Status: true,
-        Links: true,
+        Links: {
+          where: {
+            hidden: false,
+          },
+        },
       },
     });
     return user;

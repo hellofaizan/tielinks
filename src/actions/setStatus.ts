@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "~/server/db";
-import { currentUser, getUserById } from "~/server/user";
+import { currentUser } from "~/server/user";
 
 export default async function SetStatus({ data }: { data: any }) {
   const usersession = await currentUser();
