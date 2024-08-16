@@ -120,10 +120,12 @@ export default async function page({ params }: Props) {
                 <h1 className="font-sans text-2xl font-semibold md:text-2xl">
                   {user?.name}
                 </h1>
-                <p className="font-mono text-base font-extralight text-gray-500">
-                  <span className="mr-2">{user?.Status?.emoji || ""}</span>
-                  {user?.Status?.status || ""}
-                </p>
+                {user?.Status?.status && (
+                  <p className="font-mono text-base font-extralight text-gray-500">
+                    <span className="mr-2">{user?.Status?.emoji || ""}</span>
+                    {user?.Status?.status || ""}
+                  </p>
+                )}
               </div>
             </div>
           </div>
