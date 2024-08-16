@@ -13,7 +13,6 @@ export default async function UnHideLink({
 }) {
   const session = await currentUser();
   const userid = session?.id;
-  console.log("unhide", id);
 
   if (!userid) {
     return { error: "You must be logged in to save the link" };

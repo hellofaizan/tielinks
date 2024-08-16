@@ -29,7 +29,7 @@ export default async function page({ params }: Props) {
 
   await VisitCouter({ userId: user?.id || "", request_headers }).catch(
     (err) => {
-      console.log;
+      console.log("Error in visit counter", err);
     },
   );
 

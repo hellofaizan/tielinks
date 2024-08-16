@@ -45,7 +45,6 @@ export default async function SetUsername(data: any) {
     })
 
     if (existingUser) {
-        console.log("Username is already taken.")
         return { error: "Username is already taken." }
     }
 
