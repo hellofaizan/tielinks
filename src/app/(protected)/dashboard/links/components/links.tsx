@@ -9,8 +9,7 @@ import RemoveLink from "~/actions/removelink";
 import { useToast } from "~/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { EyeIcon } from "lucide-react";
-import HideLink from "~/actions/hidelink";
-import UnHideLink from "~/actions/unhidelink";
+import UnHideLink, { HideLink } from "~/actions/togglelink";
 
 interface LinksComponentProps {
   data: any;
@@ -39,8 +38,9 @@ export default function LinksComponent({ data }: LinksComponentProps) {
   const toggleHideLink = async (id: any) => {
     const link = data.find((link: any) => link.id === id);
     if (link.hidden) {
+      const data = { hidden: false };
       // FIXME: ID is not being passed to the function returning undefined
-      await UnHideLink(id).then((res) => {
+      await UnHideLink({ id, data }).then((res) => {
         if (res.error) {
           toast({
             title: "Error",
@@ -54,7 +54,8 @@ export default function LinksComponent({ data }: LinksComponentProps) {
         router.refresh();
       });
     } else {
-      await HideLink(id).then((res) => {
+      const data = { hidden: true };
+      await HideLink({ id, data }).then((res) => {
         if (res.error) {
           toast({
             title: "Error",

@@ -11,7 +11,6 @@ export default async function EditLink({
   data: any;
   id: number;
 }) {
-  console.log(data);
   const session = await currentUser();
   const userid = session?.id;
 
