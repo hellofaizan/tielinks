@@ -77,7 +77,7 @@ export default function LinksComponent({ data }: LinksComponentProps) {
 
       <div className="mb-2 flex flex-col gap-3 overflow-hidden">
         {data?.map((link: any) => (
-          <div className="flex flex-col gap-4" key={link.id}>
+          <div className="flex flex-col gap-3" key={link.id}>
             <div
               className="flex flex-row items-center justify-between border-t pt-2"
               key={link.id}
@@ -112,20 +112,26 @@ export default function LinksComponent({ data }: LinksComponentProps) {
             </div>
 
             <div className="flex items-center gap-2">
-              <div className="flex gap-4">
-                <p className="flex gap-1 text-sm text-gray-500">
+              <div className="flex gap-2">
+                <p className="flex items-center gap-1 rounded-md border px-1 text-sm text-gray-500">
                   <ChartNoAxesColumn size={18} /> {link.linkClicks.length || 0}
                 </p>
 
                 {/* // toggle button to hide unhide link */}
                 <button
-                  className="rounded-md p-[1px] text-gray-500 dark:hover:bg-muted"
+                  className="flex items-center gap-1 rounded-md border px-1 text-gray-500 dark:hover:bg-muted text-sm"
                   onClick={() => toggleHideLink(link.id)}
                 >
                   {link.hidden ? (
-                    <EyeOffIcon size={18} />
+                    <>
+                      <EyeOffIcon size={18} />
+                      Unhide
+                    </>
                   ) : (
-                    <EyeIcon size={18} />
+                    <>
+                      <EyeIcon size={18} />
+                      Hide
+                    </>
                   )}
                 </button>
               </div>
