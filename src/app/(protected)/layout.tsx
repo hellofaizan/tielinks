@@ -25,7 +25,7 @@ export default async function DashboardLayout({
         <div className="flex flex-col md:pl-64">
           <main className="flex w-full flex-1 items-start pl-2">
             <div className="w-full flex-auto md:w-[40%] lg:w-[50%]">
-              <header className="sticky top-0 z-30 flex h-16 w-full items-center gap-2 border-b px-4 sm:static sm:h-16 sm:px-6">
+              <header className="sticky top-0 z-30 flex h-16 w-full items-center gap-2 border-b px-4 sm:static sm:h-16 sm:px-6 bg-transparent backdrop-blur-xl">
                 <MobileNav />
                 {/* <LayoutHeader session={session} /> */}
                 <h2 className="w-full text-lg font-semibold">
