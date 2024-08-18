@@ -51,7 +51,7 @@ export default async function DashboardLayout({
               {session?.user?.username ? (
                 <iframe
                   src={`${process.env.NEXT_PUBLIC_Website_URL}/${session?.user.username}`}
-                  className="min-h-screen w-full border-0"
+                  className="min-h-screen h-full w-full"
                   title="Preview"
                 />
               ) : (
