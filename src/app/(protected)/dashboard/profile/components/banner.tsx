@@ -74,7 +74,15 @@ export default function banner(data: any) {
     <div>
       {banner ? (
         <div className="flex flex-col overflow-hidden">
-          <img src={banner} alt="gif" className="rounded-md bg-cover" />
+          {/* <img src={banner} alt="gif" className="rounded-md bg-cover" /> */}
+          <Image
+            src={banner}
+            className="w-full h-[60%] bg-cover bg-center gradient-mask-b-60"
+            alt="Banner"
+            width={500}
+            height={100}
+            priority
+          />
           <Button
             variant={"outlinedestructive"}
             onClick={removeBanner}
@@ -85,16 +93,23 @@ export default function banner(data: any) {
         </div>
       ) : gif ? (
         <div className="flex flex-col">
-          <img src={gif} alt="gif" className="rounded-md bg-cover" />
+          <Image
+            src={gif}
+            className="w-full h-[60%] bg-cover bg-center gradient-mask-b-60"
+            alt="Banner"
+            width={500}
+            height={100}
+            priority
+          />
           <Button onClick={setBanner} className="mx-3 mt-3">
             <CheckCheck className="mr-2" />
             Set as Banner
           </Button>
-          <GifPicker setGif={setGif} btnText="Choose Different Banner"/>
+          <GifPicker setGif={setGif} btnText="Choose Different Banner" />
         </div>
       ) : (
         <div className="flex flex-col">
-          <Skeleton className="flex h-36 w-full items-center justify-center rounded-none">
+          <Skeleton className="flex h-52 w-full items-center justify-center rounded-none">
             <span className="">Banner Placeholder</span>
           </Skeleton>
           <GifPicker setGif={setGif} />

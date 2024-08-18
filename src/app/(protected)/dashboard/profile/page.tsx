@@ -18,20 +18,20 @@ export default async function ProfilePage() {
   const user = await userData(session?.id as string);
 
   return (
-    <div className="my-2 flex w-full flex-col items-center justify-center">
-      <Card className="m-2 w-full rounded-md lg:w-2/5">
+    <div className="my-2 flex w-full flex-col items-center justify-center pl-2">
+      <Card className="m-2 w-full rounded-md overflow-hidden">
         <CardContent className="p-0">
           <Banner user={user} />
         </CardContent>
       </Card>
 
-      <Card className="m-2 w-full rounded-md lg:w-2/5">
+      <Card className="m-2 w-full rounded-md">
         <CardContent className="p-4">
           <PFPImage user={user} />
         </CardContent>
       </Card>
 
-      <Card className="m-2 w-full rounded-md lg:w-2/5">
+      <Card className="m-2 w-full rounded-md">
         <CardHeader>
           <CardTitle>Update Profile</CardTitle>
           <CardDescription>
@@ -43,7 +43,7 @@ export default async function ProfilePage() {
         </CardContent>
       </Card>
 
-      <Card className="m-2 w-full rounded-md lg:w-2/5">
+      <Card className="m-2 w-full rounded-md ">
         <CardHeader>
           <CardTitle>Edit Status</CardTitle>
         </CardHeader>

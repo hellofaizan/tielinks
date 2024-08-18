@@ -118,6 +118,17 @@ export default function SidebarMobile({ session }: { session: any }) {
                   >
                     <span>Profile</span>
                   </Link>
+                  <Link
+                    href="/dashboard/setting"
+                    className={cn(
+                      "flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted/60 hover:text-foreground",
+                      path === "/dashboard/setting" &&
+                        "bg-muted/60 text-foreground",
+                    )}
+                    prefetch={false}
+                  >
+                    <span>Settings</span>
+                  </Link>
 
                   <Link
                     href="/dashboard/username"

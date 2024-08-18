@@ -10,7 +10,7 @@ export default async function page() {
   const user = await fullUserData(session?.id || "");
 
   return (
-    <div className="flex flex-col gap-3 p-2 md:p-4 w-full">
+    <div className="flex flex-col gap-3 p-2 w-full">
       <PageLink />
       <DashboardComponent userId={user?.id || ""} />
       <Graphs />

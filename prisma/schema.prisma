@@ -69,6 +69,8 @@ model User {
     Socials           Socials[]
     Links             Links[]
     LinkClicks        LinkClicks[]
+    Emails            Emails[]
+    Settings          Settings?
 }
 
 model Status {
@@ -130,4 +132,18 @@ model LinkClicks {
     user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
     linkId    Int
     link      Links    @relation(fields: [linkId], references: [id], onDelete: Cascade)
+}
+
+model Emails {
+    id        Int      @id @default(autoincrement())
+    email     String
+    timestamp DateTime @default(now())
+    userId    String
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Settings {
+    userId        String  @unique
+    user          User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+    collectEmails Boolean @default(false)
 }

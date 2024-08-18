@@ -15,15 +15,6 @@ export default async function ProfilePage() {
         <p className="text-center text-4xl font-bold">Add Links</p>
         <LinksComponent data={links} />
       </div>
-      <div className="lg:mx-2 mt-3 hidden items-center justify-center lg:flex lg:flex-1">
-        {/* <iframe
-          src={`${process.env.NEXT_PUBLIC_Website_URL}/${session?.username}`}
-          className="h-full w-full border-0"
-          title="Preview"
-        /> */}
-        {/* TODO: Preview */}
-        comming soon
-      </div>
     </div>
   );
 }

@@ -23,6 +23,22 @@ export const getUserById = async (id: string) => {
   }
 };
 
+export const getUserSettings = async (id: string) => {
+  try {
+    const user = await db.user.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        Settings: true,
+      },
+    });
+    return user;
+  } catch (error) {
+    return null;
+  }
+};
+
 export const fullUserData = async (id: string) => {
   try {
     const user = await db.user.findUnique({
