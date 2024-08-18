@@ -37,6 +37,8 @@ export const protectedRoutes: string[] = [
     '/dashboard/whisper',
     '/dashboard/profile',
     '/dashboard/username',
+    '/dashboard/socials',
+    '/dashboard/setting',
 ]
 
 /**
