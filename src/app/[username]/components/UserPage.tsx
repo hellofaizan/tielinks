@@ -102,9 +102,9 @@ export default async function page({ params }: Props) {
                 btnClass={"dark:hover:text-gray-300 hover:text-gray-700"}
               />
             </div>
-            <div className="absolute left-0 top-0 z-10 ml-3 mt-3 flex rounded-full border bg-gray-500/15 backdrop-blur-3xl">
-              <p className="flex p-1 px-2 text-xs">
-                <Eye size={15} /> 6969
+            <div className="absolute left-0 top-0 z-10 ml-3 mt-3 flex rounded-full border border-gray-500/20 bg-gray-500/25 shadow-2xl backdrop-blur-3xl">
+              <p className="flex p-1 px-2 text-xs shadow-2xl">
+                <Eye size={15} className="mr-1" /> {totalViews || ""}
               </p>
             </div>
           </div>
