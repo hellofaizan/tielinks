@@ -10,6 +10,12 @@ import { useToast } from "~/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { EyeIcon } from "lucide-react";
 import UnHideLink, { HideLink } from "~/actions/togglelink";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "~/components/ui/tooltip";
 
 interface LinksComponentProps {
   data: any;
@@ -39,7 +45,7 @@ export default function LinksComponent({ data }: LinksComponentProps) {
     const link = data.find((link: any) => link.id === id);
     if (link.hidden) {
       const data = { hidden: false };
-      // FIXME: ID is not being passed to the function returning undefined
+
       await UnHideLink({ id, data }).then((res) => {
         if (res.error) {
           toast({
@@ -113,27 +119,61 @@ export default function LinksComponent({ data }: LinksComponentProps) {
 
             <div className="flex items-center gap-2">
               <div className="flex gap-2">
-                <p className="flex items-center gap-1 rounded-md border px-1 text-sm text-gray-500">
-                  <ChartNoAxesColumn size={18} /> {link.linkClicks.length || 0}
-                </p>
+                {/* Today Clicks */}
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <p className="flex items-center gap-1 rounded-md border px-1 text-sm text-gray-500">
+                        <ChartNoAxesColumn size={18} />
+                        {
+                          link.linkClicks.filter((click: any) => {
+                            const today = new Date();
+                            const startOfDay = new Date(
+                              today.setHours(0, 0, 0, 0),
+                            );
+                            const endOfDay = new Date(
+                              today.setHours(23, 59, 59, 999),
+                            );
+                            const itemDate = new Date(click.timestamp);
+                            return (
+                              itemDate >= startOfDay && itemDate <= endOfDay
+                            );
+                          }).length
+                        }
+                      </p>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Clicks Today</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
 
                 {/* // toggle button to hide unhide link */}
-                <button
-                  className="flex items-center gap-1 rounded-md border px-1 text-gray-500 dark:hover:bg-muted text-sm"
-                  onClick={() => toggleHideLink(link.id)}
-                >
-                  {link.hidden ? (
-                    <>
-                      <EyeOffIcon size={18} />
-                      Unhide
-                    </>
-                  ) : (
-                    <>
-                      <EyeIcon size={18} />
-                      Hide
-                    </>
-                  )}
-                </button>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <button
+                        className="flex items-center gap-1 rounded-md border px-1 text-sm text-gray-500 dark:hover:bg-muted"
+                        onClick={() => toggleHideLink(link.id)}
+                      >
+                        {link.hidden ? (
+                          <>
+                            <EyeOffIcon size={18} />
+                            Unhide
+                          </>
+                        ) : (
+                          <>
+                            <EyeIcon size={18} />
+                            Hide
+                          </>
+                        )}
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Hide / Unhide Link</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </div>
             </div>
           </div>

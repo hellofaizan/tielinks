@@ -103,13 +103,13 @@ export async function LinkClicksPercentageChange({
   const percentageChange =
     ((linkClicksToday - linkClicksYesterday) / linkClicksYesterday) * 100;
 
-    if (isNaN(percentageChange)) {
-      return "0%";
-    }
-  
-    if (percentageChange === Infinity) {
-      return "100%";
-    }
+  if (isNaN(percentageChange)) {
+    return "0%";
+  }
+
+  if (percentageChange === Infinity) {
+    return "100%";
+  }
 
   return percentageChange.toFixed(0) + "%";
 }
