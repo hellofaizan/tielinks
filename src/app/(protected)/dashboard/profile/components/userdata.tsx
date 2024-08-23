@@ -21,7 +21,7 @@ import { useToast } from "~/components/ui/use-toast";
 
 export default function UserPage(user: any) {
   const { toast } = useToast();
-  const userData = user?.user
+  const userData = user?.user;
   const session = useCurrentUser();
 
   const name: string = userData?.name || session?.name || "";
@@ -74,7 +74,8 @@ export default function UserPage(user: any) {
           setBtnDisabled(true);
           toast({
             title: "Profile updated successfully! 🎉",
-            description: "It might take a few minutes for the changes to reflect.",
+            description:
+              "It might take a few minutes for the changes to reflect.",
           });
         }
       })

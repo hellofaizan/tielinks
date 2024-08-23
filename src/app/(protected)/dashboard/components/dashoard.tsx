@@ -67,7 +67,7 @@ export default async function DashboardComponent({
           <CardContent>
             <div className="text-2xl font-bold">{linkClicksToday}</div>
             <p className="text-xs text-muted-foreground">
-              {linkClicksPercentageChange} from last month
+              {linkClicksPercentageChange} from yesterday
             </p>
           </CardContent>
         </Card>
