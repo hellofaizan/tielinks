@@ -7,7 +7,7 @@ import Email from "./components/email";
 export default async function page() {
   const session = await currentUser();
   const user = await userSettings(session?.id as string);
-
+  console.log(user);
   return (
     <Suspense
       fallback={

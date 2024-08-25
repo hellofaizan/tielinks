@@ -204,15 +204,15 @@ export async function AverageViews({ userId }: { userId: string }) {
   return averageViews.toFixed(2);
 }
 
-export async function ViewsByDayThisWeak({ userId }: { userId: string }) {
+export async function ViewsByDayThisWeak() {
   const today = new Date();
   const tenDaysAgo = new Date(today);
-  tenDaysAgo.setDate(today.getDate() - 10);
+  tenDaysAgo.setDate(today.getDate() - 9);
 
   const viewsByDayThisWeak = await db.pageVisits.findMany({
     where: {
-      userId,
       timestamp: {
+        lte: today,
         gte: tenDaysAgo,
       },
     },
@@ -241,13 +241,19 @@ export async function ViewsByDayThisWeak({ userId }: { userId: string }) {
     {} as AggregatedData,
   );
 
-  // formate
-  const formattedData = Object.keys(aggregatedData).map((key) => {
+  const fullRange = [];
+  for (let d = new Date(tenDaysAgo); d <= today; d.setDate(d.getDate() + 1)) {
+    const key = `${d.getDate()}/${d.getMonth() + 1}`;
+    fullRange.push(key);
+  }
+
+  // Ensure every date in the range is present in the aggregated data
+  const completeData = fullRange.map((date) => {
     return {
-      date: key,
-      views: aggregatedData[key],
+      date: date,
+      views: aggregatedData[date] || 0,
     };
   });
 
-  return formattedData;
+  return completeData;
 }

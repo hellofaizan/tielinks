@@ -63,6 +63,7 @@ model User {
     emailVerified     DateTime?
     tielinkJoinedAt   DateTime?    @default(now())
     image             String?
+    collectedEmails   Boolean      @default(false)
     Status            Status?
     accounts          Account[]
     pageVisits        PageVisits[]
