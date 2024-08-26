@@ -293,7 +293,7 @@ export async function ViewsByCountry({ userId }: { userId: string }) {
         id: "desc",
       },
     },
-    take: 8,
+    take: 10,
   });
 
   return viewsByCountry;

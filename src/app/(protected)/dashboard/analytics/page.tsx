@@ -3,6 +3,8 @@ import { Loader } from "lucide-react";
 import ViewsByBrowserComp from "./components/viewsbybrowser";
 import ViewsByDeviceComp from "./components/viewsbydevice";
 import ViewsByOSComp from "./components/viewsbyos";
+import ViewsByCountryComp from "./components/viewsbycountry";
+import ViewsByReferrersComp from "./components/viewsbyreferrers";
 import {
   ViewsByBrowser,
   ViewsByCountry,
@@ -29,11 +31,18 @@ export default async function page() {
     >
       <div>
         {/* gif load */}
-        <div className="h-ful flex w-full items-center justify-center p-2">
+        <div className="h-ful flex w-full flex-col items-center justify-center p-2 gap-2">
           <div className="grid min-h-[300px] w-full grid-cols-1 gap-2 md:grid-cols-3">
             <ViewsByBrowserComp data={browser} />
             <ViewsByDeviceComp data={device} />
             <ViewsByOSComp data={os} />
+          </div>
+
+          <div className="grid min-h-[350px] grid-cols-1 gap-2 md:grid-cols-3 w-full">
+            <div className="h-full md:col-span-2">
+              <ViewsByReferrersComp data={referral} />
+            </div>
+            <ViewsByCountryComp data={country} />
           </div>
         </div>
       </div>
