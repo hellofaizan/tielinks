@@ -257,3 +257,88 @@ export async function ViewsByDayThisWeak() {
 
   return completeData;
 }
+
+export async function ViewsByDevice() {
+  const viewsByDevice = await db.pageVisits.groupBy({
+    by: ["device"],
+    _count: {
+      id: true,
+    },
+    orderBy: {
+      _count: {
+        id: "desc",
+      },
+    },
+    take: 8,
+  });
+
+  return viewsByDevice;
+}
+
+export async function ViewsByCountry() {
+  const viewsByCountry = await db.pageVisits.groupBy({
+    by: ["country"],
+    _count: {
+      id: true,
+    },
+    orderBy: {
+      _count: {
+        id: "desc",
+      },
+    },
+    take: 8,
+  });
+
+  return viewsByCountry;
+}
+
+export async function ViewsByBrowser() {
+  const viewsByBrowser = await db.pageVisits.groupBy({
+    by: ["browser"],
+    _count: {
+      id: true,
+    },
+    orderBy: {
+      _count: {
+        id: "desc",
+      },
+    },
+    take: 8,
+  });
+
+  return viewsByBrowser;
+}
+
+export async function ViewsByOS() {
+  const viewsByOS = await db.pageVisits.groupBy({
+    by: ["os"],
+    _count: {
+      id: true,
+    },
+    orderBy: {
+      _count: {
+        id: "desc",
+      },
+    },
+    take: 8,
+  });
+
+  return viewsByOS;
+}
+
+export async function ViewsByReferrer() {
+  const viewsByReferrer = await db.pageVisits.groupBy({
+    by: ["referrer"],
+    _count: {
+      id: true,
+    },
+    orderBy: {
+      _count: {
+        id: "desc",
+      },
+    },
+    take: 10,
+  });
+
+  return viewsByReferrer;
+}
