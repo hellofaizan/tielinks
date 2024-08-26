@@ -4,7 +4,9 @@ import {
   IconBrandApple,
   IconBrandChrome,
   IconBrandEdge,
+  IconBrandFacebook,
   IconBrandFirefox,
+  IconBrandInstagram,
   IconBrandOpera,
   IconBrandSafari,
   IconBrandSamsungpass,
@@ -18,6 +20,12 @@ export default function ViewsByBrowserComp(data: any) {
     switch (browser) {
       case "Chrome":
         return <IconBrandChrome size={17} />;
+      case "Chrome WebView":
+        return <IconBrandChrome size={17} />;
+      case "Instagram":
+        return <IconBrandInstagram size={17} />;
+      case "Facebook":
+        return <IconBrandFacebook size={17} />;
       case "Firefox":
         return <IconBrandFirefox size={17} />;
       case "iOS":
@@ -55,12 +63,12 @@ export default function ViewsByBrowserComp(data: any) {
           >
             <div className="flex items-center gap-1">
               {browserIcons(item.browser)}
-              <p>{item.browser}</p>
+              <p>{item.browser || "(Unknown)"}</p>
             </div>
             <div className="flex h-full items-center">
               <p>{item._count.id}</p>
               <Separator orientation="vertical" className="mx-1" />
-              <p className="text-xs font-extralight text-muted-foreground">
+              <p className="text-xs font-extralight text-muted-foreground w-6">
                 {percentage(item._count.id)}%
               </p>
             </div>

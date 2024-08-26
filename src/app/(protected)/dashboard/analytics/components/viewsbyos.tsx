@@ -50,7 +50,7 @@ export default function ViewsByOSComp(data: any) {
             <div className="flex h-full items-center">
               <p>{item._count.id}</p>
               <Separator orientation="vertical" className="mx-1" />
-              <p className="text-xs font-extralight text-muted-foreground">
+              <p className="text-xs font-extralight text-muted-foreground w-6">
                 {percentage(item._count.id)}%
               </p>
             </div>
