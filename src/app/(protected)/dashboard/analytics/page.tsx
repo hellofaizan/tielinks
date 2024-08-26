@@ -10,13 +10,15 @@ import {
   ViewsByOS,
   ViewsByReferrer,
 } from "~/actions/getAnalytics";
+import { currentUser } from "~/server/user";
 
 export default async function page() {
-  const browser = await ViewsByBrowser();
-  const device = await ViewsByDevice();
-  const os = await ViewsByOS();
-  const country = await ViewsByCountry();
-  const referral = await ViewsByReferrer();
+  const session = await currentUser();
+  const browser = await ViewsByBrowser({ userId: session?.id || "" });
+  const device = await ViewsByDevice({ userId: session?.id || "" });
+  const os = await ViewsByOS({ userId: session?.id || "" });
+  const country = await ViewsByCountry({ userId: session?.id || "" });
+  const referral = await ViewsByReferrer({ userId: session?.id || "" });
   return (
     <Suspense
       fallback={

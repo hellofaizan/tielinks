@@ -204,13 +204,14 @@ export async function AverageViews({ userId }: { userId: string }) {
   return averageViews.toFixed(2);
 }
 
-export async function ViewsByDayThisWeak() {
+export async function ViewsByDayThisWeak({ userId }: { userId: string }) {
   const today = new Date();
   const tenDaysAgo = new Date(today);
   tenDaysAgo.setDate(today.getDate() - 9);
 
   const viewsByDayThisWeak = await db.pageVisits.findMany({
     where: {
+      userId,
       timestamp: {
         lte: today,
         gte: tenDaysAgo,
@@ -258,8 +259,11 @@ export async function ViewsByDayThisWeak() {
   return completeData;
 }
 
-export async function ViewsByDevice() {
+export async function ViewsByDevice({ userId }: { userId: string }) {
   const viewsByDevice = await db.pageVisits.groupBy({
+    where: {
+      userId,
+    },
     by: ["device"],
     _count: {
       id: true,
@@ -275,8 +279,11 @@ export async function ViewsByDevice() {
   return viewsByDevice;
 }
 
-export async function ViewsByCountry() {
+export async function ViewsByCountry({ userId }: { userId: string }) {
   const viewsByCountry = await db.pageVisits.groupBy({
+    where: {
+      userId,
+    },
     by: ["country"],
     _count: {
       id: true,
@@ -292,8 +299,11 @@ export async function ViewsByCountry() {
   return viewsByCountry;
 }
 
-export async function ViewsByBrowser() {
+export async function ViewsByBrowser({ userId }: { userId: string }) {
   const viewsByBrowser = await db.pageVisits.groupBy({
+    where: {
+      userId,
+    },
     by: ["browser"],
     _count: {
       id: true,
@@ -309,8 +319,11 @@ export async function ViewsByBrowser() {
   return viewsByBrowser;
 }
 
-export async function ViewsByOS() {
+export async function ViewsByOS({ userId }: { userId: string }) {
   const viewsByOS = await db.pageVisits.groupBy({
+    where: {
+      userId,
+    },
     by: ["os"],
     _count: {
       id: true,
@@ -326,8 +339,11 @@ export async function ViewsByOS() {
   return viewsByOS;
 }
 
-export async function ViewsByReferrer() {
+export async function ViewsByReferrer({ userId }: { userId: string }) {
   const viewsByReferrer = await db.pageVisits.groupBy({
+    where: {
+      userId,
+    },
     by: ["referrer"],
     _count: {
       id: true,
