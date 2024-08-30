@@ -6,11 +6,15 @@ export async function ViewsToday({ userId }: { userId: string }) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
+  const end = new Date(today);
+  end.setHours(23, 59, 59, 999);
+
   const viewsToday = await db.pageVisits.count({
     where: {
       userId,
       timestamp: {
         gte: today,
+        lt: end,
       },
     },
   });
