@@ -27,12 +27,6 @@ export default async function page({ params }: Props) {
   const request_headers = headers();
   const totalViews = TotalViews({ userId: user?.id || "" });
 
-  await VisitCouter({ userId: user?.id || "", request_headers }).catch(
-    (err) => {
-      console.log("Error in visit counter", err);
-    },
-  );
-
   if (!user) {
     return (
       <>
@@ -45,6 +39,12 @@ export default async function page({ params }: Props) {
       </>
     );
   }
+
+  await VisitCouter({ userId: user?.id || "", request_headers }).catch(
+    (err) => {
+      console.log("Error in visit counter", err);
+    },
+  );
 
   return (
     <div className="mb-6 flex min-h-dvh justify-center md:min-h-screen">
