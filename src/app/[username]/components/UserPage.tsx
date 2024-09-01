@@ -77,7 +77,7 @@ export default async function page({ params }: Props) {
                 btnClass={"dark:hover:text-gray-300 hover:text-gray-700"}
               />
               <Link
-                href="https://discord.com/invite/QuNdFzdKMx"
+                href="https://discord.gg/vUHMxPvege"
                 target="_blank"
               >
                 <Button variant={"ghost"} size={"icon"}>

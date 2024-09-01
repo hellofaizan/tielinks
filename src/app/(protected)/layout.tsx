@@ -33,7 +33,7 @@ export default async function DashboardLayout({
                 </h2>
                 <div className="right-0 flex w-full items-center justify-end space-x-2">
                   <ModeToggle btnClass={"hover:bg-muted"} />
-                  <Link href="https://discord.gg/QuNdFzdKMx" prefetch={false}>
+                  <Link href="https://discord.gg/vUHMxPvege" prefetch={false}>
                     <Button
                       variant="ghost"
                       size="icon"
