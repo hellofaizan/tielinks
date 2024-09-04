@@ -91,6 +91,7 @@ export const getUserByUsername = async (username: string) => {
             hidden: false,
           },
         },
+        settings: true,
       },
     });
     return user;
@@ -115,4 +116,18 @@ export const currentUsername = async () => {
   const session = await auth();
 
   return session?.user?.username;
+};
+
+export const onMaillist = async (email: string, id: string) => {
+  try {
+    const user = await db.maillist.findFirst({
+      where: {
+        email,
+        userId: id,
+      },
+    });
+    return user;
+  } catch (error) {
+    return null;
+  }
 };

@@ -14,6 +14,7 @@ import { headers } from "next/headers";
 import VisitCouter from "~/actions/visitCounter";
 import { TotalViews } from "~/actions/getAnalytics";
 import { IconBrandDiscord } from "@tabler/icons-react";
+import MailingForm from "~/components/mailingform";
 
 type Props = {
   params: { username: string };
@@ -76,10 +77,7 @@ export default async function page({ params }: Props) {
               <ModeToggle
                 btnClass={"dark:hover:text-gray-300 hover:text-gray-700"}
               />
-              <Link
-                href="https://discord.gg/vUHMxPvege"
-                target="_blank"
-              >
+              <Link href="https://discord.gg/vUHMxPvege" target="_blank">
                 <Button variant={"ghost"} size={"icon"}>
                   <IconBrandDiscord
                     size={23}
@@ -143,6 +141,8 @@ export default async function page({ params }: Props) {
             username={username || ""}
             userId={user?.id}
           />
+
+          {user.settings?.collectEmail && <MailingForm user={user} />}
         </div>
       </div>
     </div>
