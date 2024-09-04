@@ -51,18 +51,24 @@ export default async function SetUsername(data: any) {
     return { error: "Username is already taken." };
   }
 
+  const settings = await db.settings.findFirst({
+    where: { userId: id },
+  });
+
+  if (!settings) {
+    await db.settings.create({
+      data: {
+        userId: id,
+      },
+    });
+  }
+
   // update username
-  const newusername = await db.user.update({
+  await db.user.update({
     where: { id: id },
     data: {
       username: username,
       usernameUpdatedAt: new Date(),
-    },
-  });
-
-  await db.settings.create({
-    data: {
-      userId: id,
     },
   });
 
