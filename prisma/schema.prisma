@@ -56,14 +56,12 @@ model User {
     usernameUpdatedAt DateTime?
     banner            String?
     embed             String?
-    layout            Layout       @default(IMGTOPNAV)
     role              USERROLE     @default(USER)
     email             String?      @unique
     about             String?      @default("New to Tielinks✌️")
     emailVerified     DateTime?
     tielinkJoinedAt   DateTime?    @default(now())
     image             String?
-    collectedEmails   Boolean      @default(false)
     Status            Status?
     accounts          Account[]
     pageVisits        PageVisits[]
