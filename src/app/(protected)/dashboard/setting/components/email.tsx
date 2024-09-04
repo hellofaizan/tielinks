@@ -5,7 +5,7 @@ import OnOffswitch from "./switches/onoffswitch";
 
 export default function Email({ user }: any) {
   const settings = user?.settings;
-  const collectEmails = settings?.collectEmail;
+  const collectEmails = settings?.collectEmail || false;
 
   const [collectEmail, setCollectEmail] = React.useState(collectEmails);
 
