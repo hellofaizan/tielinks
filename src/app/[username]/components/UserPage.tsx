@@ -135,14 +135,14 @@ export default async function page({ params }: Props) {
           </div>
           {/* icons */}
           <SocialsComponent socials={user?.Socials || []} />
+          {/* Mailing Form */}
+          {user.settings?.collectEmail && <MailingForm user={user} />}
           {/* Links */}
           <LinksComponent
             links={user?.Links || []}
             username={username || ""}
             userId={user?.id}
           />
-
-          {user.settings?.collectEmail && <MailingForm user={user} />}
         </div>
       </div>
     </div>
