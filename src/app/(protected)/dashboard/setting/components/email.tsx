@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import OnOffswitch from "./onoffswitch";
+import OnOffswitch from "./switches/onoffswitch";
 
 export default function Email({ user }: any) {
   const settings = user?.settings;
