@@ -1,13 +1,11 @@
 import React, { Suspense } from "react";
-import { userSettings } from "~/server/userdata";
-import { currentUser } from "~/server/user";
+import { currentUser, getUserSettings } from "~/server/user";
 import { Loader } from "lucide-react";
 import Email from "./components/email";
 
 export default async function page() {
   const session = await currentUser();
-  const user = await userSettings(session?.id as string);
-  console.log(user);
+  const user = await getUserSettings(session?.id as string);
   return (
     <Suspense
       fallback={

@@ -1,19 +1,20 @@
 "use client";
 
 import React from "react";
-import { Switch } from "~/components/ui/switch";
+import OnOffswitch from "./onoffswitch";
 
 export default function Email({ user }: any) {
-  //   console.log(user);
+  const [collectEmail, setCollectEmail] = React.useState(false);
+  const settings = user?.settings;
 
-  const handleChange = () => {
-    console.log("change");
-  };
+  if (settings) {
+    setCollectEmail(settings.collectEmail);
+  }
 
   return (
     <div className="flex items-center justify-between p-2">
       <p>Collect Email</p>
-      <Switch checked={user.collectedEmails} onChange={handleChange} />
+      <OnOffswitch enabled={collectEmail} id={user.id} />
     </div>
   );
 }

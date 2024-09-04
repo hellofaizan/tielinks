@@ -30,7 +30,7 @@ export const getUserSettings = async (id: string) => {
         id,
       },
       include: {
-        Settings: true,
+        settings: true,
       },
     });
     return user;

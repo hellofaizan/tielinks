@@ -71,7 +71,7 @@ model User {
     Links             Links[]
     LinkClicks        LinkClicks[]
     Emails            Emails[]
-    Settings          Settings?
+    settings          Settings?
 }
 
 model Status {
@@ -144,7 +144,8 @@ model Emails {
 }
 
 model Settings {
-    userId        String  @unique
-    user          User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-    collectEmails Boolean @default(false)
+    id           Int     @id @default(autoincrement())
+    collectEmail Boolean @default(false)
+    userId       String  @unique
+    user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
