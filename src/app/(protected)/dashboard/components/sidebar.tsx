@@ -9,6 +9,8 @@ import {
   Settings,
   MessageSquare,
   ChartLine,
+  User,
+  TriangleAlert,
 } from "lucide-react";
 import {
   Accordion,
@@ -46,105 +48,121 @@ export default function Sidebar({ session }: { session: any }) {
             Home
           </Link>
 
-          <Link
-            href="/dashboard/links"
-            className={cn(
-              "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
-              path === "/dashboard/links" && "bg-muted text-foreground",
-            )}
-            prefetch={false}
-          >
-            <LinkIcon className="mr-3 h-5 w-5" />
-            Links
-          </Link>
-          
-          <Link
-            href="/dashboard/socials"
-            className={cn(
-              "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
-              path === "/dashboard/socials" && "bg-muted text-foreground",
-            )}
-            prefetch={false}
-          >
-            <IconBrandInstagram className="mr-3 h-5 w-5" />
-            Socials
-          </Link>
+          {username != null ? (
+            <div className="flex flex-col space-y-1">
+              <Link
+                href="/dashboard/links"
+                className={cn(
+                  "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
+                  path === "/dashboard/links" && "bg-muted text-foreground",
+                )}
+                prefetch={false}
+              >
+                <LinkIcon className="mr-3 h-5 w-5" />
+                Links
+              </Link>
 
-          <Link
-            href="/dashboard/analytics"
-            className={cn(
-              "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
-              path === "/dashboard/analytics" && "bg-muted text-foreground",
-            )}
-            prefetch={false}
-          >
-            <ChartLine className="mr-3 h-5 w-5" />
-            <div className="flex w-full items-center justify-between">
-              Analytics <Badge variant="outline">Premium</Badge>
-            </div>
-          </Link>
-          <Link
-            href="/dashboard/whisper"
-            className={cn(
-              "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
-              path === "/dashboard/whisper" && "bg-muted text-foreground",
-            )}
-            prefetch={false}
-          >
-            <MessageSquare className="mr-3 h-5 w-5" />
-            <div className="flex w-full items-center justify-between">
-              Whisper <Badge variant="outline">Soon...</Badge>
-            </div>
-          </Link>
+              <Link
+                href="/dashboard/socials"
+                className={cn(
+                  "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
+                  path === "/dashboard/socials" && "bg-muted text-foreground",
+                )}
+                prefetch={false}
+              >
+                <IconBrandInstagram className="mr-3 h-5 w-5" />
+                Socials
+              </Link>
 
-          <Accordion type="single" collapsible>
-            <AccordionItem value="projects">
-              <AccordionTrigger className="flex items-center gap-3 rounded-md px-3 py-0 hover:bg-muted hover:text-foreground">
-                <div className="flex items-center rounded-md py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground">
-                  <Settings className="mr-3 h-5 w-5" />
-                  Settings
+              <Link
+                href="/dashboard/analytics"
+                className={cn(
+                  "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
+                  path === "/dashboard/analytics" && "bg-muted text-foreground",
+                )}
+                prefetch={false}
+              >
+                <ChartLine className="mr-3 h-5 w-5" />
+                <div className="flex w-full items-center justify-between">
+                  Analytics <Badge variant="outline">Premium</Badge>
                 </div>
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="grid gap-2 pl-8">
-                  <Link
-                    href="/dashboard/profile"
-                    className={cn(
-                      "flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted/60 hover:text-foreground",
-                      path === "/dashboard/profile" &&
-                        "bg-muted/60 text-foreground",
-                    )}
-                    prefetch={false}
-                  >
-                    <span>Profile</span>
-                  </Link>
-                  <Link
-                    href="/dashboard/setting"
-                    className={cn(
-                      "flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted/60 hover:text-foreground",
-                      path === "/dashboard/setting" &&
-                        "bg-muted/60 text-foreground",
-                    )}
-                    prefetch={false}
-                  >
-                    <span>Settings</span>
-                  </Link>
-
-                  <Link
-                    href="/dashboard/username"
-                    className={cn(
-                      "flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted/60 hover:text-foreground",
-                      path === "/dashboard/username" &&
-                        "bg-muted/60 text-foreground",
-                    )}
-                    prefetch={false}
-                  >
-                    <span>Username</span>
-                  </Link>
+              </Link>
+              <Link
+                href="/dashboard/whisper"
+                className={cn(
+                  "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
+                  path === "/dashboard/whisper" && "bg-muted text-foreground",
+                )}
+                prefetch={false}
+              >
+                <MessageSquare className="mr-3 h-5 w-5" />
+                <div className="flex w-full items-center justify-between">
+                  Whisper <Badge variant="outline">Soon...</Badge>
                 </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+              </Link>
+
+              <Accordion type="single" collapsible>
+                <AccordionItem value="projects">
+                  <AccordionTrigger className="flex items-center gap-3 rounded-md px-3 py-0 hover:bg-muted hover:text-foreground">
+                    <div className="flex items-center rounded-md py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground">
+                      <Settings className="mr-3 h-5 w-5" />
+                      Settings
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="grid gap-2 pl-8">
+                      <Link
+                        href="/dashboard/profile"
+                        className={cn(
+                          "flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted/60 hover:text-foreground",
+                          path === "/dashboard/profile" &&
+                            "bg-muted/60 text-foreground",
+                        )}
+                        prefetch={false}
+                      >
+                        <span>Profile</span>
+                      </Link>
+                      <Link
+                        href="/dashboard/setting"
+                        className={cn(
+                          "flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted/60 hover:text-foreground",
+                          path === "/dashboard/setting" &&
+                            "bg-muted/60 text-foreground",
+                        )}
+                        prefetch={false}
+                      >
+                        <span>Settings</span>
+                      </Link>
+
+                      <Link
+                        href="/dashboard/username"
+                        className={cn(
+                          "flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted/60 hover:text-foreground",
+                          path === "/dashboard/username" &&
+                            "bg-muted/60 text-foreground",
+                        )}
+                        prefetch={false}
+                      >
+                        <span>Username</span>
+                      </Link>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+          ) : (
+            <Link
+              href="/dashboard/username"
+              className={cn(
+                "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
+                path === "/dashboard/username" && "bg-muted text-foreground",
+              )}
+              prefetch={false}
+            >
+              <TriangleAlert className="mr-3 h-5 w-5 text-blue-500" />
+              Choose Username
+            </Link>
+          )}
 
           {/* more sidebar items */}
         </div>
