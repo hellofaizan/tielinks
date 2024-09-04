@@ -4,12 +4,10 @@ import React from "react";
 import OnOffswitch from "./onoffswitch";
 
 export default function Email({ user }: any) {
-  const [collectEmail, setCollectEmail] = React.useState(false);
   const settings = user?.settings;
+  const collectEmails = settings?.collectEmail;
 
-  if (settings) {
-    setCollectEmail(settings.collectEmail);
-  }
+  const [collectEmail, setCollectEmail] = React.useState(collectEmails);
 
   return (
     <div className="flex items-center justify-between p-2">

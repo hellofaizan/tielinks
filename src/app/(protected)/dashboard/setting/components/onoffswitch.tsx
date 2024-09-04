@@ -17,7 +17,7 @@ export default function OnOffswitch({ enabled, id }: any) {
       if (res && res.error) {
         toast.error(res.error);
       } else {
-        toast.success("2FA " + (switchChecked ? "Disabled" : "Enabled"));
+        toast.success("Email Collection  " + (switchChecked ? "Disabled" : "Enabled"));
         setChecked(!switchChecked);
       }
       setLoading(false);
