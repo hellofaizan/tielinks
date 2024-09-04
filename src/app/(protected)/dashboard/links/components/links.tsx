@@ -1,7 +1,13 @@
 "use client";
 
-import { ChartNoAxesColumn, EyeOffIcon, Link, TrashIcon } from "lucide-react";
-import React from "react";
+import {
+  ChartNoAxesColumn,
+  EyeOffIcon,
+  Link,
+  Loader,
+  TrashIcon,
+} from "lucide-react";
+import React, { Suspense } from "react";
 import { Button } from "~/components/ui/button";
 import AddLinkCOmponent from "./addlinks";
 import EditLinkComponent from "./editlink";
@@ -120,60 +126,68 @@ export default function LinksComponent({ data }: LinksComponentProps) {
             <div className="flex items-center gap-2">
               <div className="flex gap-2">
                 {/* Today Clicks */}
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <p className="flex items-center gap-1 rounded-md border px-1 text-sm text-gray-500">
-                        <ChartNoAxesColumn size={18} />
-                        {
-                          link.linkClicks.filter((click: any) => {
-                            const today = new Date();
-                            const startOfDay = new Date(
-                              today.setHours(0, 0, 0, 0),
-                            );
-                            const endOfDay = new Date(
-                              today.setHours(23, 59, 59, 999),
-                            );
-                            const itemDate = new Date(click.timestamp);
-                            return (
-                              itemDate >= startOfDay && itemDate <= endOfDay
-                            );
-                          }).length
-                        }
-                      </p>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Clicks Today</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <Suspense
+                  fallback={<Loader className="animate-spin" size={19} />}
+                >
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <p className="flex items-center gap-1 rounded-md border px-1 text-sm text-gray-500">
+                          <ChartNoAxesColumn size={18} />
+                          {
+                            link.linkClicks.filter((click: any) => {
+                              const today = new Date();
+                              const startOfDay = new Date(
+                                today.setHours(0, 0, 0, 0),
+                              );
+                              const endOfDay = new Date(
+                                today.setHours(23, 59, 59, 999),
+                              );
+                              const itemDate = new Date(click.timestamp);
+                              return (
+                                itemDate >= startOfDay && itemDate <= endOfDay
+                              );
+                            }).length
+                          }
+                        </p>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Clicks Today</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </Suspense>
 
                 {/* // toggle button to hide unhide link */}
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <button
-                        className="flex items-center gap-1 rounded-md border px-1 text-sm text-gray-500 dark:hover:bg-muted"
-                        onClick={() => toggleHideLink(link.id)}
-                      >
-                        {link.hidden ? (
-                          <>
-                            <EyeOffIcon size={18} />
-                            Unhide
-                          </>
-                        ) : (
-                          <>
-                            <EyeIcon size={18} />
-                            Hide
-                          </>
-                        )}
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Hide / Unhide Link</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <Suspense
+                  fallback={<Loader className="animate-spin" size={19} />}
+                >
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <button
+                          className="flex items-center gap-1 rounded-md border px-1 text-sm text-gray-500 dark:hover:bg-muted"
+                          onClick={() => toggleHideLink(link.id)}
+                        >
+                          {link.hidden ? (
+                            <>
+                              <EyeOffIcon size={18} />
+                              Unhide
+                            </>
+                          ) : (
+                            <>
+                              <EyeIcon size={18} />
+                              Hide
+                            </>
+                          )}
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Hide / Unhide Link</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </Suspense>
               </div>
             </div>
           </div>
